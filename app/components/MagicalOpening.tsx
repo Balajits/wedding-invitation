@@ -26,7 +26,6 @@ export default function MagicalOpening({
   onOpenComplete,
 }: MagicalOpeningProps) {
   const [opening, setOpening] = useState(false);
-  const [invitation, setInvitation] = useState(false);
 
   const openInvitation = () => {
   if (opening) return;
@@ -263,7 +262,7 @@ export default function MagicalOpening({
                 scale: 1.12,
                 rotateY: -75,
                 opacity: 0,
-                y: -20,
+                y: -30,
               }
             : {
                 scale: 1,
@@ -364,7 +363,7 @@ export default function MagicalOpening({
               className="magic-flash"
               initial={{
                 opacity: 0,
-                scale: 0.2,
+                scale: 2,
               }}
               animate={{
                 opacity: [0, 0.9, 0],
@@ -383,7 +382,7 @@ export default function MagicalOpening({
                 opacity: 0,
               }}
               animate={{
-                scale: 4,
+                scale: 10,
                 opacity: [0, 0.8, 0],
               }}
               transition={{
@@ -410,50 +409,6 @@ export default function MagicalOpening({
               🌸
             </motion.div>
           </>
-        )}
-      </AnimatePresence>
-
-      {/* ================================
-          PAGE 2
-      ================================= */}
-
-      <AnimatePresence>
-        {invitation && (
-          <motion.div
-            className="wedding-page"
-            initial={{
-              opacity: 0,
-              scale: 1.08,
-            }}
-            animate={{
-              opacity: 1,
-              scale: 1,
-            }}
-            transition={{
-              duration: 1.5,
-              ease: "easeOut",
-            }}
-          >
-            <div className="wedding-page-content">
-              <p>THE WEDDING OF</p>
-
-              <h2>
-                Balaji
-                <span>&</span>
-                Harsa
-              </h2>
-
-              <div className="page-line" />
-
-              <p className="page-date">
-                14 DECEMBER 2026
-              </p>
-
-              <p className="coming-soon">
-                Our beautiful invitation continues...
-              </p>
-            </div>
-          </motion.div>
         )}
       </AnimatePresence>
 

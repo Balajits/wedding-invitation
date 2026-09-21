@@ -750,7 +750,7 @@ body {
   }
 
   .open-button {
-    bottom: 2%;
+    bottom: 3%;
   }
 }
 
@@ -774,8 +774,8 @@ body {
   width: 180px;
   height: 180px;
 
-  left: 50%;
-  top: 50%;
+  left: 30%;
+  top: 40%;
 
   transform: translate(-50%, -50%);
 
@@ -805,8 +805,8 @@ body {
   width: 160px;
   height: 160px;
 
-  left: 50%;
-  top: 50%;
+  left: 30%;
+  top: 40%;
 
   transform: translate(-50%, -50%);
 
@@ -828,8 +828,8 @@ body {
 .petal-burst {
   position: absolute;
 
-  left: 50%;
-  top: 50%;
+  left: 41%;
+  top: 45%;
 
   transform: translate(-50%, -50%);
 
@@ -2875,4 +2875,137 @@ a {
 .invitation-petal,
 .final-butterfly {
   pointer-events: none;
+}
+
+/* =========================================
+   YOUTUBE BACKGROUND MUSIC
+========================================= */
+
+.youtube-background-player {
+  position: fixed;
+  right: 20px;
+  bottom: 85px;
+  width: 200px;
+  height: 200px;
+  z-index: 999;
+  border-radius: 18px;
+  overflow: hidden;
+  box-shadow: 0 15px 40px rgba(80, 45, 100, 0.2);
+  display: none
+}
+
+.youtube-player {
+  width: 200px;
+  height: 200px;
+}
+
+.youtube-player iframe {
+  width: 200px !important;
+  height: 200px !important;
+  border: none;
+}
+
+/* Floating music control */
+
+.music-floating-button {
+  position: fixed;
+  right: 20px;
+  bottom: 20px;
+
+  height: 48px;
+  min-width: 45px;
+
+  padding: 0 18px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+
+  border: 1px solid rgba(118, 82, 118, 0.18);
+  border-radius: 999px;
+
+  background: rgba(255, 250, 255, 0.92);
+
+  color: #765276;
+
+  box-shadow:
+    0 8px 25px rgba(80, 45, 100, 0.15);
+
+  backdrop-filter: blur(12px);
+
+  cursor: pointer;
+
+  z-index: 1001;
+
+  transition:
+    transform 0.3s ease,
+    box-shadow 0.3s ease,
+    background 0.3s ease;
+}
+
+.music-floating-button:hover {
+  transform: translateY(-3px);
+
+  box-shadow:
+    0 12px 30px rgba(80, 45, 100, 0.2);
+}
+
+.music-icon {
+  font-size: 19px;
+  line-height: 1;
+}
+
+.music-text {
+  font-size: 10px;
+  letter-spacing: 1.8px;
+  text-transform: uppercase;
+  font-weight: 600;
+}
+
+.music-playing .music-icon {
+  animation: musicPulse 1.2s ease-in-out infinite;
+}
+
+@keyframes musicPulse {
+  0%,
+  100% {
+    transform: scale(1);
+  }
+
+  50% {
+    transform: scale(1.25);
+  }
+}
+
+
+/* Mobile */
+
+@media (max-width: 600px) {
+  .youtube-background-player {
+    right: 10px;
+    bottom: 75px;
+
+    width: 200px;
+    height: 200px;
+  }
+
+  .youtube-player {
+    width: 200px;
+    height: 200px;
+  }
+
+  .music-floating-button {
+    right: 12px;
+    bottom: 15px;
+
+    height: 44px;
+    min-width: 45px;
+
+    padding: 0 15px;
+  }
+
+  .music-text {
+    font-size: 9px;
+  }
 }

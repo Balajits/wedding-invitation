@@ -77,15 +77,15 @@ export default function WeddingInvitation() {
             >
 
                 <p className="intro-small">
-                    TOGETHER WITH THEIR FAMILIES
+                    WITH LOVE & BLESSINGS
                 </p>
 
                 <p className="intro-text">
-                    invite you to celebrate
+                   We invite you to celebrate
                     <br />
-                    the beginning of their
+                    the beautiful beginning
                     <br />
-                    forever
+                    of our forever.
                 </p>
 
             </motion.section>
@@ -125,7 +125,7 @@ export default function WeddingInvitation() {
                 </div>
 
                 <p className="couple-message">
-                    Two hearts, one beautiful journey
+                    From this moment, for all our tomorrows.
                 </p>
 
             </motion.section>
@@ -195,7 +195,7 @@ export default function WeddingInvitation() {
 
 
                 <p className="photo-caption">
-                    Two hearts, one beautiful journey
+                    The first page of our forever.
                 </p>
 
             </motion.section>
@@ -221,9 +221,9 @@ export default function WeddingInvitation() {
                     <span>✦</span>
                     <p>JOIN US</p>
                     <h2>
-                        Save the
+                        The Countdown
                         <br />
-                        <em>date</em>
+                        <em>Begins</em>
                     </h2>
                     <span>✦</span>
                 </motion.div>
@@ -344,7 +344,7 @@ export default function WeddingInvitation() {
                 </div>
 
                 <p className="venue-section-label">
-                    OUR CELEBRATION
+                    THE VENUE
                 </p>
 
                 <h2 className="venue-title">
@@ -525,9 +525,10 @@ export default function WeddingInvitation() {
                 <p className="final-message">
                     Your presence and blessings
                     <br />
-                    will make our celebration
-                    <br />
-                    even more special.
+                    
+                    mean the world to us.
+                    {/* <br /> */}
+                    {/* world to us. */}
                 </p>
 
 

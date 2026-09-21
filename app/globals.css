@@ -746,7 +746,7 @@ body {
 
 @media (max-height: 700px) {
   .invitation-card {
-    width: min(290px, 62vw);
+    width: min(290px, 75vw);
   }
 
   .open-button {

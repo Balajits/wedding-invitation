@@ -290,7 +290,7 @@ export default function MagicalOpening({
             <div className="card-content">
 
               <p className="eyebrow">
-                A BEAUTIFUL BEGINNING
+                OUR FOREVER BEGINS
               </p>
 
               <div className="card-ornament">
@@ -306,11 +306,10 @@ export default function MagicalOpening({
               <div className="card-divider" />
 
               <p className="card-message">
-                Together with their families
+                One moment brought us together,
                 <br />
-                invite you to celebrate
+                One love will carry us Forever
                 <br />
-                their wedding
               </p>
 
               <p className="wedding-date">

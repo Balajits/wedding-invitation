@@ -1,26 +1,2878 @@
-@import "tailwindcss";
+@import url("https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=Great+Vibes&family=Montserrat:wght@300;400;500&display=swap");
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+* {
+  box-sizing: border-box;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+html,
+body {
+  margin: 0;
+  padding: 0;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  min-height: 100vh;
+  background: #f4ecfa;
+}
+
+/* =========================================
+   MAIN MAGICAL BACKGROUND
+========================================= */
+
+.magical-opening {
+  position: relative;
+  min-height: 100svh;
+  width: 100%;
+  overflow: hidden;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  background:
+    radial-gradient(
+      ellipse at 50% 42%,
+      rgba(255, 255, 255, 0.95) 0%,
+      rgba(245, 235, 250, 0.8) 35%,
+      transparent 65%
+    ),
+    linear-gradient(
+      135deg,
+      #f8f1fb 0%,
+      #eee1f7 48%,
+      #f7effb 100%
+    );
+
+  color: #4c3858;
+}
+
+/* =========================================
+   PURPLE LIGHT
+========================================= */
+
+.purple-glow {
+  position: absolute;
+  border-radius: 50%;
+  pointer-events: none;
+  filter: blur(70px);
+}
+
+.purple-glow-one {
+  width: 420px;
+  height: 420px;
+  top: -160px;
+  left: -100px;
+  background: rgba(190, 151, 219, 0.28);
+}
+
+.purple-glow-two {
+  width: 380px;
+  height: 380px;
+  right: -100px;
+  bottom: -100px;
+  background: rgba(174, 133, 207, 0.24);
+}
+
+.purple-glow-three {
+  width: 280px;
+  height: 280px;
+  left: 45%;
+  top: 35%;
+  background: rgba(218, 193, 235, 0.25);
+}
+
+.ambient-light {
+  position: absolute;
+  width: 500px;
+  height: 500px;
+  border-radius: 50%;
+
+  background: rgba(255, 255, 255, 0.4);
+
+  filter: blur(90px);
+  pointer-events: none;
+}
+
+/* =========================================
+   SPARKLING STARS
+========================================= */
+
+.stars {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+.star {
+  position: absolute;
+  color: rgba(139, 94, 169, 0.55);
+  font-size: 10px;
+}
+
+.star-1 { top: 12%; left: 25%; }
+.star-2 { top: 18%; left: 68%; }
+.star-3 { top: 27%; left: 12%; }
+.star-4 { top: 32%; right: 13%; }
+.star-5 { top: 45%; left: 7%; }
+.star-6 { top: 53%; right: 8%; }
+.star-7 { top: 65%; left: 20%; }
+.star-8 { top: 72%; right: 23%; }
+.star-9 { top: 83%; left: 38%; }
+.star-10 { top: 15%; left: 48%; }
+.star-11 { top: 38%; left: 28%; }
+.star-12 { top: 58%; right: 31%; }
+.star-13 { top: 76%; left: 10%; }
+.star-14 { top: 88%; right: 12%; }
+.star-15 { top: 9%; right: 30%; }
+.star-16 { top: 47%; left: 87%; }
+.star-17 { top: 62%; left: 5%; }
+.star-18 { top: 78%; right: 40%; }
+.star-19 { top: 23%; right: 35%; }
+.star-20 { top: 92%; left: 60%; }
+.star-21 { top: 34%; right: 5%; }
+.star-22 { top: 69%; left: 45%; }
+.star-23 { top: 11%; left: 82%; }
+.star-24 { top: 51%; left: 18%; }
+
+/* =========================================
+   FALLING PETALS
+========================================= */
+
+.petals {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.petal {
+  position: absolute;
+
+  width: 9px;
+  height: 14px;
+
+  border-radius: 70% 30% 70% 30%;
+
+  background: rgba(194, 151, 218, 0.45);
+
+  filter: blur(0.2px);
+}
+
+.petal-1 { left: 4%; }
+.petal-2 { left: 11%; }
+.petal-3 { left: 18%; }
+.petal-4 { left: 27%; }
+.petal-5 { left: 34%; }
+.petal-6 { left: 43%; }
+.petal-7 { left: 51%; }
+.petal-8 { left: 59%; }
+.petal-9 { left: 67%; }
+.petal-10 { left: 73%; }
+.petal-11 { left: 80%; }
+.petal-12 { left: 87%; }
+.petal-13 { left: 93%; }
+.petal-14 { left: 15%; }
+.petal-15 { left: 62%; }
+.petal-16 { left: 39%; }
+
+/* =========================================
+   VINES
+========================================= */
+
+.vine {
+  position: absolute;
+  width: 150px;
+  height: 430px;
+
+  border-left: 2px solid rgba(123, 91, 135, 0.18);
+
+  pointer-events: none;
+  transform-origin: top;
+}
+
+.vine-left {
+  left: 0;
+  bottom: -80px;
+  transform: rotate(13deg);
+}
+
+.vine-right {
+  right: 0;
+  bottom: -80px;
+  transform: rotate(-13deg);
+}
+
+.vine span {
+  position: absolute;
+
+  width: 42px;
+  height: 20px;
+
+  border-radius: 100% 0 100% 0;
+
+  background: rgba(165, 127, 182, 0.25);
+}
+
+.vine-left span:nth-child(1) {
+  top: 80px;
+  left: 5px;
+  transform: rotate(25deg);
+}
+
+.vine-left span:nth-child(2) {
+  top: 160px;
+  left: -15px;
+  transform: rotate(-15deg);
+}
+
+.vine-left span:nth-child(3) {
+  top: 250px;
+  left: 5px;
+  transform: rotate(25deg);
+}
+
+.vine-left span:nth-child(4) {
+  top: 330px;
+  left: -15px;
+  transform: rotate(-15deg);
+}
+
+.vine-right span:nth-child(1) {
+  top: 80px;
+  right: 5px;
+  transform: rotate(-25deg);
+}
+
+.vine-right span:nth-child(2) {
+  top: 160px;
+  right: -15px;
+  transform: rotate(15deg);
+}
+
+.vine-right span:nth-child(3) {
+  top: 250px;
+  right: 5px;
+  transform: rotate(-25deg);
+}
+
+.vine-right span:nth-child(4) {
+  top: 330px;
+  right: -15px;
+  transform: rotate(15deg);
+}
+
+/* =========================================
+   FLOWERS
+========================================= */
+
+.flowers {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+.flower {
+  position: absolute;
+
+  width: 52px;
+  height: 52px;
+
+  transform-origin: center;
+}
+
+.flower i {
+  position: absolute;
+
+  width: 24px;
+  height: 34px;
+
+  left: 14px;
+  top: 9px;
+
+  border-radius: 70% 70% 45% 45%;
+
+  background: linear-gradient(
+    145deg,
+    rgba(255, 255, 255, 0.95),
+    rgba(201, 162, 224, 0.75)
+  );
+
+  transform-origin: 50% 80%;
+}
+
+.flower i:nth-child(2) {
+  transform: rotate(72deg);
+}
+
+.flower i:nth-child(3) {
+  transform: rotate(144deg);
+}
+
+.flower i:nth-child(4) {
+  transform: rotate(216deg);
+}
+
+.flower i:nth-child(5) {
+  transform: rotate(288deg);
+}
+
+.flower-center {
+  position: absolute;
+
+  width: 12px;
+  height: 12px;
+
+  top: 20px;
+  left: 20px;
+
+  border-radius: 50%;
+
+  background: #d7b5e5;
+
+  box-shadow:
+    0 0 8px rgba(183, 137, 207, 0.5);
+}
+
+.flower-1 {
+  left: -8px;
+  top: 12%;
+}
+
+.flower-2 {
+  left: 7%;
+  top: 30%;
+}
+
+.flower-3 {
+  left: -5px;
+  bottom: 25%;
+}
+
+.flower-4 {
+  left: 14%;
+  bottom: 8%;
+}
+
+.flower-5 {
+  right: 5%;
+  top: 17%;
+}
+
+.flower-6 {
+  right: -10px;
+  top: 42%;
+}
+
+.flower-7 {
+  right: 9%;
+  bottom: 25%;
+}
+
+.flower-8 {
+  right: -5px;
+  bottom: 7%;
+}
+
+.flower.small {
+  transform: scale(0.65);
+}
+
+.flower.medium {
+  transform: scale(0.85);
+}
+
+.flower.large {
+  transform: scale(1.15);
+}
+
+/* =========================================
+   BUTTERFLIES
+========================================= */
+
+.butterfly {
+  position: absolute;
+  width: 44px;
+  height: 35px;
+
+  z-index: 4;
+
+  filter:
+    drop-shadow(0 5px 8px rgba(130, 88, 155, 0.2));
+}
+
+.butterfly-one {
+  left: 12%;
+  top: 23%;
+}
+
+.butterfly-two {
+  right: 13%;
+  top: 32%;
+}
+
+.wing {
+  position: absolute;
+
+  width: 20px;
+  height: 28px;
+
+  top: 3px;
+
+  background: linear-gradient(
+    145deg,
+    #d8b6e8,
+    #a77bc2
+  );
+
+  border-radius: 80% 20% 80% 20%;
+
+  transform-origin: bottom center;
+
+  animation: wing-flap 1.4s ease-in-out infinite;
+}
+
+.wing-left {
+  left: 1px;
+  transform: rotate(-25deg);
+}
+
+.wing-right {
+  right: 1px;
+  transform: scaleX(-1) rotate(-25deg);
+}
+
+.butterfly-body {
+  position: absolute;
+
+  width: 4px;
+  height: 24px;
+
+  left: 20px;
+  top: 5px;
+
+  border-radius: 50%;
+
+  background: #725083;
+}
+
+@keyframes wing-flap {
+  0%,
+  100% {
+    transform: rotate(-25deg) scaleY(1);
+  }
+
+  50% {
+    transform: rotate(-8deg) scaleY(0.72);
+  }
+}
+
+/* =========================================
+   INVITATION CARD
+========================================= */
+
+.invitation-wrapper {
+  position: relative;
+  z-index: 5;
+
+  perspective: 1200px;
+}
+
+.invitation-card {
+  position: relative;
+
+  width: min(380px, 78vw);
+  aspect-ratio: 0.72;
+
+  padding: 11px;
+
+  background: rgba(255, 255, 255, 0.7);
+
+  box-shadow:
+    0 35px 80px rgba(96, 65, 112, 0.18),
+    0 10px 30px rgba(142, 104, 163, 0.15);
+
+  backdrop-filter: blur(5px);
+
+  border-radius: 3px;
+}
+
+.card-border {
+  width: 100%;
+  height: 100%;
+
+  padding: 10px;
+
+  border: 1px solid rgba(142, 100, 163, 0.42);
+
+  background:
+    radial-gradient(
+      circle at 50% 40%,
+      rgba(255, 255, 255, 0.95),
+      rgba(246, 236, 250, 0.92)
+    );
+}
+
+.card-content {
+  width: 100%;
+  height: 100%;
+
+  border: 1px solid rgba(176, 135, 193, 0.25);
+
+  display: flex;
+  flex-direction: column;
+
+  align-items: center;
+  justify-content: center;
+
+  text-align: center;
+
+  padding: 30px 20px;
+
+  color: #4d3658;
+}
+
+.eyebrow {
+  margin: 0 0 20px;
+
+  font-family: "Montserrat", sans-serif;
+
+  font-size: 8px;
+  font-weight: 500;
+
+  letter-spacing: 4px;
+
+  color: #90709f;
+}
+
+.card-ornament {
+  font-family: serif;
+
+  font-size: 18px;
+
+  color: #a77bc2;
+
+  margin-bottom: 8px;
+}
+
+.card-content h1 {
+  margin: 0;
+
+  font-family: "Great Vibes", cursive;
+
+  font-size: clamp(50px, 13vw, 70px);
+
+  line-height: 0.9;
+
+  font-weight: 400;
+
+  color: #68477a;
+}
+
+.card-content h1 span {
+  display: block;
+
+  margin: 10px 0;
+
+  font-family: "Cormorant Garamond", serif;
+
+  font-size: 22px;
+
+  font-style: italic;
+
+  color: #a17ab1;
+}
+
+.card-divider {
+  height: 1px;
+
+  margin: 20px 0;
+
+  background: #bd9aca;
+}
+
+.card-message {
+  margin: 0;
+
+  font-family: "Cormorant Garamond", serif;
+
+  font-size: 17px;
+
+  line-height: 1.5;
+
+  color: #73567f;
+}
+
+.wedding-date {
+  margin-top: 25px;
+
+  font-family: "Montserrat", sans-serif;
+
+  font-size: 10px;
+
+  letter-spacing: 4px;
+
+  color: #765282;
+}
+
+/* =========================================
+   OPEN BUTTON
+========================================= */
+
+.open-button {
+  position: absolute;
+
+  bottom: 6%;
+
+  z-index: 10;
+
+  display: flex;
+  align-items: center;
+  gap: 14px;
+
+  padding: 13px 24px;
+
+  border: 1px solid rgba(130, 92, 149, 0.35);
+
+  border-radius: 50px;
+
+  background: rgba(255, 255, 255, 0.38);
+
+  backdrop-filter: blur(12px);
+
+  color: #684a76;
+
+  font-family: "Montserrat", sans-serif;
+
+  font-size: 10px;
+
+  letter-spacing: 3px;
+
+  text-transform: uppercase;
+
+  cursor: pointer;
+
+  box-shadow:
+    0 8px 25px rgba(104, 70, 123, 0.1);
+}
+
+.open-button b {
+  font-size: 12px;
+
+  font-weight: 400;
+
+  color: #a478ba;
+
+  animation: sparkle 2s ease-in-out infinite;
+}
+
+@keyframes sparkle {
+  0%,
+  100% {
+    opacity: 0.4;
+    transform: scale(0.8);
+  }
+
+  50% {
+    opacity: 1;
+    transform: scale(1.2);
+  }
+}
+
+/* =========================================
+   BOTTOM GLOW
+========================================= */
+
+.bottom-floral-glow {
+  position: absolute;
+
+  bottom: -180px;
+  left: 50%;
+
+  width: 700px;
+  height: 300px;
+
+  transform: translateX(-50%);
+
+  border-radius: 50%;
+
+  background: rgba(194, 158, 216, 0.22);
+
+  filter: blur(70px);
+
+  pointer-events: none;
+}
+
+/* =========================================
+   MOBILE
+========================================= */
+
+@media (max-width: 600px) {
+  .invitation-card {
+    width: min(330px, 78vw);
+  }
+
+  .card-content {
+    padding: 20px 14px;
+  }
+
+  .card-message {
+    font-size: 15px;
+  }
+
+  .flower {
+    transform: scale(0.8);
+  }
+
+  .flower.large {
+    transform: scale(0.9);
+  }
+
+  .vine {
+    height: 350px;
+  }
+
+  .butterfly-one {
+    left: 7%;
+  }
+
+  .butterfly-two {
+    right: 6%;
+  }
+
+  .open-button {
+    bottom: 4%;
+  }
+}
+
+@media (max-height: 700px) {
+  .invitation-card {
+    width: min(290px, 62vw);
+  }
+
+  .open-button {
+    bottom: 2%;
+  }
+}
+
+/* =========================================
+   STEP 2 — CINEMATIC OPENING
+========================================= */
+
+.magical-opening {
+  perspective: 1400px;
+}
+
+.invitation-wrapper {
+  transform-style: preserve-3d;
+}
+
+/* Magic expanding light */
+
+.magic-flash {
+  position: absolute;
+
+  width: 180px;
+  height: 180px;
+
+  left: 50%;
+  top: 50%;
+
+  transform: translate(-50%, -50%);
+
+  border-radius: 50%;
+
+  background:
+    radial-gradient(
+      circle,
+      rgba(255, 255, 255, 0.95) 0%,
+      rgba(220, 190, 235, 0.75) 30%,
+      rgba(181, 137, 207, 0.35) 60%,
+      transparent 75%
+    );
+
+  filter: blur(8px);
+
+  z-index: 20;
+
+  pointer-events: none;
+}
+
+/* Expanding magic ring */
+
+.magic-ring {
+  position: absolute;
+
+  width: 160px;
+  height: 160px;
+
+  left: 50%;
+  top: 50%;
+
+  transform: translate(-50%, -50%);
+
+  border-radius: 50%;
+
+  border: 1px solid rgba(176, 124, 201, 0.55);
+
+  box-shadow:
+    0 0 30px rgba(173, 124, 201, 0.4),
+    inset 0 0 30px rgba(255, 255, 255, 0.5);
+
+  z-index: 21;
+
+  pointer-events: none;
+}
+
+/* Flower burst */
+
+.petal-burst {
+  position: absolute;
+
+  left: 50%;
+  top: 50%;
+
+  transform: translate(-50%, -50%);
+
+  font-size: 70px;
+
+  z-index: 22;
+
+  filter:
+    drop-shadow(0 0 20px rgba(171, 124, 201, 0.6));
+
+  pointer-events: none;
+}
+
+/* =========================================
+   PAGE 2
+========================================= */
+
+.wedding-page {
+  position: absolute;
+
+  inset: 0;
+
+  z-index: 50;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  background:
+    radial-gradient(
+      circle at center,
+      rgba(255, 255, 255, 0.98),
+      rgba(242, 230, 249, 0.96)
+    );
+}
+
+.wedding-page-content {
+  text-align: center;
+
+  color: #68477a;
+
+  padding: 30px;
+}
+
+.wedding-page-content > p:first-child {
+  font-family: "Montserrat", sans-serif;
+
+  font-size: 9px;
+
+  letter-spacing: 5px;
+
+  color: #9974a8;
+}
+
+.wedding-page-content h2 {
+  margin: 20px 0;
+
+  font-family: "Great Vibes", cursive;
+
+  font-size: clamp(60px, 15vw, 90px);
+
+  font-weight: 400;
+
+  line-height: 0.85;
+}
+
+.wedding-page-content h2 span {
+  display: block;
+
+  margin: 12px;
+
+  font-family: "Cormorant Garamond", serif;
+
+  font-size: 25px;
+
+  font-style: italic;
+}
+
+.page-line {
+  width: 80px;
+  height: 1px;
+
+  margin: 30px auto;
+
+  background: #b997c9;
+}
+
+.page-date {
+  font-family: "Montserrat", sans-serif;
+
+  font-size: 11px;
+
+  letter-spacing: 5px;
+}
+
+.coming-soon {
+  margin-top: 50px;
+
+  font-family: "Cormorant Garamond", serif;
+
+  font-size: 17px;
+
+  font-style: italic;
+
+  color: #96779f;
+}
+
+/* =========================================
+   WEDDING INVITATION
+========================================= */
+
+.wedding-invitation {
+  position: relative;
+  min-height: 100svh;
+  overflow: hidden;
+
+  padding: 80px 20px 100px;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  background:
+    radial-gradient(
+      circle at 50% 10%,
+      rgba(255, 255, 255, 0.95),
+      transparent 38%
+    ),
+    linear-gradient(
+      180deg,
+      #f8f1fb 0%,
+      #eee2f7 50%,
+      #f8f0fb 100%
+    );
+
+  color: #a26bbb;
+}
+
+/* Soft background lights */
+
+.invitation-glow {
+  position: absolute;
+
+  width: 420px;
+  height: 420px;
+
+  border-radius: 50%;
+
+  filter: blur(90px);
+
+  pointer-events: none;
+}
+
+.invitation-glow-one {
+  top: -150px;
+  left: -160px;
+
+  background: rgba(192, 153, 219, 0.25);
+}
+
+.invitation-glow-two {
+  right: -180px;
+  bottom: 10%;
+
+  background: rgba(176, 132, 207, 0.2);
+}
+
+/* =========================================
+   FLORAL HEADER
+========================================= */
+
+.floral-header {
+  display: flex;
+  gap: 22px;
+
+  margin-bottom: 55px;
+
+  color: #ae82c3;
+
+  font-size: 27px;
+
+  opacity: 0.75;
+}
+
+.floral-header span:nth-child(2) {
+  font-size: 38px;
+
+  transform: translateY(-8px);
+}
+
+/* =========================================
+   INTRO
+========================================= */
+
+.invitation-intro {
+  position: relative;
+
+  z-index: 2;
+
+  text-align: center;
+
+  margin-bottom: 35px;
+}
+
+.intro-small {
+  margin: 0 0 18px;
+
+  font-family: "Montserrat", sans-serif;
+
+  font-size: 8px;
+
+  letter-spacing: 4px;
+
+  color: #9875a7;
+}
+
+.intro-text {
+  margin: 0;
+
+  font-family: "Cormorant Garamond", serif;
+
+  font-size: 20px;
+
+  line-height: 1.45;
+
+  font-style: italic;
+
+  color: #765782;
+}
+
+/* =========================================
+   COUPLE
+========================================= */
+
+.couple-section {
+  position: relative;
+
+  z-index: 2;
+
+  text-align: center;
+
+  margin-bottom: 75px;
+}
+
+.couple-section h1 {
+  margin: 0;
+
+  font-family: "Great Vibes", cursive;
+
+  font-size: clamp(72px, 18vw, 105px);
+
+  font-weight: 400;
+
+  line-height: 0.78;
+
+  color: #704b80;
+}
+
+.couple-section h1 span {
+  display: block;
+
+  margin: 17px 0;
+
+  font-family: "Cormorant Garamond", serif;
+
+  font-size: 27px;
+
+  font-style: italic;
+
+  color: #a17bb0;
+}
+
+.couple-divider {
+  display: flex;
+
+  justify-content: center;
+
+  align-items: center;
+
+  margin: 38px 0 20px;
+}
+
+.couple-divider::before,
+.couple-divider::after {
+  content: "";
+
+  width: 55px;
+
+  height: 1px;
+
+  background: rgba(141, 101, 157, 0.35);
+}
+
+.couple-divider span {
+  margin: 0 15px;
+
+  color: #aa7bc0;
+
+  font-size: 12px;
+}
+
+.couple-message {
+  margin: 0;
+
+  font-family: "Cormorant Garamond", serif;
+
+  font-size: 16px;
+
+  font-style: italic;
+
+  color: #94759f;
+}
+
+/* =========================================
+   EVENT CARD
+========================================= */
+
+.event-card {
+  position: relative;
+
+  z-index: 2;
+
+  width: min(470px, 92vw);
+
+  padding: 50px 25px;
+
+  margin-bottom: 40px;
+
+  text-align: center;
+
+  background: rgba(255, 252, 255, 0.65);
+
+  border: 1px solid rgba(158, 119, 177, 0.25);
+
+  box-shadow:
+    0 25px 60px rgba(106, 74, 122, 0.08);
+
+  backdrop-filter: blur(8px);
+}
+
+.event-label {
+  margin: 0;
+
+  font-family: "Montserrat", sans-serif;
+
+  font-size: 8px;
+
+  letter-spacing: 4px;
+
+  color: #9672a6;
+}
+
+.event-ornament {
+  margin: 20px 0;
+
+  font-size: 13px;
+
+  color: #b083c2;
+}
+
+.event-card h2 {
+  margin: 0;
+
+  font-family: "Cormorant Garamond", serif;
+
+  font-size: 62px;
+
+  font-weight: 400;
+
+  line-height: 0.8;
+
+  color: #674877;
+}
+
+.event-card h2 span {
+  display: block;
+
+  margin-top: 15px;
+
+  font-family: "Montserrat", sans-serif;
+
+  font-size: 9px;
+
+  letter-spacing: 5px;
+}
+
+.event-card h2 small {
+  display: block;
+
+  margin-top: 12px;
+
+  font-family: "Montserrat", sans-serif;
+
+  font-size: 9px;
+
+  letter-spacing: 3px;
+
+  font-weight: 400;
+}
+
+.event-time {
+  margin-top: 25px;
+
+  font-family: "Cormorant Garamond", serif;
+
+  font-size: 20px;
+
+  color: #775584;
+}
+
+.event-line {
+  width: 65px;
+
+  height: 1px;
+
+  margin: 25px auto;
+
+  background: #bd9dca;
+}
+
+.venue-name {
+  margin: 0;
+
+  font-family: "Cormorant Garamond", serif;
+
+  font-size: 21px;
+
+  color: #694a78;
+}
+
+.venue-type {
+  margin: 6px 0 0;
+
+  font-family: "Montserrat", sans-serif;
+
+  font-size: 8px;
+
+  letter-spacing: 2px;
+
+  color: #a084a9;
+}
+
+.wedding-event {
+  margin-top: 5px;
+}
+
+/* =========================================
+   CLOSING
+========================================= */
+
+.closing-message {
+  position: relative;
+
+  z-index: 2;
+
+  text-align: center;
+
+  margin-top: 50px;
+}
+
+.closing-flower {
+  margin: 20px;
+
+  font-size: 25px;
+
+  color: #b083c2;
+}
+
+.closing-message p {
+  margin: 0;
+
+  font-family: "Cormorant Garamond", serif;
+
+  font-size: 20px;
+
+  line-height: 1.5;
+
+  font-style: italic;
+
+  color: #775984;
+}
+
+.closing-message h3 {
+  margin: 30px 0 5px;
+
+  font-family: "Cormorant Garamond", serif;
+
+  font-size: 17px;
+
+  font-weight: 400;
+
+  font-style: italic;
+
+  color: #96759f;
+}
+
+.closing-message h4 {
+  margin: 0;
+
+  font-family: "Great Vibes", cursive;
+
+  font-size: 42px;
+
+  font-weight: 400;
+
+  color: #704c80;
+}
+
+/* =========================================
+   FLOATING PETALS
+========================================= */
+
+.invitation-petal {
+  position: absolute;
+
+  width: 10px;
+  height: 15px;
+
+  border-radius: 70% 30% 70% 30%;
+
+  background: rgba(183, 140, 205, 0.35);
+
+  animation: invitation-petal-float 9s linear infinite;
+
+  pointer-events: none;
+}
+
+.petal-a {
+  left: 8%;
+  top: 25%;
+}
+
+.petal-b {
+  right: 12%;
+  top: 55%;
+
+  animation-delay: 3s;
+}
+
+.petal-c {
+  left: 25%;
+  bottom: 15%;
+
+  animation-delay: 5s;
+}
+
+@keyframes invitation-petal-float {
+  0% {
+    transform: translateY(-30px) rotate(0deg);
+    opacity: 0;
+  }
+
+  20% {
+    opacity: 0.7;
+  }
+
+  80% {
+    opacity: 0.5;
+  }
+
+  100% {
+    transform: translateY(180px) rotate(180deg);
+    opacity: 0;
+  }
+}
+
+/* =========================================
+   MOBILE
+========================================= */
+
+@media (max-width: 600px) {
+  .wedding-invitation {
+    padding-top: 60px;
+  }
+
+  .couple-section h1 {
+    font-size: 50px;
+  }
+
+  .event-card {
+    padding: 42px 20px;
+  }
+
+  .event-card h2 {
+    font-size: 55px;
+  }
+}
+
+/* ================================
+   COUPLE PHOTO SECTION
+================================ */
+
+.couple-photo-section {
+  position: relative;
+  padding: 70px 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.photo-frame {
+  position: relative;
+  width: min(82vw, 420px);
+  aspect-ratio: 3 / 4;
+  padding: 12px;
+  border: 1px solid rgba(132, 88, 150, 0.25);
+  background: rgba(255, 255, 255, 0.55);
+  box-shadow:
+    0 20px 60px rgba(100, 65, 120, 0.15),
+    0 0 40px rgba(190, 150, 210, 0.15);
+  border-radius: 3px;
+}
+
+.photo-frame::before {
+  content: "";
+  position: absolute;
+  inset: 7px;
+  border: 1px solid rgba(150, 105, 170, 0.25);
+  pointer-events: none;
+}
+
+.photo-placeholder {
+  width: 100%;
+  height: 100%;
+  background:
+    linear-gradient(
+      135deg,
+      rgba(245, 237, 249, 0.95),
+      rgba(225, 207, 235, 0.9)
+    );
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.photo-placeholder span {
+  font-family: Georgia, serif;
+  font-size: 42px;
+  letter-spacing: 8px;
+  color: rgba(91, 58, 105, 0.55);
+}
+
+.photo-flower {
+  position: absolute;
+  font-size: 34px;
+  color: #b99bc5;
+  z-index: 3;
+  animation: flowerFloat 4s ease-in-out infinite;
+}
+
+.flower-top-left {
+  top: -18px;
+  left: -20px;
+}
+
+.flower-top-right {
+  top: -14px;
+  right: -18px;
+  animation-delay: 1s;
+}
+
+.flower-bottom-left {
+  bottom: -18px;
+  left: -18px;
+  animation-delay: 2s;
+}
+
+.flower-bottom-right {
+  bottom: -20px;
+  right: -20px;
+  animation-delay: 3s;
+}
+
+.photo-caption {
+  margin-top: 28px;
+  font-family: Georgia, serif;
+  font-size: 18px;
+  font-style: italic;
+  color: #76567f;
+  letter-spacing: 1px;
+}
+
+@keyframes flowerFloat {
+  0%,
+  100% {
+    transform: translateY(0) rotate(0deg);
+  }
+
+  50% {
+    transform: translateY(-7px) rotate(5deg);
+  }
+}
+
+.photo-placeholder img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: grayscale(100%);
+}
+
+.invitation-petal {
+  position: absolute;
+  width: 8px;
+  height: 12px;
+  border-radius: 100% 0 100% 0;
+  background: rgba(170, 125, 185, 0.35);
+  animation: invitationPetalFall 9s linear infinite;
+  pointer-events: none;
+}
+
+@keyframes invitationPetalFall {
+  0% {
+    transform: translateY(-30px) rotate(0deg);
+    opacity: 0;
+  }
+
+  15% {
+    opacity: 0.7;
+  }
+
+  50% {
+    transform: translateY(50vh) translateX(35px) rotate(180deg);
+  }
+
+  100% {
+    transform: translateY(105vh) translateX(-25px) rotate(360deg);
+    opacity: 0;
+  }
+}
+
+
+/* =================================
+   WEDDING AMBIENCE
+================================= */
+
+.wedding-invitation {
+  position: relative;
+  overflow: hidden;
+  min-height: 100vh;
+}
+
+.wedding-ambience {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  overflow: hidden;
+  z-index: 0;
+}
+
+/* Floating flowers */
+
+.floating-flower {
+  position: absolute;
+  font-family: Georgia, serif;
+  color: rgba(150, 103, 165, 0.28);
+  font-size: 38px;
+  animation: flowerDrift 8s ease-in-out infinite;
+}
+
+.flower-1 {
+  top: 12%;
+  left: 5%;
+}
+
+.flower-2 {
+  top: 38%;
+  right: 5%;
+  font-size: 30px;
+  animation-delay: 2s;
+}
+
+.flower-3 {
+  top: 68%;
+  left: 7%;
+  font-size: 26px;
+  animation-delay: 4s;
+}
+
+.flower-4 {
+  top: 85%;
+  right: 8%;
+  font-size: 42px;
+  animation-delay: 1s;
+}
+
+@keyframes flowerDrift {
+  0%,
+  100% {
+    transform: translateY(0) rotate(0deg);
+  }
+
+  50% {
+    transform: translateY(-18px) rotate(12deg);
+  }
+}
+
+/* Butterflies */
+
+.wedding-butterfly {
+  position: absolute;
+  font-size: 22px;
+  opacity: 0.65;
+  filter: drop-shadow(0 3px 8px rgba(120, 70, 140, 0.2));
+}
+
+.butterfly-1 {
+  top: 20%;
+  left: -40px;
+  animation: butterflyFlightOne 14s linear infinite;
+}
+
+.butterfly-2 {
+  top: 55%;
+  right: -40px;
+  animation: butterflyFlightTwo 17s linear infinite;
+  animation-delay: 4s;
+}
+
+.butterfly-3 {
+  top: 78%;
+  left: -40px;
+  animation: butterflyFlightThree 19s linear infinite;
+  animation-delay: 8s;
+}
+
+@keyframes butterflyFlightOne {
+  0% {
+    transform: translateX(0) translateY(0) rotate(8deg);
+  }
+
+  30% {
+    transform: translateX(30vw) translateY(-35px) rotate(-8deg);
+  }
+
+  60% {
+    transform: translateX(60vw) translateY(25px) rotate(10deg);
+  }
+
+  100% {
+    transform: translateX(110vw) translateY(-20px) rotate(-5deg);
+  }
+}
+
+@keyframes butterflyFlightTwo {
+  0% {
+    transform: translateX(0) translateY(0) rotate(-8deg);
+  }
+
+  40% {
+    transform: translateX(-35vw) translateY(30px) rotate(8deg);
+  }
+
+  70% {
+    transform: translateX(-65vw) translateY(-25px) rotate(-5deg);
+  }
+
+  100% {
+    transform: translateX(-110vw) translateY(10px) rotate(5deg);
+  }
+}
+
+@keyframes butterflyFlightThree {
+  0% {
+    transform: translateX(0) translateY(0);
+  }
+
+  35% {
+    transform: translateX(25vw) translateY(-30px);
+  }
+
+  70% {
+    transform: translateX(65vw) translateY(20px);
+  }
+
+  100% {
+    transform: translateX(110vw) translateY(-10px);
+  }
+}
+
+/* Soft glowing particles */
+
+.glow-dot {
+  position: absolute;
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: rgba(170, 120, 190, 0.45);
+  box-shadow: 0 0 14px rgba(180, 140, 200, 0.5);
+  animation: dotPulse 3s ease-in-out infinite;
+}
+
+.dot-1 {
+  top: 18%;
+  left: 18%;
+}
+
+.dot-2 {
+  top: 42%;
+  right: 17%;
+  animation-delay: 1s;
+}
+
+.dot-3 {
+  top: 67%;
+  left: 20%;
+  animation-delay: 2s;
+}
+
+.dot-4 {
+  top: 88%;
+  right: 25%;
+  animation-delay: 1.5s;
+}
+
+@keyframes dotPulse {
+  0%,
+  100% {
+    opacity: 0.15;
+    transform: scale(0.7);
+  }
+
+  50% {
+    opacity: 0.8;
+    transform: scale(1.3);
+  }
+}
+
+/* =========================================================
+   STEP 4 — EVENTS & CALENDAR
+========================================================= */
+
+.events-section {
+  position: relative;
+  z-index: 2;
+  padding: 25px 0 20px;
+}
+
+.section-heading {
+  text-align: center;
+  margin-bottom: 55px;
+}
+
+.section-heading > span {
+  display: block;
+  margin: 12px 0;
+  color: #aa86b4;
+  font-size: 14px;
+}
+
+.section-heading p {
+  margin: 0 0 14px;
+  font-family: Arial, sans-serif;
+  font-size: 10px;
+  letter-spacing: 4px;
+  color: #927099;
+}
+
+.section-heading h2 {
+  margin: 0;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: clamp(42px, 9vw, 65px);
+  font-weight: 400;
+  line-height: 0.95;
+  color: #604468;
+}
+
+.section-heading h2 em {
+  color: #a47daf;
+  font-weight: 400;
+}
+
+
+/* CALENDAR BUTTONS */
+
+.calendar-actions {
+  position: relative;
+  z-index: 5;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 11px;
+  margin-top: 30px;
+}
+
+.calendar-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 9px;
+  min-width: 205px;
+  padding: 13px 22px;
+
+  border: 1px solid rgba(132, 88, 150, 0.28);
+  border-radius: 999px;
+
+  background: rgba(255, 255, 255, 0.72);
+
+  color: #694b72;
+
+  font-family: Arial, sans-serif;
+  font-size: 11px;
+  letter-spacing: 1.5px;
+
+  cursor: pointer;
+
+  box-shadow:
+    0 8px 25px rgba(100, 65, 120, 0.08);
+
+  transition:
+    transform 0.3s ease,
+    box-shadow 0.3s ease,
+    background 0.3s ease;
+}
+
+.calendar-button:hover {
+  transform: translateY(-3px);
+
+  background: rgba(255, 255, 255, 0.95);
+
+  box-shadow:
+    0 14px 35px rgba(100, 65, 120, 0.14);
+}
+
+.calendar-icon {
+  font-size: 17px;
+  line-height: 1;
+}
+
+.google-calendar-link {
+  font-family: Arial, sans-serif;
+  font-size: 9px;
+  letter-spacing: 1.5px;
+  color: #9a7ba1;
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.google-calendar-link:hover {
+  color: #604468;
+  text-decoration: underline;
+}
+
+
+/* VENUE EMPHASIS */
+
+.venue-name {
+  max-width: 330px;
+  margin-left: auto;
+  margin-right: auto;
+  line-height: 1.4;
+}
+
+
+/* MOBILE */
+
+@media (max-width: 600px) {
+
+  .events-section {
+    padding-top: 10px;
+  }
+
+  .section-heading {
+    margin-bottom: 40px;
+  }
+
+  .section-heading h2 {
+    font-size: 45px;
+  }
+
+  .calendar-button {
+    min-width: 190px;
+    padding: 12px 18px;
+  }
+
+
+
+}
+
+/* =========================================================
+   STEP 5 — VENUE & DIRECTIONS
+========================================================= */
+
+.venue-section {
+  position: relative;
+  z-index: 2;
+  padding: 40px 0 80px;
+  text-align: center;
+}
+
+.venue-decoration {
+  margin-bottom: 18px;
+  font-size: 30px;
+  color: #aa86b4;
+  animation: venueFlowerFloat 4s ease-in-out infinite;
+}
+
+.venue-section-label {
+  margin: 0 0 15px;
+  font-family: Arial, sans-serif;
+  font-size: 10px;
+  letter-spacing: 4px;
+  color: #927099;
+}
+
+.venue-title {
+  margin: 0 0 42px;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: clamp(38px, 8vw, 58px);
+  font-weight: 400;
+  line-height: 1.05;
+  color: #604468;
+}
+
+.venue-title em {
+  font-weight: 400;
+  color: #a47daf;
+}
+
+
+/* VENUE CARD */
+
+.venue-card {
+  position: relative;
+  width: min(90vw, 520px);
+  margin: 0 auto;
+  padding: 55px 25px 50px;
+
+  background:
+    linear-gradient(
+      145deg,
+      rgba(255, 255, 255, 0.82),
+      rgba(248, 239, 250, 0.68)
+    );
+
+  border: 1px solid rgba(132, 88, 150, 0.22);
+
+  box-shadow:
+    0 25px 70px rgba(100, 65, 120, 0.12),
+    0 0 40px rgba(190, 150, 210, 0.12);
+
+  backdrop-filter: blur(10px);
+
+  border-radius: 4px;
+}
+
+
+/* INNER BORDER */
+
+.venue-card::before {
+  content: "";
+  position: absolute;
+  inset: 10px;
+  border: 1px solid rgba(150, 105, 170, 0.2);
+  pointer-events: none;
+}
+
+
+/* HEART / LOCATION ICON */
+
+.venue-pin {
+  position: relative;
+  width: 52px;
+  height: 52px;
+  margin: 0 auto 25px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border: 1px solid rgba(150, 105, 170, 0.28);
+  border-radius: 50%;
+
+  background: rgba(255, 255, 255, 0.55);
+
+  color: #a47daf;
+  font-size: 20px;
+
+  box-shadow:
+    0 8px 25px rgba(100, 65, 120, 0.08);
+
+  animation: venuePinPulse 3s ease-in-out infinite;
+}
+
+.venue-card-label {
+  margin: 0 0 15px;
+
+  font-family: Arial, sans-serif;
+  font-size: 9px;
+  letter-spacing: 4px;
+
+  color: #9a7ba1;
+}
+
+.venue-card h3 {
+  margin: 0;
+
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 29px;
+  font-weight: 400;
+  line-height: 1.25;
+
+  color: #604468;
+}
+
+.venue-card-line {
+  width: 65px;
+  height: 1px;
+
+  margin: 25px auto;
+
+  background: rgba(132, 88, 150, 0.3);
+}
+
+.venue-description {
+  margin: 0;
+
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 16px;
+  line-height: 1.7;
+  font-style: italic;
+
+  color: #76567f;
+}
+
+
+/* DIRECTIONS BUTTON */
+
+.directions-button {
+  position: relative;
+  z-index: 3;
+
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 9px;
+
+  margin-top: 30px;
+  padding: 13px 25px;
+
+  border: 1px solid rgba(132, 88, 150, 0.28);
+  border-radius: 999px;
+
+  background: rgba(255, 255, 255, 0.75);
+
+  color: #694b72;
+
+  font-family: Arial, sans-serif;
+  font-size: 10px;
+  letter-spacing: 1.8px;
+  text-decoration: none;
+
+  box-shadow:
+    0 8px 25px rgba(100, 65, 120, 0.08);
+
+  transition:
+    transform 0.3s ease,
+    box-shadow 0.3s ease,
+    background 0.3s ease;
+}
+
+.directions-button span {
+  font-size: 18px;
+}
+
+.directions-button:hover {
+  transform: translateY(-3px);
+
+  background: rgba(255, 255, 255, 0.95);
+
+  box-shadow:
+    0 15px 35px rgba(100, 65, 120, 0.15);
+}
+
+
+/* ANIMATIONS */
+
+@keyframes venueFlowerFloat {
+  0%, 100% {
+    transform: translateY(0) rotate(0deg);
+  }
+
+  50% {
+    transform: translateY(-7px) rotate(5deg);
+  }
+}
+
+@keyframes venuePinPulse {
+  0%, 100% {
+    transform: scale(1);
+  }
+
+  50% {
+    transform: scale(1.08);
+  }
+}
+
+
+/* MOBILE */
+
+@media (max-width: 600px) {
+
+  .venue-section {
+    padding: 20px 0 65px;
+  }
+
+  .venue-title {
+    font-size: 40px;
+    margin-bottom: 35px;
+  }
+
+  .venue-card {
+    width: 92vw;
+    padding: 48px 20px 45px;
+  }
+
+  .venue-card h3 {
+    font-size: 25px;
+  }
+
+  .venue-description {
+    font-size: 15px;
+  }
+
+}
+
+/* =========================================================
+   STEP 6 — FAMILY BLESSINGS
+========================================================= */
+
+.family-section {
+  position: relative;
+  z-index: 2;
+  padding: 55px 0 85px;
+  text-align: center;
+}
+
+.family-flower,
+.family-bottom-flower {
+  font-size: 30px;
+  color: #aa86b4;
+}
+
+.family-flower {
+  margin-bottom: 20px;
+  animation: familyFlowerFloat 4s ease-in-out infinite;
+}
+
+.family-label {
+  margin: 0 0 16px;
+  font-family: Arial, sans-serif;
+  font-size: 10px;
+  letter-spacing: 3.5px;
+  color: #927099;
+}
+
+.family-title {
+  margin: 0;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: clamp(38px, 8vw, 58px);
+  font-weight: 400;
+  line-height: 1.05;
+  color: #604468;
+}
+
+.family-title em {
+  color: #a47daf;
+  font-weight: 400;
+}
+
+.family-divider {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 130px;
+  margin: 30px auto 35px;
+}
+
+.family-divider::before,
+.family-divider::after {
+  content: "";
+  flex: 1;
+  height: 1px;
+  background: rgba(132, 88, 150, 0.25);
+}
+
+.family-divider span {
+  padding: 0 12px;
+  font-size: 12px;
+  color: #a982b3;
+}
+
+
+/* FAMILY CARDS */
+
+.family-card {
+  position: relative;
+  width: min(88vw, 460px);
+  margin: 0 auto 22px;
+  padding: 30px 20px;
+
+  background: rgba(255, 255, 255, 0.55);
+
+  border: 1px solid rgba(132, 88, 150, 0.18);
+
+  box-shadow:
+    0 15px 45px rgba(100, 65, 120, 0.07);
+
+  backdrop-filter: blur(8px);
+}
+
+.family-card::before {
+  content: "";
+  position: absolute;
+  inset: 7px;
+  border: 1px solid rgba(150, 105, 170, 0.14);
+  pointer-events: none;
+}
+
+.family-card-label {
+  margin: 0 0 13px;
+
+  font-family: Arial, sans-serif;
+  font-size: 9px;
+  letter-spacing: 3px;
+
+  color: #9a7ba1;
+}
+
+.family-card h3 {
+  margin: 0;
+
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 24px;
+  font-weight: 400;
+
+  color: #604468;
+}
+
+.family-card h3 span {
+  margin: 0 9px;
+
+  font-size: 15px;
+  font-style: italic;
+  color: #a47daf;
+}
+
+.family-bottom-flower {
+  margin-top: 28px;
+  font-size: 24px;
+  animation: familyFlowerFloat 4s ease-in-out infinite;
+  animation-delay: 1s;
+}
+
+
+/* ANIMATION */
+
+@keyframes familyFlowerFloat {
+  0%, 100% {
+    transform: translateY(0) rotate(0deg);
+  }
+
+  50% {
+    transform: translateY(-6px) rotate(4deg);
+  }
+}
+
+
+/* MOBILE */
+
+@media (max-width: 600px) {
+
+  .family-section {
+    padding: 40px 0 65px;
+  }
+
+  .family-title {
+    font-size: 40px;
+  }
+
+  .family-card {
+    width: 92vw;
+    padding: 28px 16px;
+  }
+
+  .family-card h3 {
+    font-size: 21px;
+  }
+
+}
+
+/* =========================================================
+   STEP 7 — FINAL CLOSING
+========================================================= */
+
+.final-closing {
+  position: relative;
+  min-height: 620px;
+  padding: 90px 20px 100px;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  text-align: center;
+
+  overflow: hidden;
+
+  background:
+    radial-gradient(
+      ellipse at 50% 45%,
+      rgba(255, 255, 255, 0.9) 0%,
+      rgba(245, 232, 249, 0.75) 45%,
+      rgba(236, 218, 243, 0.55) 100%
+    );
+}
+.final-closing h3 {
+  margin: 30px 0 5px;
+
+  font-family: "Cormorant Garamond", serif;
+
+  font-size: 17px;
+
+  font-weight: 400;
+
+  font-style: italic;
+
+  color: #96759f;
+}
+
+/* SOFT GLOW */
+
+.final-closing::before {
+  content: "";
+  position: absolute;
+  width: 420px;
+  height: 420px;
+
+  top: 50%;
+  left: 50%;
+
+  transform: translate(-50%, -50%);
+
+  border-radius: 50%;
+
+  background: rgba(205, 170, 220, 0.18);
+
+  filter: blur(80px);
+
+  pointer-events: none;
+}
+
+
+/* ORNAMENT */
+
+.final-ornament {
+  position: relative;
+
+  margin-bottom: 25px;
+
+  font-size: 34px;
+  color: #aa86b4;
+
+  animation: finalFlowerFloat 4s ease-in-out infinite;
+}
+
+
+/* SMALL HEADING */
+
+.final-small {
+  position: relative;
+
+  margin: 0 0 18px;
+
+  font-family: Arial, sans-serif;
+  font-size: 10px;
+  letter-spacing: 3.5px;
+
+  color: #927099;
+}
+
+
+/* MAIN TITLE */
+
+.final-title {
+  position: relative;
+
+  margin: 0;
+
+  font-family: Georgia, "Times New Roman", serif;
+
+  font-size: clamp(58px, 12vw, 92px);
+
+  font-weight: 400;
+
+  line-height: 0.9;
+
+  color: #604468;
+
+  letter-spacing: -2px;
+}
+
+.final-title em {
+  font-weight: 400;
+  color: #a47daf;
+}
+
+
+/* DIVIDER */
+
+.final-divider {
+  position: relative;
+
+  display: flex;
+  align-items: center;
+
+  width: 140px;
+
+  margin: 35px auto;
+}
+
+.final-divider::before,
+.final-divider::after {
+  content: "";
+
+  flex: 1;
+
+  height: 1px;
+
+  background: rgba(132, 88, 150, 0.28);
+}
+
+.final-divider span {
+  padding: 0 13px;
+
+  font-size: 12px;
+
+  color: #a982b3;
+}
+
+
+/* MESSAGE */
+
+.final-message {
+  position: relative;
+
+  margin: 0;
+
+  font-family: Georgia, "Times New Roman", serif;
+
+  font-size: 18px;
+
+  line-height: 1.8;
+
+  font-style: italic;
+
+  color: #76567f;
+}
+
+
+/* DATE */
+
+.final-date {
+  position: relative;
+
+  margin: 35px 0 18px;
+
+  font-family: Arial, sans-serif;
+
+  font-size: 10px;
+
+  letter-spacing: 3px;
+
+  color: #9a7ba1;
+}
+
+
+/* NAMES */
+
+.final-names {
+  position: relative;
+
+  font-family: Georgia, "Times New Roman", serif;
+
+  font-size: 30px;
+
+  font-weight: 400;
+
+  color: #604468;
+}
+.final-names img {
+  width: 85px;
+  height: 75px;
+  margin-top: 20px;
+  color: #fff;
+}
+
+.final-names span {
+  margin: 0 8px;
+
+  font-size: 16px;
+
+  font-style: italic;
+
+  color: #a47daf;
+}
+
+
+/* BOTTOM FLOWER */
+
+.final-bottom-flower {
+  position: relative;
+
+  margin-top: 35px;
+
+  font-size: 25px;
+
+  color: #aa86b4;
+
+  animation:
+    finalFlowerFloat 4s ease-in-out infinite;
+
+  animation-delay: 1s;
+}
+
+
+/* BUTTERFLIES */
+
+.final-butterfly {
+  position: absolute;
+
+  z-index: 2;
+
+  font-size: 22px;
+
+  opacity: 0.55;
+
+  filter:
+    drop-shadow(
+      0 5px 10px rgba(110, 70, 125, 0.18)
+    );
+}
+
+.final-butterfly-one {
+  left: 8%;
+  top: 35%;
+
+  animation:
+    finalButterflyOne 8s ease-in-out infinite;
+}
+
+.final-butterfly-two {
+  right: 8%;
+  top: 60%;
+
+  animation:
+    finalButterflyTwo 9s ease-in-out infinite;
+
+  animation-delay: 2s;
+}
+
+
+/* ANIMATIONS */
+
+@keyframes finalFlowerFloat {
+
+  0%, 100% {
+    transform:
+      translateY(0)
+      rotate(0deg);
+  }
+
+  50% {
+    transform:
+      translateY(-8px)
+      rotate(5deg);
+  }
+
+}
+
+@keyframes finalButterflyOne {
+
+  0%, 100% {
+    transform:
+      translate(0, 0)
+      rotate(5deg);
+  }
+
+  50% {
+    transform:
+      translate(35px, -25px)
+      rotate(-8deg);
+  }
+
+}
+
+@keyframes finalButterflyTwo {
+
+  0%, 100% {
+    transform:
+      translate(0, 0)
+      rotate(-5deg);
+  }
+
+  50% {
+    transform:
+      translate(-35px, 25px)
+      rotate(8deg);
+  }
+
+}
+
+
+/* MOBILE */
+
+@media (max-width: 600px) {
+
+  .final-closing {
+    min-height: 560px;
+    padding: 75px 18px 85px;
+  }
+
+  .final-title {
+    font-size: 62px;
+  }
+
+  .final-message {
+    font-size: 16px;
+  }
+
+  .final-names {
+    font-size: 27px;
+  }
+
+  .final-butterfly {
+    font-size: 18px;
+  }
+
+}
+
+/* =========================================================
+   STEP 8 — RESPONSIVE & FINAL POLISH
+========================================================= */
+
+/* Prevent accidental horizontal scrolling */
+
+html,
+body {
+  width: 100%;
+  max-width: 100%;
+  overflow-x: hidden;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+
+/* Smooth scrolling */
+
+html {
+  scroll-behavior: smooth;
+}
+
+
+/* Better mobile tap behaviour */
+
+button,
+a {
+  -webkit-tap-highlight-color: transparent;
+}
+
+
+/* =========================================================
+   TABLET
+========================================================= */
+
+@media (min-width: 601px) and (max-width: 1024px) {
+
+  .wedding-invitation {
+    padding-left: 35px;
+    padding-right: 35px;
+  }
+
+  .couple-section h1 {
+    font-size: 72px;
+  }
+
+  .photo-frame {
+    width: 390px;
+  }
+
+  .event-card,
+  .venue-card,
+  .family-card {
+    max-width: 600px;
+  }
+
+  .final-closing {
+    min-height: 650px;
+  }
+
+}
+
+
+/* =========================================================
+   LARGE DESKTOP
+========================================================= */
+
+@media (min-width: 1200px) {
+
+  .wedding-invitation {
+    padding-left: 30px;
+    padding-right: 30px;
+  }
+
+  .photo-frame {
+    width: 430px;
+  }
+
+  .event-card {
+    width: 560px;
+  }
+
+  .venue-card {
+    width: 560px;
+  }
+
+}
+
+
+/* =========================================================
+   SMALL PHONES
+========================================================= */
+
+@media (max-width: 390px) {
+
+  .wedding-invitation {
+    padding-left: 12px;
+    padding-right: 12px;
+  }
+
+  .floral-header {
+    margin-bottom: 28px;
+  }
+
+  .intro-small {
+    font-size: 8px;
+    letter-spacing: 2.5px;
+  }
+
+  .intro-text {
+    font-size: 16px;
+  }
+
+  .couple-section h1 {
+    font-size: 48px;
+  }
+
+  .couple-section h1 span {
+    font-size: 23px;
+  }
+
+  .photo-frame {
+    width: 88vw;
+  }
+
+  .event-card {
+    width: 94vw;
+    padding-left: 14px;
+    padding-right: 14px;
+  }
+
+  .event-card h2 {
+    font-size: 48px;
+  }
+
+  .venue-card {
+    width: 94vw;
+  }
+
+  .family-card {
+    width: 94vw;
+  }
+
+  .final-title {
+    font-size: 56px;
+  }
+
+  .final-message {
+    font-size: 15px;
+  }
+
+}
+
+
+/* =========================================================
+   TOUCH DEVICES
+========================================================= */
+
+@media (hover: none) and (pointer: coarse) {
+
+  .calendar-button,
+  .directions-button {
+    min-height: 46px;
+  }
+
+  .calendar-button:hover,
+  .directions-button:hover {
+    transform: none;
+  }
+
+}
+
+
+/* =========================================================
+   ACCESSIBILITY
+========================================================= */
+
+@media (prefers-reduced-motion: reduce) {
+
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+
+}
+
+/* Decorative elements should never block interaction */
+
+.wedding-ambience,
+.invitation-glow,
+.invitation-petal,
+.final-butterfly {
+  pointer-events: none;
 }

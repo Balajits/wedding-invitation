@@ -381,85 +381,108 @@ export default function WeddingInvitation() {
     FAMILY BLESSINGS
 ================================= */}
 
-            <motion.section
-                className="family-section"
-                initial={{ opacity: 0, y: 50 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, amount: 0.25 }}
-                transition={{ duration: 1.2 }}
-            >
+            {/* FAMILY BLESSINGS */}
+<section className="family-section">
 
-                <div className="family-flower">
-                    ❀
-                </div>
+  <motion.div
+    className="family-heading"
+    initial={{ opacity: 0, y: 25 }}
+    whileInView={{ opacity: 1, y: 0 }}
+    viewport={{ once: true }}
+    transition={{ duration: 0.8 }}
+  >
+    <span className="family-ornament">✦</span>
 
-                <p className="family-label">
-                    WITH THE BLESSINGS OF OUR FAMILIES
-                </p>
+    <p>WITH THE BLESSINGS</p>
 
-                <h2 className="family-title">
-                    Surrounded by
-                    <br />
-                    <em>love & blessings</em>
-                </h2>
+    <h2>
+      OF OUR FAMILIES
+    </h2>
 
+    <div className="family-heading-line">
+      <span></span>
+      <i>♡</i>
+      <span></span>
+    </div>
 
-                <div className="family-divider">
-                    <span>✦</span>
-                </div>
-
-
-                {/* BRIDE'S FAMILY */}
-
-                <motion.div
-                    className="family-card"
-                    initial={{ opacity: 0, x: -40 }}
-                    whileInView={{ opacity: 1, x: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.9 }}
-                >
-
-                    <p className="family-card-label">
-                        BRIDE'S FAMILY
-                    </p>
-
-                    <h3>
-                        Suresh
-                        <span>&</span>
-                        Ashwin Rani
-                    </h3>
-
-                </motion.div>
+    <div className="family-subtitle">
+      Surrounded by love & blessings
+    </div>
+  </motion.div>
 
 
-                {/* GROOM'S FAMILY */}
+  <div className="family-container">
 
-                <motion.div
-                    className="family-card"
-                    initial={{ opacity: 0, x: 40 }}
-                    whileInView={{ opacity: 1, x: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.9, delay: 0.15 }}
-                >
+    {/* BRIDE FAMILY */}
+    <motion.div
+      className="family-card"
+      initial={{ opacity: 0, y: 35 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true }}
+      transition={{ duration: 0.8 }}
+    >
+      <div className="family-flower">
+        ❀
+      </div>
 
-                    <p className="family-card-label">
-                        GROOM'S FAMILY
-                    </p>
+      <p className="family-label">
+        BRIDE'S FAMILY
+      </p>
 
-                    <h3>
-                        Sekar
-                        <span>&</span>
-                        Jothi
-                    </h3>
+      <h3>
+        Suresh
+        <span>&</span>
+        Ashwin Rani
+      </h3>
 
-                </motion.div>
+      <div className="family-card-line">
+        ✦
+      </div>
+    </motion.div>
 
 
-                <div className="family-bottom-flower">
-                    ✿
-                </div>
+    {/* CENTER ORNAMENT */}
+    <motion.div
+      className="family-center-ornament"
+      initial={{ opacity: 0, scale: 0.7 }}
+      whileInView={{ opacity: 1, scale: 1 }}
+      viewport={{ once: true }}
+      transition={{ duration: 0.8, delay: 0.15 }}
+    >
+      ♡
+    </motion.div>
 
-            </motion.section>
+
+    {/* GROOM FAMILY */}
+    <motion.div
+      className="family-card"
+      initial={{ opacity: 0, y: 35 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true }}
+      transition={{ duration: 0.8, delay: 0.2 }}
+    >
+      <div className="family-flower">
+        ❀
+      </div>
+
+      <p className="family-label">
+        GROOM'S FAMILY
+      </p>
+
+      <h3>
+        Sekar
+        <span>&</span>
+        Jothi
+      </h3>
+
+      <div className="family-card-line">
+        ✦
+      </div>
+    </motion.div>
+
+  </div>
+
+</section>
 
             {/* =================================
     FINAL CLOSING

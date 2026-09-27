@@ -127,35 +127,93 @@ export default function Countdown() {
 
   return (
     <section className="countdown-section">
-      <motion.div
+<motion.div
         className="countdown-decoration"
         initial={{ opacity: 0, scale: 0 }}
         whileInView={{ opacity: 1, scale: 1 }}
         viewport={{ once: true }}
-        transition={{ duration: 0.6 }}
+        transition={{
+          duration: 0.6,
+          delay: 0.3,
+        }}
       >
         ✦
       </motion.div>
+      <motion.div
+        className="countdown-story"
+        initial={{ opacity: 0, y: 25 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
+        transition={{ duration: 1 }}
+      >
+        <p className="story-lines">
+          <strong>Diwali will fill the skies with light,</strong>
+          <br />
+          <strong>and the New Year will bring a new beginning.</strong>
+        </p>
+
+        <p className="story-transition">
+          And somewhere between all these beautiful <br />
+          <br className="desktop-break" />
+          celebrations...
+        </p>
+
+        <h2 className="story-highlight">
+          our own celebration is getting closer. 💍
+        </h2>
+      </motion.div>
+
+
+      {/* DECORATION */}
+
+      {/* <motion.div
+        className="countdown-decoration"
+        initial={{ opacity: 0, scale: 0 }}
+        whileInView={{ opacity: 1, scale: 1 }}
+        viewport={{ once: true }}
+        transition={{
+          duration: 0.6,
+          delay: 0.3,
+        }}
+      >
+        ✦
+      </motion.div> */}
+
+
+      {/* COUNTDOWN TITLE */}
 
       <motion.p
         className="countdown-label"
         initial={{ opacity: 0, y: 15 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
+        transition={{
+          duration: 0.7,
+          delay: 0.4,
+        }}
       >
-        THE COUNTDOWN BEGINS
+        The countdown to Harsa & Balaji
       </motion.p>
 
       <motion.h2
+        className="countdown-title"
         initial={{ opacity: 0, y: 15 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
-        transition={{ delay: 0.1 }}
+        transition={{
+          duration: 0.7,
+          delay: 0.5,
+        }}
       >
-        Until we say “I do”
+          has officially begun.
+        
       </motion.h2>
 
+
+      {/* TIMER */}
+
       <div className="countdown-timer">
+
         {values.map((item) => (
           <div
             className="countdown-item"
@@ -164,9 +222,17 @@ export default function Countdown() {
             <motion.div
               className="countdown-number"
               key={item.value}
-              initial={{ opacity: 0.5, y: -5 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.25 }}
+              initial={{
+                opacity: 0.5,
+                y: -5,
+              }}
+              animate={{
+                opacity: 1,
+                y: 0,
+              }}
+              transition={{
+                duration: 0.25,
+              }}
             >
               {String(item.value).padStart(2, "0")}
             </motion.div>
@@ -176,7 +242,9 @@ export default function Countdown() {
             </div>
           </div>
         ))}
+
       </div>
+
 
       <div className="countdown-date">
         14 · 12 · 2026
@@ -185,6 +253,7 @@ export default function Countdown() {
       <div className="countdown-decoration">
         ✦
       </div>
+
     </section>
   );
 }

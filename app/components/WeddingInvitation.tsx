@@ -198,183 +198,188 @@ export default function WeddingInvitation() {
                 <p className="photo-caption">
                     The first page of our forever.
                 </p>
+                <div className="heading-line">
+                    <span></span>
+                    <i>♡</i>
+                    <span></span>
+                </div>
 
             </motion.section>
 
-<Countdown />
+            <Countdown />
             {/* EVENTS */}
             {/* EVENTS */}
-<section className="events-section">
+            <section className="events-section">
 
-  <motion.div
-    className="events-heading"
-    initial={{ opacity: 0, y: 25 }}
-    whileInView={{ opacity: 1, y: 0 }}
-    viewport={{ once: true }}
-    transition={{ duration: 0.8 }}
-  >
-    <span className="heading-ornament">✦</span>
+                <motion.div
+                    className="events-heading"
+                    initial={{ opacity: 0, y: 25 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.8 }}
+                >
+                    <span className="heading-ornament">✦</span>
 
-    <p>JOIN US</p>
+                    <p>JOIN US</p>
 
-    <h2>The Celebration Begins</h2>
+                    <h2>The Celebration Begins</h2>
 
-    <div className="heading-line">
-      <span></span>
-      <i>♡</i>
-      <span></span>
-    </div>
-  </motion.div>
-
-
-  {/* RECEPTION */}
-  <motion.article
-    className="event-card"
-    initial={{ opacity: 0, y: 45 }}
-    whileInView={{ opacity: 1, y: 0 }}
-    viewport={{ once: true }}
-    transition={{ duration: 0.9 }}
-  >
-    <div className="event-card-glow"></div>
-
-    <div className="event-top-ornament">
-      ✦
-    </div>
-
-    <p className="event-label">
-      THE RECEPTION
-    </p>
-
-    <h3 className="event-date">
-      13
-      <span>DECEMBER</span>
-      <small>2026</small>
-    </h3>
-
-    <div className="event-time">
-      6:00 PM onwards
-    </div>
-
-    <div className="event-divider">
-      <span></span>
-      <i>♡</i>
-      <span></span>
-    </div>
-
-    <div className="event-venue">
-      <div className="venue-icon">
-        ♡
-      </div>
-
-      <p>THE VENUE</p>
-
-      <h4>
-        Arunachalam Kamalambal
-      </h4>
-    </div>
-
-    <div className="event-actions">
-
-      <CalendarButton
-        title="Harsa & Balaji - Reception"
-        start="20261213T180000"
-        end="20261213T210000"
-        location="Arunachalam Kamalambal"
-        description="Reception celebration of Harsa & Balaji."
-      />
-
-      <a
-        href="https://www.google.com/maps/search/?api=1&query=Arunachalam+Kamalambal"
-        target="_blank"
-        rel="noopener noreferrer"
-        className="directions-button"
-      >
-        <span>⌖</span>
-        View Location
-      </a>
-
-    </div>
-
-    <div className="event-bottom-ornament">
-      ✦
-    </div>
-  </motion.article>
+                    <div className="heading-line">
+                        <span></span>
+                        <i>♡</i>
+                        <span></span>
+                    </div>
+                </motion.div>
 
 
-  {/* WEDDING */}
-  <motion.article
-    className="event-card wedding-card"
-    initial={{ opacity: 0, y: 45 }}
-    whileInView={{ opacity: 1, y: 0 }}
-    viewport={{ once: true }}
-    transition={{ duration: 0.9, delay: 0.15 }}
-  >
-    <div className="event-card-glow"></div>
+                {/* RECEPTION */}
+                <motion.article
+                    className="event-card"
+                    initial={{ opacity: 0, y: 45 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.9 }}
+                >
+                    <div className="event-card-glow"></div>
 
-    <div className="event-top-ornament">
-      ✦
-    </div>
+                    <div className="event-top-ornament">
+                        ✦
+                    </div>
 
-    <p className="event-label">
-      THE WEDDING
-    </p>
+                    <p className="event-label">
+                        THE RECEPTION
+                    </p>
 
-    <h3 className="event-date">
-      14
-      <span>DECEMBER</span>
-      <small>2026</small>
-    </h3>
+                    <h3 className="event-date">
+                        13
+                        <span>DECEMBER</span>
+                        <small>2026</small>
+                    </h3>
 
-    <div className="event-time">
-      9:00 AM – 10:30 AM
-    </div>
+                    <div className="event-time">
+                        6:00 PM onwards
+                    </div>
 
-    <div className="event-divider">
-      <span></span>
-      <i>♡</i>
-      <span></span>
-    </div>
+                    <div className="event-divider">
+                        <span></span>
+                        <i>♡</i>
+                        <span></span>
+                    </div>
 
-    <div className="event-venue">
-      <div className="venue-icon">
-        ♡
-      </div>
+                    <div className="event-venue">
+                        <div className="venue-icon">
+                            ♡
+                        </div>
 
-      <p>THE VENUE</p>
+                        <p>THE VENUE</p>
 
-      <h4>
-        Arunachalam Kamalambal
-      </h4>
-    </div>
+                        <h4>
+                            Arunachalam Kamalambal
+                        </h4>
+                    </div>
 
-    <div className="event-actions">
+                    <div className="event-actions">
 
-      <CalendarButton
-        title="Harsa & Balaji - Wedding"
-        start="20261214T090000"
-        end="20261214T103000"
-        location="Arunachalam Kamalambal"
-        description="Wedding ceremony of Harsa & Balaji."
-      />
+                        <CalendarButton
+                            title="Harsa & Balaji - Reception"
+                            start="20261213T180000"
+                            end="20261213T210000"
+                            location="Arunachalam Kamalambal"
+                            description="Reception celebration of Harsa & Balaji."
+                        />
 
-      <a
-        href="https://www.google.com/maps/search/?api=1&query=Arunachalam+Kamalambal"
-        target="_blank"
-        rel="noopener noreferrer"
-        className="directions-button"
-      >
-        <span>⌖</span>
-        View Location
-      </a>
+                        <a
+                            href="https://www.google.com/maps/search/?api=1&query=Arunachalam+Kamalambal"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="directions-button"
+                        >
+                            <span>⌖</span>
+                            View Location
+                        </a>
 
-    </div>
+                    </div>
 
-    <div className="event-bottom-ornament">
-      ✦
-    </div>
-  </motion.article>
+                    <div className="event-bottom-ornament">
+                        ✦
+                    </div>
+                </motion.article>
 
-</section>
+
+                {/* WEDDING */}
+                <motion.article
+                    className="event-card wedding-card"
+                    initial={{ opacity: 0, y: 45 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.9, delay: 0.15 }}
+                >
+                    <div className="event-card-glow"></div>
+
+                    <div className="event-top-ornament">
+                        ✦
+                    </div>
+
+                    <p className="event-label">
+                        THE WEDDING
+                    </p>
+
+                    <h3 className="event-date">
+                        14
+                        <span>DECEMBER</span>
+                        <small>2026</small>
+                    </h3>
+
+                    <div className="event-time">
+                        9:00 AM – 10:30 AM
+                    </div>
+
+                    <div className="event-divider">
+                        <span></span>
+                        <i>♡</i>
+                        <span></span>
+                    </div>
+
+                    <div className="event-venue">
+                        <div className="venue-icon">
+                            ♡
+                        </div>
+
+                        <p>THE VENUE</p>
+
+                        <h4>
+                            Arunachalam Kamalambal
+                        </h4>
+                    </div>
+
+                    <div className="event-actions">
+
+                        <CalendarButton
+                            title="Harsa & Balaji - Wedding"
+                            start="20261214T090000"
+                            end="20261214T103000"
+                            location="Arunachalam Kamalambal"
+                            description="Wedding ceremony of Harsa & Balaji."
+                        />
+
+                        <a
+                            href="https://www.google.com/maps/search/?api=1&query=Arunachalam+Kamalambal"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="directions-button"
+                        >
+                            <span>⌖</span>
+                            View Location
+                        </a>
+
+                    </div>
+
+                    <div className="event-bottom-ornament">
+                        ✦
+                    </div>
+                </motion.article>
+
+            </section>
 
 
             {/* =================================
@@ -382,107 +387,107 @@ export default function WeddingInvitation() {
 ================================= */}
 
             {/* FAMILY BLESSINGS */}
-<section className="family-section">
+            <section className="family-section">
 
-  <motion.div
-    className="family-heading"
-    initial={{ opacity: 0, y: 25 }}
-    whileInView={{ opacity: 1, y: 0 }}
-    viewport={{ once: true }}
-    transition={{ duration: 0.8 }}
-  >
-    <span className="family-ornament">✦</span>
+                <motion.div
+                    className="family-heading"
+                    initial={{ opacity: 0, y: 25 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.8 }}
+                >
+                    <span className="family-ornament">✦</span>
 
-    <p>WITH THE BLESSINGS</p>
+                    <p>WITH THE BLESSINGS</p>
 
-    <h2>
-      OF OUR FAMILIES
-    </h2>
+                    <h2>
+                        OF OUR FAMILIES
+                    </h2>
 
-    <div className="family-heading-line">
-      <span></span>
-      <i>♡</i>
-      <span></span>
-    </div>
+                    <div className="family-heading-line">
+                        <span></span>
+                        <i>♡</i>
+                        <span></span>
+                    </div>
 
-    <div className="family-subtitle">
-      Surrounded by love & blessings
-    </div>
-  </motion.div>
-
-
-  <div className="family-container">
-
-    {/* BRIDE FAMILY */}
-    <motion.div
-      className="family-card"
-      initial={{ opacity: 0, y: 35 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true }}
-      transition={{ duration: 0.8 }}
-    >
-      <div className="family-flower">
-        ❀
-      </div>
-
-      <p className="family-label">
-        BRIDE'S FAMILY
-      </p>
-
-      <h3>
-        Suresh
-        <span>&</span>
-        Ashwin Rani
-      </h3>
-
-      <div className="family-card-line">
-        ✦
-      </div>
-    </motion.div>
+                    <div className="family-subtitle">
+                        Surrounded by love & blessings
+                    </div>
+                </motion.div>
 
 
-    {/* CENTER ORNAMENT */}
-    <motion.div
-      className="family-center-ornament"
-      initial={{ opacity: 0, scale: 0.7 }}
-      whileInView={{ opacity: 1, scale: 1 }}
-      viewport={{ once: true }}
-      transition={{ duration: 0.8, delay: 0.15 }}
-    >
-      ♡
-    </motion.div>
+                <div className="family-container">
+
+                    {/* BRIDE FAMILY */}
+                    <motion.div
+                        className="family-card"
+                        initial={{ opacity: 0, y: 35 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        viewport={{ once: true }}
+                        transition={{ duration: 0.8 }}
+                    >
+                        <div className="family-flower">
+                            ❀
+                        </div>
+
+                        <p className="family-label">
+                            BRIDE'S FAMILY
+                        </p>
+
+                        <h3>
+                            Suresh
+                            <span>&</span>
+                            Ashwin Rani
+                        </h3>
+
+                        <div className="family-card-line">
+                            ✦
+                        </div>
+                    </motion.div>
 
 
-    {/* GROOM FAMILY */}
-    <motion.div
-      className="family-card"
-      initial={{ opacity: 0, y: 35 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true }}
-      transition={{ duration: 0.8, delay: 0.2 }}
-    >
-      <div className="family-flower">
-        ❀
-      </div>
+                    {/* CENTER ORNAMENT */}
+                    <motion.div
+                        className="family-center-ornament"
+                        initial={{ opacity: 0, scale: 0.7 }}
+                        whileInView={{ opacity: 1, scale: 1 }}
+                        viewport={{ once: true }}
+                        transition={{ duration: 0.8, delay: 0.15 }}
+                    >
+                        ♡
+                    </motion.div>
 
-      <p className="family-label">
-        GROOM'S FAMILY
-      </p>
 
-      <h3>
-        Sekar
-        <span>&</span>
-        Jothi
-      </h3>
+                    {/* GROOM FAMILY */}
+                    <motion.div
+                        className="family-card"
+                        initial={{ opacity: 0, y: 35 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        viewport={{ once: true }}
+                        transition={{ duration: 0.8, delay: 0.2 }}
+                    >
+                        <div className="family-flower">
+                            ❀
+                        </div>
 
-      <div className="family-card-line">
-        ✦
-      </div>
-    </motion.div>
+                        <p className="family-label">
+                            GROOM'S FAMILY
+                        </p>
 
-  </div>
+                        <h3>
+                            Sekar
+                            <span>&</span>
+                            Jothi
+                        </h3>
 
-</section>
+                        <div className="family-card-line">
+                            ✦
+                        </div>
+                    </motion.div>
+
+                </div>
+
+            </section>
 
             {/* =================================
     FINAL CLOSING

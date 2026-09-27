@@ -1424,7 +1424,7 @@ body {
 
 .couple-photo-section {
   position: relative;
-  padding: 70px 20px;
+  padding: 30px 20px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -3007,5 +3007,404 @@ a {
 
   .music-text {
     font-size: 9px;
+  }
+}
+
+
+/* ========================================
+   EVENTS SECTION
+======================================== */
+
+.events-section {
+  position: relative;
+  width: 100%;
+  max-width: 760px;
+  margin: 0 auto;
+  padding: 90px 20px;
+  text-align: center;
+}
+
+.section-heading {
+  margin-bottom: 45px;
+}
+
+.section-heading span {
+  display: block;
+  margin: 8px 0;
+  color: #9b729c;
+  font-size: 14px;
+}
+
+.section-heading p {
+  margin: 0 0 10px;
+  font-size: 10px;
+  letter-spacing: 4px;
+  color: #8b668c;
+  font-weight: 600;
+}
+
+.section-heading h2 {
+  margin: 0;
+  font-family: "Cormorant Garamond", serif;
+  font-size: 42px;
+  font-weight: 500;
+  color: #573b59;
+}
+
+/* Event Card */
+
+.event-card {
+  position: relative;
+  width: 100%;
+  max-width: 560px;
+  margin: 0 auto 35px;
+  padding: 48px 35px;
+  border: 1px solid rgba(139, 102, 140, 0.22);
+  border-radius: 28px;
+  background: rgba(255, 255, 255, 0.48);
+  box-shadow:
+    0 20px 60px rgba(92, 55, 94, 0.08),
+    inset 0 0 40px rgba(255, 255, 255, 0.35);
+  backdrop-filter: blur(12px);
+}
+
+.event-label {
+  margin: 0 0 16px;
+  color: #8c648d;
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 4px;
+}
+
+.event-card h2 {
+  margin: 0;
+  color: #573b59;
+  font-family: "Cormorant Garamond", serif;
+  font-size: 48px;
+  font-weight: 500;
+  line-height: 1;
+}
+
+.event-time {
+  margin: 14px 0 0;
+  color: #765276;
+  font-size: 14px;
+  letter-spacing: 1.5px;
+}
+
+.event-divider {
+  margin: 28px 0;
+  color: #a67ca7;
+  font-size: 13px;
+}
+
+/* Venue */
+
+.event-venue {
+  margin-bottom: 30px;
+}
+
+.venue-icon {
+  display: block;
+  margin-bottom: 10px;
+  color: #a06fa1;
+  font-size: 22px;
+}
+
+.venue-label {
+  margin: 0 0 8px;
+  color: #987199;
+  font-size: 9px;
+  letter-spacing: 3px;
+  font-weight: 600;
+}
+
+.event-venue h3 {
+  margin: 0;
+  color: #573b59;
+  font-family: "Cormorant Garamond", serif;
+  font-size: 26px;
+  font-weight: 500;
+}
+
+/* Buttons */
+
+.event-actions {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+}
+
+.directions-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 44px;
+  padding: 11px 22px;
+  border: 1px solid rgba(118, 82, 118, 0.25);
+  border-radius: 999px;
+  color: #765276;
+  background: rgba(255, 255, 255, 0.5);
+  text-decoration: none;
+  font-size: 10px;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  transition: all 0.3s ease;
+}
+
+.directions-button:hover {
+  transform: translateY(-2px);
+  background: rgba(118, 82, 118, 0.08);
+}
+
+/* Mobile */
+
+@media (max-width: 600px) {
+  .events-section {
+    padding: 65px 14px;
+  }
+
+  .section-heading h2 {
+    font-size: 36px;
+  }
+
+  .event-card {
+    padding: 38px 20px;
+    border-radius: 24px;
+  }
+
+  .event-card h2 {
+    font-size: 39px;
+  }
+
+  .event-venue h3 {
+    font-size: 23px;
+  }
+}
+
+@media (max-width: 390px) {
+  .event-card {
+    padding-left: 16px;
+    padding-right: 16px;
+  }
+
+  .event-card h2 {
+    font-size: 35px;
+  }
+}
+
+/* =========================
+   COUNTDOWN
+========================= */
+
+.countdown-section {
+  position: relative;
+  width: 100%;
+  max-width: 760px;
+  margin: 0 auto;
+  padding: 85px 20px;
+  text-align: center;
+}
+
+.countdown-decoration {
+  margin: 10px 0 18px;
+  color: #a67ca7;
+  font-size: 15px;
+}
+
+.countdown-label {
+  margin: 0 0 10px;
+  color: #8b668c;
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 4px;
+}
+
+.countdown-section h2 {
+  margin: 0;
+  color: #573b59;
+  font-family: "Cormorant Garamond", serif;
+  font-size: 40px;
+  font-weight: 500;
+}
+
+.countdown-timer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 18px;
+  margin: 45px auto 35px;
+}
+
+.countdown-item {
+  min-width: 105px;
+  padding: 22px 12px;
+  border: 1px solid rgba(139, 102, 140, 0.2);
+  border-radius: 20px;
+  background: rgba(255, 255, 255, 0.45);
+  box-shadow: 0 15px 40px rgba(92, 55, 94, 0.07);
+  backdrop-filter: blur(10px);
+}
+
+.countdown-number {
+  color: #573b59;
+  font-family: "Cormorant Garamond", serif;
+  font-size: 48px;
+  font-weight: 500;
+  line-height: 1;
+}
+
+.countdown-unit {
+  margin-top: 9px;
+  color: #987199;
+  font-size: 8px;
+  font-weight: 600;
+  letter-spacing: 2px;
+}
+
+.countdown-date {
+  margin-top: 15px;
+  color: #765276;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 4px;
+}
+
+/* =========================
+   WEDDING DAY
+========================= */
+
+.wedding-day-message {
+  /* padding-top: 100px; */
+  /* padding-bottom: 100px; */
+}
+
+.wedding-day-message h2 {
+  font-size: 46px;
+  margin-bottom: 35px;
+}
+
+.countdown-quote {
+  color: #765276;
+  font-family: "Cormorant Garamond", serif;
+  font-size: 25px;
+  line-height: 1.6;
+  font-style: italic;
+}
+
+.wedding-day-message .countdown-date {
+  margin-top: 35px;
+}
+
+.countdown-done {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  margin-top: 35px;
+  color: #8b668c;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 5px;
+}
+
+.countdown-done span {
+  color: #a67ca7;
+  font-size: 15px;
+}
+
+.countdown-names {
+  margin: 20px 0 0;
+  color: #573b59;
+  font-family: "Cormorant Garamond", serif;
+  font-size: 36px;
+}
+
+.countdown-forever {
+  margin-top: 8px;
+  color: #765276;
+  font-size: 13px;
+  letter-spacing: 1px;
+}
+
+
+/* =========================
+   MOBILE
+========================= */
+
+@media (max-width: 600px) {
+  .countdown-section {
+    padding: 15px 15px;
+  }
+
+  .countdown-section h2 {
+    font-size: 34px;
+  }
+
+  .countdown-timer {
+    gap: 7px;
+    margin-top: 35px;
+  }
+
+  .countdown-item {
+    min-width: 0;
+    width: 22vw;
+    padding: 18px 5px;
+    border-radius: 16px;
+  }
+
+  .countdown-number {
+    font-size: 34px;
+  }
+
+  .countdown-unit {
+    font-size: 7px;
+    letter-spacing: 1px;
+  }
+
+  .countdown-date {
+    font-size: 9px;
+    letter-spacing: 3px;
+  }
+
+  .wedding-day-message {
+    /* padding-top: 75px;
+    padding-bottom: 75px; */
+  }
+
+  .wedding-day-message h2 {
+    font-size: 38px;
+  }
+
+  .countdown-quote {
+    font-size: 22px;
+  }
+
+  .countdown-names {
+    font-size: 32px;
+  }
+}
+
+@media (max-width: 390px) {
+  .countdown-timer {
+    gap: 5px;
+  }
+
+  .countdown-item {
+    width: 22.5vw;
+    padding: 16px 3px;
+  }
+
+  .countdown-number {
+    font-size: 30px;
+  }
+
+  .countdown-unit {
+    font-size: 6px;
+  }
+
+  .countdown-section h2 {
+    font-size: 31px;
   }
 }

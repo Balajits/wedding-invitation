@@ -3562,10 +3562,6 @@ a {
    WEDDING DAY
 ========================= */
 
-.wedding-day-message {
-  /* padding-top: 100px; */
-  /* padding-bottom: 100px; */
-}
 
 .wedding-day-message h2 {
   font-size: 46px;
@@ -3653,11 +3649,6 @@ a {
   .countdown-date {
     font-size: 9px;
     letter-spacing: 3px;
-  }
-
-  .wedding-day-message {
-    /* padding-top: 75px;
-    padding-bottom: 75px; */
   }
 
   .wedding-day-message h2 {

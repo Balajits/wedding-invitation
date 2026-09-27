@@ -335,7 +335,7 @@ export default function MagicalOpening({
               scale: 0.8,
             }}
             transition={{
-              delay: 4.8,
+              delay: 1,
               duration: 0.8,
             }}
             onClick={openInvitation}

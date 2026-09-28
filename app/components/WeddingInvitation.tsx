@@ -524,7 +524,7 @@ export default function WeddingInvitation() {
                         <h3>
                             Suresh
                             <span>&</span>
-                            Ashwinrani
+                            Aswinrani
                         </h3>
 
                         <div className="family-card-line">

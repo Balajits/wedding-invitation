@@ -307,9 +307,9 @@ export default function WeddingInvitation() {
                 >
                     <span className="heading-ornament">✦</span>
 
-                    <p>JOIN US</p>
+                    <p>JOIN US FOR</p>
 
-                    <h2>The Celebration Begins</h2>
+                    <h2>The Celebrations</h2>
 
                     <div className="heading-line">
                         <span></span>

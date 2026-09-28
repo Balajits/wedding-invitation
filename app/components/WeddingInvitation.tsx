@@ -1,12 +1,102 @@
 "use client";
 
 import { motion } from "framer-motion";
+import { useState } from "react";
 import CalendarButton from "./CalendarButton";
 import Countdown from "./Countdown";
 
+const flowers = [
+    { className: "flower flower-1", delay: 0.2, size: "large" },
+    { className: "flower flower-2", delay: 0.5, size: "small" },
+    { className: "flower flower-3", delay: 0.8, size: "medium" },
+    { className: "flower flower-4", delay: 1.1, size: "small" },
+    { className: "flower flower-5", delay: 0.6, size: "medium" },
+    { className: "flower flower-6", delay: 1.3, size: "large" },
+    { className: "flower flower-7", delay: 0.9, size: "small" },
+    { className: "flower flower-8", delay: 1.5, size: "medium" },
+];
+
+const petals = Array.from({ length: 16 });
+const stars = Array.from({ length: 24 });
 export default function WeddingInvitation() {
+    const [opening, setOpening] = useState(false);
+
     return (
-        <main className="wedding-invitation">
+        <main className="wedding-invitation is-opening">
+            {/* <main className={`magical-opening ${opening ? "is-opening" : ""}`}> */}
+
+            {/* ================================
+                      BACKGROUND
+                  ================================= */}
+
+            <div className="purple-glow purple-glow-one" />
+            <div className="purple-glow purple-glow-two" />
+            <div className="purple-glow purple-glow-three" />
+
+            <motion.div
+                className="ambient-light"
+                animate={{
+                    scale: [1, 1.08, 1],
+                    opacity: [0.35, 0.55, 0.35],
+                }}
+                transition={{
+                    duration: 6,
+                    repeat: Infinity,
+                    ease: "easeInOut",
+                }}
+            />
+
+            {/* ================================
+                      SPARKLES
+                  ================================= */}
+
+            <div className="stars">
+                {stars.map((_, index) => (
+                    <motion.span
+                        key={index}
+                        className={`star star-${index + 1}`}
+                        animate={{
+                            opacity: [0, 0.8, 0],
+                            scale: [0.5, 1, 0.5],
+                        }}
+                        transition={{
+                            duration: 2.5 + (index % 4),
+                            delay: (index % 8) * 0.4,
+                            repeat: Infinity,
+                            ease: "easeInOut",
+                        }}
+                    >
+                        ✦
+                    </motion.span>
+                ))}
+            </div>
+
+            {/* ================================
+                      FALLING PETALS
+                  ================================= */}
+
+            <div className="petals">
+                {petals.map((_, index) => (
+                    <motion.span
+                        key={index}
+                        className={`petal petal-${index + 1}`}
+                        animate={{
+                            y: "115vh",
+                            opacity: [0, 0.8, 0.7, 0],
+                            rotate: [0, 90, 180, 270],
+                            x: [0, 30, -25, 20],
+                        }}
+                        transition={{
+                            duration: 8 + (index % 5),
+                            delay: index * 0.6,
+                            repeat: Infinity,
+                            ease: "linear",
+                        }}
+                    />
+                ))}
+            </div>
+
+
 
             {/* =================================
                 AMBIENT BACKGROUND
@@ -136,7 +226,7 @@ export default function WeddingInvitation() {
                 COUPLE PHOTO
             ================================= */}
 
-            <motion.section
+            {/* <motion.section
                 className="couple-photo-section"
                 initial={{
                     opacity: 0,
@@ -160,9 +250,7 @@ export default function WeddingInvitation() {
 
                     <div className="photo-placeholder">
 
-                        {/* Replace this later with your actual image */}
-
-                        {/* <span>H & B</span> */}
+                       
 
 
                         <img
@@ -174,7 +262,6 @@ export default function WeddingInvitation() {
                     </div>
 
 
-                    {/* Floral decorations */}
 
                     <div className="photo-flower flower-top-left">
                         ✿
@@ -204,7 +291,7 @@ export default function WeddingInvitation() {
                     <span></span>
                 </div>
 
-            </motion.section>
+            </motion.section> */}
 
             <Countdown />
             {/* EVENTS */}
@@ -437,7 +524,7 @@ export default function WeddingInvitation() {
                         <h3>
                             Suresh
                             <span>&</span>
-                            Ashwin Rani
+                            Ashwinrani
                         </h3>
 
                         <div className="family-card-line">

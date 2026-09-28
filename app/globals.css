@@ -1406,7 +1406,7 @@ body {
   }
 
   .couple-section h1 {
-    font-size: 50px;
+    font-size: 40px;
   }
 
   .event-card {
@@ -1635,6 +1635,7 @@ body {
   font-size: 22px;
   opacity: 0.65;
   filter: drop-shadow(0 3px 8px rgba(120, 70, 140, 0.2));
+  color: #4c3858;
 }
 
 .butterfly-1 {
@@ -2629,7 +2630,7 @@ a {
   }
 
   .couple-section h1 {
-    font-size: 72px;
+    font-size: 45px;
   }
 
   .photo-frame {
@@ -2700,7 +2701,7 @@ a {
   }
 
   .couple-section h1 {
-    font-size: 48px;
+    font-size: 40px;
   }
 
   .couple-section h1 span {
@@ -3134,10 +3135,11 @@ a {
 .event-time {
   margin-top: 20px;
 
-  color: #765276;
+  color: #573b59;
 
-  font-size: 13px;
+  font-size: 20px;
   letter-spacing: 1.5px;
+  font-weight: 700;
 }
 
 
@@ -3252,7 +3254,6 @@ a {
   text-decoration: none;
 
   font-size: 10px;
-  font-weight: 600;
 
   letter-spacing: 1.5px;
   text-transform: uppercase;
@@ -3318,7 +3319,7 @@ a {
   }
 
   .event-time {
-    font-size: 12px;
+    font-size: 20px;
   }
 
   .event-venue h4 {

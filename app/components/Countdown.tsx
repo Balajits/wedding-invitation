@@ -192,7 +192,7 @@ export default function Countdown() {
           delay: 0.4,
         }}
       >
-        The countdown to Harsa & Balaji
+        The Countdown To Harsa Weds Balaji
       </motion.p>
 
       <motion.h2

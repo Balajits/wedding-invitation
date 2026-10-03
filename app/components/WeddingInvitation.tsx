@@ -4,7 +4,7 @@ import { motion } from "framer-motion";
 import { useState } from "react";
 import CalendarButton from "./CalendarButton";
 import Countdown from "./Countdown";
-
+import WeddingPhotos from "./WeddingPhotos";
 const flowers = [
     { className: "flower flower-1", delay: 0.2, size: "large" },
     { className: "flower flower-2", delay: 0.5, size: "small" },
@@ -220,6 +220,8 @@ export default function WeddingInvitation() {
                 </p>
 
             </motion.section>
+
+            <WeddingPhotos />
 
 
             {/* =================================

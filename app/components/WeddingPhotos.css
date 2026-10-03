@@ -1,0 +1,725 @@
+/* =========================================
+   WEDDING PHOTOS
+========================================= */
+
+.wedding-photos {
+  position: relative;
+  width: 100%;
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 100px 20px 110px;
+  overflow-x: clip;
+  text-align: center;
+}
+
+
+/* =========================================
+   HEADING
+========================================= */
+
+.wedding-photos-heading {
+  position: relative;
+  z-index: 5;
+  margin-bottom: 65px;
+}
+
+.photos-ornament {
+  display: block;
+  margin-bottom: 18px;
+  color: #a67ca7;
+  font-size: 14px;
+}
+
+.wedding-photos-heading p {
+  margin: 0 0 6px;
+  color: #8b668c;
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 4px;
+}
+
+.wedding-photos-heading h2 {
+  margin: 0;
+  color: #573b59;
+  font-family: "Cormorant Garamond", serif;
+  font-size: 48px;
+  font-weight: 500;
+  line-height: 0.95;
+}
+
+.wedding-photos-heading h2 span {
+  display: block;
+}
+
+.photos-heading-line {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  margin-top: 22px;
+}
+
+.photos-heading-line span {
+  width: 55px;
+  height: 1px;
+  background: rgba(139, 102, 140, 0.22);
+}
+
+.photos-heading-line i {
+  color: #a67ca7;
+  font-size: 12px;
+  font-style: normal;
+}
+
+
+/* =========================================
+   MEMORY ROPE CONTAINER
+========================================= */
+
+.memory-rope {
+  position: relative;
+  width: 100%;
+  max-width: 900px;
+  min-height: 1120px;
+  margin: 0 auto;
+  overflow: visible;
+}
+
+
+/* =========================================
+   SMOOTH SNAKE ROPE
+========================================= */
+
+.rope-line {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+
+  width: 100%;
+  height: 100%;
+
+  overflow: visible;
+  pointer-events: none;
+}
+
+.rope-line path {
+  fill: none;
+
+  stroke: #a97880;
+  stroke-width: 0.65;
+
+  stroke-linecap: round;
+  stroke-linejoin: round;
+
+  stroke-dasharray: 1.7 1.3;
+
+  opacity: 0.72;
+
+  filter:
+    drop-shadow(
+      0 1px 1px rgba(91, 55, 58, 0.12)
+    );
+}
+
+
+/* =========================================
+   MEMORY ITEMS
+========================================= */
+
+.memory {
+  position: absolute;
+  z-index: 3;
+
+  width: clamp(
+    250px,
+    32vw,
+    320px
+  );
+}
+
+.memory-1 {
+  top: 0;
+  left: 2%;
+}
+
+.memory-2 {
+  top: 370px;
+  right: 1%;
+}
+
+.memory-3 {
+  top: 745px;
+  left: 8%;
+}
+
+
+/* =========================================
+   CAPTIONS
+========================================= */
+
+.memory-caption {
+  position: absolute;
+  z-index: 7;
+
+  width: clamp(
+    145px,
+    18vw,
+    190px
+  );
+
+  color: #765276;
+
+  font-family:
+    "Cormorant Garamond",
+    serif;
+
+  font-size:
+    clamp(
+      15px,
+      1.8vw,
+      18px
+    );
+
+  line-height: 1.3;
+
+  font-style: italic;
+
+  text-align: center;
+}
+
+.memory-1 .memory-caption {
+  right: clamp(
+    -210px,
+    -19vw,
+    -155px
+  );
+
+  top: 145px;
+}
+
+.memory-2 .memory-caption {
+  left: clamp(
+    -210px,
+    -19vw,
+    -155px
+  );
+
+  top: 145px;
+}
+
+.memory-3 .memory-caption {
+  right: clamp(
+    -210px,
+    -19vw,
+    -155px
+  );
+
+  top: 145px;
+}
+
+
+/* =========================================
+   REALISTIC CLIP
+========================================= */
+
+.memory-clip {
+  position: absolute;
+  z-index: 8;
+
+  top: -9px;
+  left: 50%;
+
+  width: 34px;
+  height: 48px;
+
+  transform:
+    translateX(-50%);
+
+  filter:
+    drop-shadow(
+      0 3px 3px
+      rgba(60, 40, 42, 0.22)
+    );
+}
+
+
+/* Hanging loop */
+
+.clip-top {
+  position: absolute;
+
+  left: 50%;
+  top: 0;
+
+  width: 13px;
+  height: 13px;
+
+  transform:
+    translateX(-50%);
+
+  border:
+    2px solid #9b7b68;
+
+  border-bottom: 0;
+
+  border-radius:
+    8px 8px 0 0;
+}
+
+
+/* Main clip */
+
+.clip-body {
+  position: absolute;
+
+  left: 50%;
+  top: 7px;
+
+  width: 23px;
+  height: 34px;
+
+  transform:
+    translateX(-50%);
+
+  border:
+    1px solid
+    rgba(91, 67, 53, 0.5);
+
+  border-radius:
+    4px 4px 7px 7px;
+
+  background:
+    linear-gradient(
+      90deg,
+      #8c705d 0%,
+      #d5bda5 22%,
+      #f0dfca 45%,
+      #b99d83 72%,
+      #806452 100%
+    );
+
+  box-shadow:
+    inset 1px 0
+      rgba(255, 255, 255, 0.55),
+
+    inset -2px 0
+      rgba(75, 50, 38, 0.2),
+
+    0 2px 3px
+      rgba(70, 45, 35, 0.18);
+}
+
+
+/* Clip jaw */
+
+.clip-jaw {
+  position: absolute;
+
+  left: 50%;
+  bottom: 0;
+
+  width: 17px;
+  height: 11px;
+
+  transform:
+    translateX(-50%);
+
+  border:
+    1px solid
+    rgba(91, 67, 53, 0.45);
+
+  border-radius:
+    0 0 4px 4px;
+
+  background:
+    linear-gradient(
+      90deg,
+      #806452,
+      #d2b69a 45%,
+      #866956
+    );
+}
+
+
+/* Highlight */
+
+.clip-body::after {
+  content: "";
+
+  position: absolute;
+
+  left: 5px;
+  top: 5px;
+
+  width: 3px;
+  height: 20px;
+
+  border-radius: 999px;
+
+  background:
+    rgba(255, 255, 255, 0.35);
+}
+
+
+/* =========================================
+   POLAROID FRAME
+========================================= */
+
+.memory-frame {
+  position: relative;
+
+  width: 100%;
+
+  padding:
+    13px
+    13px
+    48px;
+
+  background:
+    linear-gradient(
+      145deg,
+      #fffefa 0%,
+      #f7f3ea 100%
+    );
+
+  border:
+    1px solid
+    rgba(92, 72, 60, 0.08);
+
+  box-shadow:
+    0 22px 50px
+      rgba(82, 53, 84, 0.14),
+
+    0 5px 12px
+      rgba(82, 53, 84, 0.08),
+
+    inset 0 0 8px
+      rgba(120, 100, 80, 0.06);
+
+  transform-origin:
+    top center;
+}
+
+
+/* =========================================
+   PHOTO
+========================================= */
+
+.memory-photo {
+  width: 100%;
+
+  aspect-ratio: 1 / 1;
+
+  overflow: hidden;
+
+  background: #eee7ee;
+}
+
+.memory-photo img {
+  width: 100%;
+  height: 100%;
+
+  display: block;
+
+  object-fit: cover;
+
+  transition:
+    transform 0.7s ease;
+}
+
+.memory-frame:hover
+.memory-photo img {
+  transform:
+    scale(1.035);
+}
+
+
+/* =========================================
+   CLOSING
+========================================= */
+
+.photos-closing {
+  position: relative;
+  z-index: 5;
+
+  margin-top: 45px;
+}
+
+.photos-closing span {
+  display: block;
+
+  color: #a67ca7;
+
+  font-size: 13px;
+}
+
+.photos-closing p {
+  margin:
+    14px 0 4px;
+
+  color: #573b59;
+
+  font-family:
+    "Cormorant Garamond",
+    serif;
+
+  font-size: 30px;
+}
+
+.photos-closing small {
+  display: block;
+
+  color: #8b668c;
+
+  font-family:
+    "Cormorant Garamond",
+    serif;
+
+  font-size: 17px;
+
+  font-style: italic;
+}
+
+
+/* =========================================
+   TABLET
+========================================= */
+
+@media (min-width: 601px)
+and (max-width: 900px) {
+
+  .wedding-photos {
+    padding:
+      85px
+      25px
+      95px;
+  }
+
+  .memory-rope {
+    min-height: 1080px;
+  }
+
+  .memory {
+    width: 280px;
+  }
+
+  .memory-1 {
+    left: 2%;
+  }
+
+  .memory-2 {
+    right: 2%;
+    top: 355px;
+  }
+
+  .memory-3 {
+    left: 6%;
+    top: 710px;
+  }
+
+  .memory-caption {
+    width: 145px;
+    font-size: 15px;
+  }
+
+  .memory-1 .memory-caption,
+  .memory-3 .memory-caption {
+    right: -145px;
+  }
+
+  .memory-2 .memory-caption {
+    left: -145px;
+  }
+}
+
+
+/* =========================================
+   MOBILE
+========================================= */
+
+@media (max-width: 600px) {
+
+  .wedding-photos {
+    padding:
+      70px
+      12px
+      85px;
+  }
+
+  .wedding-photos-heading {
+    margin-bottom: 42px;
+  }
+
+  .wedding-photos-heading h2 {
+    font-size: 38px;
+  }
+
+  .memory-rope {
+    width: 100%;
+    min-height: 1050px;
+  }
+
+  .memory {
+    width:
+      min(
+        58vw,
+        220px
+      );
+  }
+
+  .memory-1 {
+    top: 0;
+    left: 2%;
+  }
+
+  .memory-2 {
+    top: 350px;
+    right: 2%;
+  }
+
+  .memory-3 {
+    top: 700px;
+    left: 5%;
+  }
+
+  .memory-frame {
+    padding:
+      9px
+      9px
+      34px;
+  }
+
+  .memory-clip {
+    transform:
+      translateX(-50%)
+      scale(0.85);
+  }
+
+  .memory-caption {
+    width:
+      min(
+        30vw,
+        125px
+      );
+
+    font-size: 13px;
+
+    line-height: 1.3;
+  }
+
+  .memory-1 .memory-caption,
+  .memory-3 .memory-caption {
+    right: -31vw;
+    top: 95px;
+  }
+
+  .memory-2 .memory-caption {
+    left: -31vw;
+    top: 95px;
+  }
+
+  .photos-closing {
+    margin-top: 5px;
+  }
+}
+
+
+/* =========================================
+   SMALL PHONES
+========================================= */
+
+@media (max-width: 390px) {
+
+  .wedding-photos {
+    padding:
+      65px
+      8px
+      80px;
+  }
+
+  .wedding-photos-heading h2 {
+    font-size: 34px;
+  }
+
+  .memory-rope {
+    min-height: 990px;
+  }
+
+  .memory {
+    width: 52vw;
+  }
+
+  .memory-1 {
+    top: 0;
+    left: 1%;
+  }
+
+  .memory-2 {
+    top: 330px;
+    right: 1%;
+  }
+
+  .memory-3 {
+    top: 660px;
+    left: 4%;
+  }
+
+  .memory-caption {
+    width: 28vw;
+    font-size: 11px;
+  }
+
+  .memory-1 .memory-caption,
+  .memory-3 .memory-caption {
+    right: -29vw;
+    top: 82px;
+  }
+
+  .memory-2 .memory-caption {
+    left: -29vw;
+    top: 82px;
+  }
+
+  .memory-clip {
+    transform:
+      translateX(-50%)
+      scale(0.72);
+  }
+
+  .memory-frame {
+    padding:
+      7px
+      7px
+      28px;
+  }
+}
+
+
+/* =========================================
+   TOUCH DEVICES
+========================================= */
+
+@media (hover: none)
+and (pointer: coarse) {
+
+  .memory-frame:hover
+  .memory-photo img {
+    transform: none;
+  }
+}
+
+
+/* =========================================
+   REDUCED MOTION
+========================================= */
+
+@media (prefers-reduced-motion: reduce) {
+
+  .memory-frame {
+    transform: none !important;
+  }
+
+  .memory-photo img {
+    transition: none;
+  }
+}

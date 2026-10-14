@@ -961,7 +961,7 @@ body {
     linear-gradient(
       180deg,
       #f8f1fb 0%,
-      #eee2f7 50%,
+      #eee2f7 70%,
       #f8f0fb 100%
     );
 
@@ -1091,14 +1091,13 @@ body {
 .couple-section h1 span {
   display: block;
 
-  margin: 17px 0;
+  margin: 25px 0;
 
-  font-family: "Cormorant Garamond", serif;
+  font-family: "Great Vibes", serif;
 
   font-size: 27px;
 
-  font-style: italic;
-
+  
   color: #a17bb0;
 }
 
@@ -2704,8 +2703,14 @@ a {
     font-size: 40px;
   }
 
+  .couple-section h1 {
+    font-size: 20px;
+  }
+
   .couple-section h1 span {
     font-size: 23px;
+    font-style: normal;
+  letter-spacing: 2px;
   }
 
   .photo-frame {

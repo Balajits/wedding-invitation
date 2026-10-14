@@ -1,62 +1,56 @@
+
 "use client";
 
 import { motion } from "framer-motion";
 import "./WeddingPhotos.css";
 
-const photos = [
+const memories = [
   {
-    image: "/one.jpeg",
-    alt: "Harsa and Balaji",
+    image: "/photo1.jpeg",
+    alt: "Our first memory",
     caption: "It all started with a little moment…",
-    rotation: "-6deg",
+    rotation: -5,
   },
   {
-    image: "/two.jpeg",
-    alt: "Harsa and Balaji",
-    caption:
-      "Somewhere along the way, you became my favourite person.",
-    rotation: "4deg",
+    image: "/photo2.jpeg",
+    alt: "A favourite memory together",
+    caption: "Somewhere along the way, you became my favourite person.",
+    rotation: 4,
   },
   {
-    image: "/three.jpeg",
-    alt: "Harsa and Balaji",
-    caption: "And then… we made it official. 💍",
-    rotation: "-5deg",
+    image: "/photo3.jpeg",
+    alt: "A beautiful moment together",
+    caption: "With you, every moment felt more beautiful.",
+    rotation: -4,
   },
-   {
-    image: "/four.jpg",
-    alt: "Harsa and Balaji",
-    caption: "And then… we made it official. 💍",
-    rotation: "-5deg",
+  {
+    image: "/photo4.jpeg",
+    alt: "Our official beginning",
+    caption: "And then… we made it official. ♡",
+    rotation: 5,
   },
+];
+
+const stages = [
+  { title: "Blooming", symbol: "🌷" },
+  { title: "Growing", symbol: "🌱" },
+  { title: "Flourishing", symbol: "🌸" },
+  { title: "Almost There", symbol: "🦋" },
+  { title: "Forever", symbol: "♡" },
 ];
 
 export default function WeddingPhotos() {
   return (
     <section className="wedding-photos">
-
-      {/* =========================================
-          HEADING
-      ========================================= */}
-
-      <motion.div
+      {/* SECTION HEADING */}
+      <motion.header
         className="wedding-photos-heading"
         initial={{ opacity: 0, y: 25 }}
-        whileInView={{
-          opacity: 1,
-          y: 0,
-        }}
-        viewport={{
-          once: true,
-        }}
-        transition={{
-          duration: 0.9,
-        }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.8 }}
       >
-        <span className="photos-ornament">
-          ✦
-        </span>
-
+        <span className="photos-ornament">✦</span>
         <p>OUR STORY</p>
 
         <h2>
@@ -65,237 +59,202 @@ export default function WeddingPhotos() {
         </h2>
 
         <div className="photos-heading-line">
-          <span></span>
+          <span />
           <i>♡</i>
-          <span></span>
+          <span />
         </div>
-      </motion.div>
+      </motion.header>
 
-
-      {/* =========================================
-          MEMORY ROPE
-      ========================================= */}
-
+      {/* FOUR PHOTOS ON ONE CONTINUOUS S-CURVE ROPE */}
       <div className="memory-rope">
-
-        {/* Smooth snake-shaped rope */}
-
         <svg
           className="rope-line"
-          viewBox="0 0 100 1100"
+          viewBox="0 0 100 1200"
           preserveAspectRatio="none"
           aria-hidden="true"
         >
+          <defs>
+            <linearGradient
+              id="wedding-rope-gradient"
+              x1="0"
+              y1="0"
+              x2="1"
+              y2="0"
+            >
+              <stop offset="0%" stopColor="#c5a1a0" />
+              <stop offset="48%" stopColor="#94736d" />
+              <stop offset="100%" stopColor="#d4b4a8" />
+            </linearGradient>
+          </defs>
+
           <path
+            className="rope-shadow"
             d="
-              M 30 0
-              C 72 100, 78 180, 55 275
-              C 32 370, 28 455, 52 550
-              C 76 645, 72 730, 48 820
-              C 24 910, 28 1000, 55 1100
+              M 28 0
+              C 70 70, 78 115, 60 170
+              S 23 280, 45 360
+              S 80 470, 57 550
+              S 20 660, 43 740
+              S 79 850, 57 930
+              S 25 1060, 48 1200
+            "
+          />
+
+          <path
+            className="rope-main"
+            d="
+              M 28 0
+              C 70 70, 78 115, 60 170
+              S 23 280, 45 360
+              S 80 470, 57 550
+              S 20 660, 43 740
+              S 79 850, 57 930
+              S 25 1060, 48 1200
             "
           />
         </svg>
 
-
-        {/* =========================================
-            PHOTO 1
-        ========================================= */}
-
-        <motion.div
-          className="memory memory-1"
-          initial={{
-            opacity: 0,
-            y: 45,
-            scale: 0.92,
-          }}
-          whileInView={{
-            opacity: 1,
-            y: 0,
-            scale: 1,
-          }}
-          viewport={{
-            once: true,
-            margin: "-80px",
-          }}
-          transition={{
-            duration: 0.9,
-          }}
-        >
-
-          <div className="memory-caption">
-            It all started with a little moment…
-          </div>
-
-          {/* <div className="memory-clip">
-            <span className="clip-top"></span>
-            <span className="clip-body"></span>
-            <span className="clip-jaw"></span>
-          </div> */}
-
-          <div
-            className="memory-frame"
-            style={{
-              transform: `rotate(${photos[0].rotation})`,
+        {memories.map((memory, index) => (
+          <motion.article
+            key={memory.image}
+            className={`memory memory-${index + 1}`}
+            initial={{ opacity: 0, y: 35, scale: 0.94 }}
+            whileInView={{ opacity: 1, y: 0, scale: 1 }}
+            viewport={{ once: true, amount: 0.15 }}
+            transition={{
+              duration: 0.8,
+              delay: index * 0.12,
+              ease: "easeOut",
             }}
           >
-            <div className="memory-photo">
-              <img
-                src={photos[0].image}
-                alt={photos[0].alt}
-              />
+            {/* REALISTIC WOODEN CLIP */}
+            <div className="memory-clip" aria-hidden="true">
+              {/* <span className="clip-loop" />
+              <span className="clip-body" />
+              <span className="clip-jaw" /> */}
             </div>
-            <div className="memory-captionss">
-            It all started with a little moment…
-          </div>
-          </div>
 
-        </motion.div>
+            {/* POLAROID FRAME + CAPTION */}
+            <div
+              className="memory-frame"
+              style={{
+                "--photo-rotation": `${memory.rotation}deg`,
+              } as React.CSSProperties}
+            >
+              <div className="memory-photo">
+                <img
+                  src={memory.image}
+                  alt={memory.alt}
+                  loading="lazy"
+                />
+              </div>
 
-
-        {/* =========================================
-            PHOTO 2
-        ========================================= */}
-
-        <motion.div
-          className="memory memory-2"
-          initial={{
-            opacity: 0,
-            y: 45,
-            scale: 0.92,
-          }}
-          whileInView={{
-            opacity: 1,
-            y: 0,
-            scale: 1,
-          }}
-          viewport={{
-            once: true,
-            margin: "-80px",
-          }}
-          transition={{
-            duration: 0.9,
-            delay: 0.2,
-          }}
-        >
-
-          <div className="memory-caption">
-            Somewhere along the way, you became my favourite person.
-          </div>
-
-          <div className="memory-clip">
-            <span className="clip-top"></span>
-            <span className="clip-body"></span>
-            <span className="clip-jaw"></span>
-          </div>
-
-          <div
-            className="memory-frame"
-            style={{
-              transform: `rotate(${photos[1].rotation})`,
-            }}
-          >
-            <div className="memory-photo">
-              <img
-                src={photos[1].image}
-                alt={photos[1].alt}
-              />
+              <p className="memory-caption">{memory.caption}</p>
             </div>
-          </div>
-
-        </motion.div>
-
-
-        {/* =========================================
-            PHOTO 3
-        ========================================= */}
-
-        <motion.div
-          className="memory memory-3"
-          initial={{
-            opacity: 0,
-            y: 45,
-            scale: 0.92,
-          }}
-          whileInView={{
-            opacity: 1,
-            y: 0,
-            scale: 1,
-          }}
-          viewport={{
-            once: true,
-            margin: "-80px",
-          }}
-          transition={{
-            duration: 0.9,
-            delay: 0.4,
-          }}
-        >
-
-          <div className="memory-caption">
-            And then… we made it official. 💍
-          </div>
-
-          <div className="memory-clip">
-            <span className="clip-top"></span>
-            <span className="clip-body"></span>
-            <span className="clip-jaw"></span>
-          </div>
-
-          <div
-            className="memory-frame"
-            style={{
-              transform: `rotate(${photos[2].rotation})`,
-            }}
-          >
-            <div className="memory-photo">
-              <img
-                src={photos[2].image}
-                alt={photos[2].alt}
-              />
-            </div>
-          </div>
-
-        </motion.div>
-
+          </motion.article>
+        ))}
       </div>
 
-
-      {/* =========================================
-          CLOSING
-      ========================================= */}
-
+      {/* FIVE ANIMATED FLOWER & BUTTERFLY STAGES */}
       <motion.div
-        className="photos-closing"
-        initial={{
-          opacity: 0,
-          y: 15,
-        }}
-        whileInView={{
-          opacity: 1,
-          y: 0,
-        }}
-        viewport={{
-          once: true,
-        }}
-        transition={{
-          duration: 1,
-          delay: 0.4,
-        }}
+        className="wedding-journey"
+        initial={{ opacity: 0, y: 25 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.9 }}
       >
+        <span className="journey-ornament">✦</span>
+        <p className="journey-eyebrow">THE NEXT CHAPTER</p>
+        <h2>Our Wedding Is Coming...</h2>
 
-        <span>✦</span>
+        <div className="journey-divider">
+          <span />
+          <i>♡</i>
+          <span />
+        </div>
 
-        <p>Harsa & Balaji</p>
+        <div className="journey-stages">
+          <div className="journey-progress-line">
+            <motion.div
+              className="journey-progress-fill"
+              initial={{ scaleX: 0 }}
+              whileInView={{ scaleX: 1 }}
+              viewport={{ once: true }}
+              transition={{ duration: 2, ease: "easeInOut" }}
+            />
+          </div>
 
-        <small>
-          From unofficial to official.
-        </small>
+          {stages.map((stage, index) => (
+            <motion.div
+              key={stage.title}
+              className={`journey-stage journey-stage-${index + 1}`}
+              initial={{ opacity: 0, y: 18, scale: 0.85 }}
+              whileInView={{ opacity: 1, y: 0, scale: 1 }}
+              viewport={{ once: true, amount: 0.5 }}
+              transition={{
+                duration: 0.65,
+                delay: index * 0.18,
+              }}
+            >
+              <motion.div
+                className="journey-flower"
+                animate={{
+                  y: [0, -5, 0],
+                  rotate: index === 3 ? [-5, 5, -5] : [0, 3, 0],
+                }}
+                transition={{
+                  duration: 3 + index * 0.4,
+                  repeat: Infinity,
+                  ease: "easeInOut",
+                }}
+              >
+                <span>{stage.symbol}</span>
+                <i className="flower-sparkle sparkle-one">✦</i>
+                <i className="flower-sparkle sparkle-two">✧</i>
+              </motion.div>
 
-        <span>♡</span>
+              <p className="journey-stage-number">
+                0{index + 1}
+              </p>
+              <h3>{stage.title}</h3>
+            </motion.div>
+          ))}
+        </div>
 
+        <div className="journey-butterflies" aria-hidden="true">
+          <motion.span
+            animate={{ x: [0, 12, 0], y: [0, -8, 0], rotate: [0, 12, 0] }}
+            transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
+          >
+            🦋
+          </motion.span>
+          <motion.span
+            animate={{ x: [0, -10, 0], y: [0, 7, 0], rotate: [0, -10, 0] }}
+            transition={{
+              duration: 5,
+              repeat: Infinity,
+              ease: "easeInOut",
+              delay: 0.5,
+            }}
+          >
+            🦋
+          </motion.span>
+        </div>
       </motion.div>
 
+      {/* CLOSING */}
+      <motion.footer
+        className="photos-closing"
+        initial={{ opacity: 0, y: 15 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.8 }}
+      >
+        <span>✦</span>
+        <p>Harsa & Balaji</p>
+        <small>From unofficial to official.</small>
+        <span className="closing-heart">♡</span>
+      </motion.footer>
     </section>
   );
 }

@@ -1,37 +1,37 @@
+
 /* =========================================
-   WEDDING PHOTOS
+   WEDDING MEMORIES — LAVENDER EDITION
 ========================================= */
 
 .wedding-photos {
   position: relative;
+  isolation: isolate;
   width: 100%;
-  max-width: 900px;
+  max-width: 1100px;
   margin: 0 auto;
-  padding: 100px 20px 110px;
-  overflow-x: clip;
+  padding: 90px 24px 100px;
+  overflow: clip;
   text-align: center;
+  color: #573b59;
 }
-
-
-/* =========================================
-   HEADING
-========================================= */
 
 .wedding-photos-heading {
   position: relative;
-  z-index: 5;
+  z-index: 4;
   margin-bottom: 65px;
 }
 
-.photos-ornament {
+.photos-ornament,
+.journey-ornament {
   display: block;
-  margin-bottom: 18px;
+  margin-bottom: 16px;
   color: #a67ca7;
   font-size: 14px;
 }
 
-.wedding-photos-heading p {
-  margin: 0 0 6px;
+.wedding-photos-heading > p,
+.journey-eyebrow {
+  margin: 0 0 10px;
   color: #8b668c;
   font-size: 10px;
   font-weight: 600;
@@ -42,397 +42,389 @@
   margin: 0;
   color: #573b59;
   font-family: "Cormorant Garamond", serif;
-  font-size: 48px;
+  font-size: clamp(38px, 5vw, 54px);
   font-weight: 500;
-  line-height: 0.95;
+  line-height: 1.05;
 }
 
 .wedding-photos-heading h2 span {
   display: block;
+  color: #926b98;
+  font-style: italic;
 }
 
-.photos-heading-line {
+.photos-heading-line,
+.journey-divider {
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 12px;
+  gap: 13px;
   margin-top: 22px;
 }
 
-.photos-heading-line span {
-  width: 55px;
+.photos-heading-line span,
+.journey-divider span {
+  width: 52px;
   height: 1px;
-  background: rgba(139, 102, 140, 0.22);
+  background: rgba(139, 102, 140, 0.28);
 }
 
-.photos-heading-line i {
+.photos-heading-line i,
+.journey-divider i {
   color: #a67ca7;
-  font-size: 12px;
+  font-size: 14px;
   font-style: normal;
 }
 
-
 /* =========================================
-   MEMORY ROPE CONTAINER
+   CONTINUOUS S-SHAPED ROPE
 ========================================= */
 
 .memory-rope {
   position: relative;
   width: 100%;
   max-width: 900px;
-  min-height: 1120px;
+  height: 1480px;
   margin: 0 auto;
   overflow: visible;
 }
 
-
-/* =========================================
-   SMOOTH SNAKE ROPE
-========================================= */
-
 .rope-line {
   position: absolute;
+  z-index: 0;
   inset: 0;
-  z-index: 1;
-
   width: 100%;
   height: 100%;
-
   overflow: visible;
   pointer-events: none;
 }
 
-.rope-line path {
+.rope-shadow {
   fill: none;
-
-  stroke: #a97880;
-  stroke-width: 0.65;
-
+  stroke: rgba(104, 70, 63, 0.12);
+  stroke-width: 2;
   stroke-linecap: round;
   stroke-linejoin: round;
-
-  stroke-dasharray: 1.7 1.3;
-
-  opacity: 0.72;
-
-  filter:
-    drop-shadow(
-      0 1px 1px rgba(91, 55, 58, 0.12)
-    );
+  vector-effect: non-scaling-stroke;
+  transform: translateY(2px);
 }
 
+.rope-main {
+  fill: none;
+  stroke: url(#wedding-rope-gradient);
+  stroke-width: 1.5;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-dasharray: 2 1.3;
+  vector-effect: non-scaling-stroke;
+  filter: drop-shadow(0 1px 1px rgba(80, 50, 50, 0.12));
+}
 
 /* =========================================
-   MEMORY ITEMS
+   POLAROID POSITIONS
 ========================================= */
 
 .memory {
   position: absolute;
-  z-index: 3;
-
-  width: clamp(
-    250px,
-    32vw,
-    320px
-  );
+  z-index: 2;
+  width: clamp(220px, 29vw, 300px);
 }
 
 .memory-1 {
-  top: 0;
-  left: 2%;
+  top: 10px;
+  left: 4%;
 }
 
 .memory-2 {
   top: 370px;
-  right: 1%;
+  right: 3%;
 }
 
 .memory-3 {
-  top: 745px;
-  left: 8%;
+  top: 740px;
+  left: 6%;
 }
 
+.memory-4 {
+  top: 1100px;
+  right: 5%;
+}
 
 /* =========================================
-   CAPTIONS
-========================================= */
-
-.memory-caption {
-  position: absolute;
-  z-index: 7;
-
-  width: clamp(
-    145px,
-    18vw,
-    190px
-  );
-
-  color: #765276;
-
-  font-family:
-    "Cormorant Garamond",
-    serif;
-
-  font-size:
-    clamp(
-      15px,
-      1.8vw,
-      18px
-    );
-
-  line-height: 1.3;
-
-  font-style: italic;
-
-  text-align: center;
-}
-
-.memory-1 .memory-caption {
-  right: clamp(
-    -210px,
-    -19vw,
-    -155px
-  );
-
-  top: 145px;
-}
-
-.memory-2 .memory-caption {
-  left: clamp(
-    -210px,
-    -19vw,
-    -155px
-  );
-
-  top: 145px;
-}
-
-.memory-3 .memory-caption {
-  right: clamp(
-    -210px,
-    -19vw,
-    -155px
-  );
-
-  top: 145px;
-}
-
-
-/* =========================================
-   REALISTIC CLIP
+   WOODEN CLIPS
 ========================================= */
 
 .memory-clip {
   position: absolute;
-  z-index: 8;
-
-  top: -9px;
+  z-index: 5;
+  top: -13px;
   left: 50%;
-
-  width: 34px;
+  width: 30px;
   height: 48px;
-
-  transform:
-    translateX(-50%);
-
-  filter:
-    drop-shadow(
-      0 3px 3px
-      rgba(60, 40, 42, 0.22)
-    );
+  transform: translateX(-50%);
+  filter: drop-shadow(0 3px 3px rgba(60, 40, 42, 0.2));
 }
 
-
-/* Hanging loop */
-
-.clip-top {
+.clip-loop {
   position: absolute;
-
-  left: 50%;
   top: 0;
-
-  width: 13px;
+  left: 50%;
+  width: 12px;
   height: 13px;
-
-  transform:
-    translateX(-50%);
-
-  border:
-    2px solid #9b7b68;
-
+  transform: translateX(-50%);
+  border: 2px solid #a88a73;
   border-bottom: 0;
-
-  border-radius:
-    8px 8px 0 0;
+  border-radius: 8px 8px 0 0;
 }
-
-
-/* Main clip */
 
 .clip-body {
   position: absolute;
-
-  left: 50%;
   top: 7px;
-
-  width: 23px;
-  height: 34px;
-
-  transform:
-    translateX(-50%);
-
-  border:
-    1px solid
-    rgba(91, 67, 53, 0.5);
-
-  border-radius:
-    4px 4px 7px 7px;
-
-  background:
-    linear-gradient(
-      90deg,
-      #8c705d 0%,
-      #d5bda5 22%,
-      #f0dfca 45%,
-      #b99d83 72%,
-      #806452 100%
-    );
-
+  left: 50%;
+  width: 21px;
+  height: 33px;
+  transform: translateX(-50%);
+  border: 1px solid rgba(91, 67, 53, 0.45);
+  border-radius: 3px 3px 5px 5px;
+  background: linear-gradient(
+    90deg,
+    #92735c 0%,
+    #d8c0a5 24%,
+    #f3e2cb 48%,
+    #bba087 76%,
+    #80634f 100%
+  );
   box-shadow:
-    inset 1px 0
-      rgba(255, 255, 255, 0.55),
-
-    inset -2px 0
-      rgba(75, 50, 38, 0.2),
-
-    0 2px 3px
-      rgba(70, 45, 35, 0.18);
+    inset 1px 0 rgba(255, 255, 255, 0.6),
+    inset -2px 0 rgba(75, 50, 38, 0.2);
 }
 
-
-/* Clip jaw */
+.clip-body::after {
+  position: absolute;
+  top: 5px;
+  left: 5px;
+  width: 3px;
+  height: 20px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.45);
+  content: "";
+}
 
 .clip-jaw {
   position: absolute;
-
-  left: 50%;
   bottom: 0;
-
-  width: 17px;
+  left: 50%;
+  width: 16px;
   height: 11px;
-
-  transform:
-    translateX(-50%);
-
-  border:
-    1px solid
-    rgba(91, 67, 53, 0.45);
-
-  border-radius:
-    0 0 4px 4px;
-
-  background:
-    linear-gradient(
-      90deg,
-      #806452,
-      #d2b69a 45%,
-      #866956
-    );
+  transform: translateX(-50%);
+  border: 1px solid rgba(91, 67, 53, 0.4);
+  border-radius: 0 0 4px 4px;
+  background: linear-gradient(90deg, #806452, #d2b69a 45%, #866956);
 }
-
-
-/* Highlight */
-
-.clip-body::after {
-  content: "";
-
-  position: absolute;
-
-  left: 5px;
-  top: 5px;
-
-  width: 3px;
-  height: 20px;
-
-  border-radius: 999px;
-
-  background:
-    rgba(255, 255, 255, 0.35);
-}
-
 
 /* =========================================
-   POLAROID FRAME
+   WHITE POLAROID + CAPTION
 ========================================= */
 
 .memory-frame {
   position: relative;
-
   width: 100%;
-
-  padding:
-    13px
-    13px
-    48px;
-
-  background:
-    linear-gradient(
-      145deg,
-      #fffefa 0%,
-      #f7f3ea 100%
-    );
-
-  border:
-    1px solid
-    rgba(92, 72, 60, 0.08);
-
+  padding: 12px 12px 0;
+  border: 1px solid rgba(92, 72, 60, 0.1);
+  background: linear-gradient(145deg, #fffefa, #f8f3ec);
   box-shadow:
-    0 22px 50px
-      rgba(82, 53, 84, 0.14),
-
-    0 5px 12px
-      rgba(82, 53, 84, 0.08),
-
-    inset 0 0 8px
-      rgba(120, 100, 80, 0.06);
-
-  transform-origin:
-    top center;
+    0 20px 48px rgba(82, 53, 84, 0.13),
+    0 4px 12px rgba(82, 53, 84, 0.08),
+    inset 0 0 8px rgba(120, 100, 80, 0.04);
+  transform: rotate(var(--photo-rotation));
+  transform-origin: top center;
+  transition: box-shadow 0.35s ease;
 }
-
-
-/* =========================================
-   PHOTO
-========================================= */
 
 .memory-photo {
   width: 100%;
-
   aspect-ratio: 1 / 1;
-
   overflow: hidden;
-
-  background: #eee7ee;
+  background: #eee6ef;
 }
 
 .memory-photo img {
+  display: block;
   width: 100%;
   height: 100%;
-
-  display: block;
-
   object-fit: cover;
-
-  transition:
-    transform 0.7s ease;
+  transition: transform 0.7s ease;
 }
 
-.memory-frame:hover
-.memory-photo img {
-  transform:
-    scale(1.035);
+.memory-caption {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 66px;
+  margin: 0;
+  padding: 10px 7px 12px;
+  color: #765276;
+  font-family: "Cormorant Garamond", serif;
+  font-size: clamp(15px, 1.6vw, 18px);
+  font-style: italic;
+  line-height: 1.2;
+  text-align: center;
+  overflow-wrap: anywhere;
 }
 
+@media (hover: hover) and (pointer: fine) {
+  .memory-frame:hover {
+    box-shadow:
+      0 26px 58px rgba(82, 53, 84, 0.18),
+      0 5px 14px rgba(82, 53, 84, 0.1);
+  }
+
+  .memory-frame:hover .memory-photo img {
+    transform: scale(1.04);
+  }
+}
+
+/* =========================================
+   FIVE MAGICAL STAGES
+========================================= */
+
+.wedding-journey {
+  position: relative;
+  z-index: 3;
+  width: 100%;
+  max-width: 850px;
+  margin: 55px auto 0;
+  padding: 35px 0 20px;
+}
+
+.journey-ornament {
+  margin-bottom: 14px;
+}
+
+.journey-eyebrow {
+  margin-bottom: 12px;
+}
+
+.wedding-journey > h2 {
+  margin: 0;
+  color: #573b59;
+  font-family: "Cormorant Garamond", serif;
+  font-size: clamp(30px, 4.5vw, 43px);
+  font-style: italic;
+  font-weight: 500;
+  line-height: 1.15;
+}
+
+.journey-divider {
+  margin-top: 19px;
+}
+
+.journey-stages {
+  position: relative;
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  align-items: start;
+  gap: 10px;
+  margin-top: 42px;
+}
+
+.journey-progress-line {
+  position: absolute;
+  top: 40px;
+  right: 10%;
+  left: 10%;
+  height: 1px;
+  overflow: hidden;
+  background: rgba(166, 124, 167, 0.2);
+}
+
+.journey-progress-fill {
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, #d6b3d9, #a67ca7, #d6b3d9);
+  transform-origin: left center;
+}
+
+.journey-stage {
+  position: relative;
+  z-index: 1;
+  min-width: 0;
+}
+
+.journey-flower {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 80px;
+  height: 80px;
+  margin: 0 auto 13px;
+  border: 1px solid rgba(166, 124, 167, 0.2);
+  border-radius: 50%;
+  background: radial-gradient(circle, #fff 10%, #f8eff9 75%);
+  box-shadow: 0 8px 24px rgba(92, 55, 94, 0.07);
+}
+
+.journey-flower > span {
+  font-size: 30px;
+  line-height: 1;
+}
+
+.journey-stage-5 .journey-flower > span {
+  color: #a06fa1;
+  font-family: "Cormorant Garamond", serif;
+  font-size: 43px;
+}
+
+.flower-sparkle {
+  position: absolute;
+  color: #b18ab5;
+  font-size: 11px;
+  font-style: normal;
+}
+
+.sparkle-one {
+  top: 9px;
+  right: 8px;
+}
+
+.sparkle-two {
+  bottom: 10px;
+  left: 8px;
+}
+
+.journey-stage-number {
+  margin: 0 0 5px;
+  color: #a67ca7;
+  font-size: 9px;
+  font-weight: 600;
+  letter-spacing: 2px;
+}
+
+.journey-stage h3 {
+  margin: 0;
+  color: #765276;
+  font-family: "Cormorant Garamond", serif;
+  font-size: clamp(13px, 1.6vw, 17px);
+  font-style: italic;
+  font-weight: 500;
+  line-height: 1.2;
+}
+
+.journey-butterflies {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  max-width: 450px;
+  margin: 35px auto 0;
+  padding: 0 18px;
+  pointer-events: none;
+}
+
+.journey-butterflies span {
+  display: inline-block;
+  font-size: 21px;
+}
 
 /* =========================================
    CLOSING
@@ -440,135 +432,55 @@
 
 .photos-closing {
   position: relative;
-  z-index: 5;
-
+  z-index: 3;
   margin-top: 45px;
 }
 
-.photos-closing span {
+.photos-closing > span {
   display: block;
-
   color: #a67ca7;
-
   font-size: 13px;
 }
 
 .photos-closing p {
-  margin:
-    14px 0 4px;
-
+  margin: 13px 0 5px;
   color: #573b59;
-
-  font-family:
-    "Cormorant Garamond",
-    serif;
-
-  font-size: 30px;
+  font-family: "Cormorant Garamond", serif;
+  font-size: 32px;
+  font-weight: 500;
 }
 
 .photos-closing small {
   display: block;
-
   color: #8b668c;
-
-  font-family:
-    "Cormorant Garamond",
-    serif;
-
+  font-family: "Cormorant Garamond", serif;
   font-size: 17px;
-
   font-style: italic;
 }
 
-
-/* =========================================
-   TABLET
-========================================= */
-
-@media (min-width: 601px)
-and (max-width: 900px) {
-
-  .wedding-photos {
-    padding:
-      85px
-      25px
-      95px;
-  }
-
-  .memory-rope {
-    min-height: 1080px;
-  }
-
-  .memory {
-    width: 280px;
-  }
-
-  .memory-1 {
-    left: 2%;
-  }
-
-  .memory-2 {
-    right: 2%;
-    top: 355px;
-  }
-
-  .memory-3 {
-    left: 6%;
-    top: 710px;
-  }
-
-  .memory-caption {
-    width: 145px;
-    font-size: 15px;
-  }
-
-  .memory-1 .memory-caption,
-  .memory-3 .memory-caption {
-    right: -145px;
-  }
-
-  .memory-2 .memory-caption {
-    left: -145px;
-  }
+.photos-closing .closing-heart {
+  margin-top: 12px;
+  font-size: 20px;
 }
 
-
 /* =========================================
-   MOBILE
+   TABLETS — PORTRAIT AND LANDSCAPE
 ========================================= */
 
-@media (max-width: 600px) {
-
+@media (min-width: 601px) and (max-width: 900px) {
   .wedding-photos {
-    padding:
-      70px
-      12px
-      85px;
-  }
-
-  .wedding-photos-heading {
-    margin-bottom: 42px;
-  }
-
-  .wedding-photos-heading h2 {
-    font-size: 38px;
+    padding: 80px 25px 90px;
   }
 
   .memory-rope {
-    width: 100%;
-    min-height: 1050px;
+    height: 1390px;
   }
 
   .memory {
-    width:
-      min(
-        58vw,
-        220px
-      );
+    width: clamp(210px, 31vw, 270px);
   }
 
   .memory-1 {
-    top: 0;
     left: 2%;
   }
 
@@ -579,74 +491,53 @@ and (max-width: 900px) {
 
   .memory-3 {
     top: 700px;
-    left: 5%;
+    left: 4%;
   }
 
-  .memory-frame {
-    padding:
-      9px
-      9px
-      34px;
-  }
-
-  .memory-clip {
-    transform:
-      translateX(-50%)
-      scale(0.85);
+  .memory-4 {
+    top: 1040px;
+    right: 3%;
   }
 
   .memory-caption {
-    width:
-      min(
-        30vw,
-        125px
-      );
-
-    font-size: 13px;
-
-    line-height: 1.3;
+    min-height: 62px;
+    font-size: 15px;
   }
 
-  .memory-1 .memory-caption,
-  .memory-3 .memory-caption {
-    right: -31vw;
-    top: 95px;
+  .journey-flower {
+    width: 68px;
+    height: 68px;
   }
 
-  .memory-2 .memory-caption {
-    left: -31vw;
-    top: 95px;
-  }
-
-  .photos-closing {
-    margin-top: 5px;
+  .journey-progress-line {
+    top: 34px;
   }
 }
 
-
 /* =========================================
-   SMALL PHONES
+   MOBILE PORTRAIT
 ========================================= */
 
-@media (max-width: 390px) {
-
+@media (max-width: 600px) {
   .wedding-photos {
-    padding:
-      65px
-      8px
-      80px;
+    padding: 65px 12px 75px;
+  }
+
+  .wedding-photos-heading {
+    margin-bottom: 45px;
   }
 
   .wedding-photos-heading h2 {
-    font-size: 34px;
+    font-size: 38px;
   }
 
   .memory-rope {
-    min-height: 990px;
+    height: 1150px;
+    max-width: 440px;
   }
 
   .memory {
-    width: 52vw;
+    width: min(53vw, 215px);
   }
 
   .memory-1 {
@@ -655,71 +546,248 @@ and (max-width: 900px) {
   }
 
   .memory-2 {
-    top: 330px;
+    top: 285px;
     right: 1%;
   }
 
   .memory-3 {
-    top: 660px;
-    left: 4%;
+    top: 570px;
+    left: 2%;
   }
 
-  .memory-caption {
-    width: 28vw;
-    font-size: 11px;
-  }
-
-  .memory-1 .memory-caption,
-  .memory-3 .memory-caption {
-    right: -29vw;
-    top: 82px;
-  }
-
-  .memory-2 .memory-caption {
-    left: -29vw;
-    top: 82px;
-  }
-
-  .memory-clip {
-    transform:
-      translateX(-50%)
-      scale(0.72);
+  .memory-4 {
+    top: 855px;
+    right: 1%;
   }
 
   .memory-frame {
-    padding:
-      7px
-      7px
-      28px;
+    padding: 8px 8px 0;
+  }
+
+  .memory-clip {
+    transform: translateX(-50%) scale(0.82);
+    transform-origin: top center;
+  }
+
+  .memory-caption {
+    min-height: 52px;
+    padding: 7px 4px 9px;
+    font-size: clamp(11px, 3vw, 14px);
+    line-height: 1.15;
+  }
+
+  .wedding-journey {
+    margin-top: 40px;
+    padding-top: 25px;
+  }
+
+  .wedding-journey > h2 {
+    font-size: 32px;
+  }
+
+  .journey-stages {
+    gap: 3px;
+    margin-top: 32px;
+  }
+
+  .journey-progress-line {
+    top: 27px;
+    right: 9%;
+    left: 9%;
+  }
+
+  .journey-flower {
+    width: clamp(43px, 13vw, 66px);
+    height: clamp(43px, 13vw, 66px);
+    margin-bottom: 10px;
+  }
+
+  .journey-flower > span {
+    font-size: clamp(20px, 6vw, 28px);
+  }
+
+  .journey-stage-5 .journey-flower > span {
+    font-size: 31px;
+  }
+
+  .flower-sparkle {
+    font-size: 8px;
+  }
+
+  .journey-stage-number {
+    font-size: 8px;
+    letter-spacing: 1px;
+  }
+
+  .journey-stage h3 {
+    font-size: clamp(10px, 2.8vw, 13px);
+    overflow-wrap: anywhere;
+  }
+
+  .journey-butterflies {
+    margin-top: 28px;
+  }
+
+  .photos-closing {
+    margin-top: 35px;
+  }
+
+  .photos-closing p {
+    font-size: 29px;
   }
 }
 
-
 /* =========================================
-   TOUCH DEVICES
+   SMALL PHONES
 ========================================= */
 
-@media (hover: none)
-and (pointer: coarse) {
+@media (max-width: 390px) {
+  .wedding-photos {
+    padding-right: 8px;
+    padding-left: 8px;
+  }
 
-  .memory-frame:hover
-  .memory-photo img {
+  .wedding-photos-heading h2 {
+    font-size: 34px;
+  }
+
+  .memory-rope {
+    height: 1030px;
+  }
+
+  .memory {
+    width: 51vw;
+  }
+
+  .memory-1 {
+    top: 0;
+    left: 0;
+  }
+
+  .memory-2 {
+    top: 255px;
+    right: 0;
+  }
+
+  .memory-3 {
+    top: 510px;
+    left: 1%;
+  }
+
+  .memory-4 {
+    top: 765px;
+    right: 0;
+  }
+
+  .memory-frame {
+    padding: 6px 6px 0;
+  }
+
+  .memory-caption {
+    min-height: 46px;
+    padding: 6px 3px 8px;
+    font-size: 11px;
+  }
+
+  .journey-stages {
+    gap: 1px;
+  }
+
+  .journey-flower {
+    width: 42px;
+    height: 42px;
+  }
+
+  .journey-flower > span {
+    font-size: 20px;
+  }
+
+  .journey-stage-5 .journey-flower > span {
+    font-size: 27px;
+  }
+
+  .journey-progress-line {
+    top: 21px;
+  }
+
+  .journey-stage h3 {
+    font-size: 10px;
+  }
+
+  .journey-butterflies {
+    padding: 0 8px;
+  }
+}
+
+/* =========================================
+   MOBILE LANDSCAPE
+========================================= */
+
+@media (max-width: 900px) and (orientation: landscape) {
+  .wedding-photos {
+    padding-top: 45px;
+    padding-bottom: 55px;
+  }
+
+  .wedding-photos-heading {
+    margin-bottom: 35px;
+  }
+
+  .memory-rope {
+    height: 1180px;
+    max-width: 760px;
+  }
+
+  .memory {
+    width: clamp(175px, 27vw, 230px);
+  }
+
+  .memory-1 {
+    top: 0;
+    left: 3%;
+  }
+
+  .memory-2 {
+    top: 290px;
+    right: 3%;
+  }
+
+  .memory-3 {
+    top: 580px;
+    left: 5%;
+  }
+
+  .memory-4 {
+    top: 870px;
+    right: 4%;
+  }
+
+  .memory-caption {
+    min-height: 50px;
+    font-size: 13px;
+  }
+
+  .wedding-journey {
+    margin-top: 25px;
+  }
+}
+
+/* =========================================
+   REDUCED MOTION & TOUCH DEVICES
+========================================= */
+
+@media (hover: none) and (pointer: coarse) {
+  .memory-frame:hover .memory-photo img {
     transform: none;
   }
 }
 
-
-/* =========================================
-   REDUCED MOTION
-========================================= */
-
 @media (prefers-reduced-motion: reduce) {
-
-  .memory-frame {
-    transform: none !important;
+  .memory-photo img {
+    transition: none;
   }
 
-  .memory-photo img {
+  .memory-frame {
     transition: none;
   }
 }

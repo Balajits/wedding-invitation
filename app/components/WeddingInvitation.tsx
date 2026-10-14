@@ -207,7 +207,7 @@ export default function WeddingInvitation() {
 
                 <h1>
                     Harsa Vardine
-                    <span>&</span>
+                    <span>Weds</span>
                     Balaji
                 </h1>
 

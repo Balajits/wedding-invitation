@@ -68,14 +68,6 @@ const memories: Memory[] = [
   },
 ];
 
-const stages = [
-  { title: "Blooming", symbol: "🌷" },
-  { title: "Growing", symbol: "🌱" },
-  { title: "Flourishing", symbol: "🌸" },
-  { title: "Almost There", symbol: "🦋" },
-  { title: "Forever", symbol: "♡" },
-];
-
 /* =========================================
    ROPE GEOMETRY
 
@@ -445,7 +437,7 @@ export default function WeddingPhotos() {
         ))}
       </div>
 
-      {/* FIVE ANIMATED FLOWER & BUTTERFLY STAGES */}
+      {/* THE NEXT CHAPTER */}
       <motion.div
         className="wedding-journey"
         initial={{ opacity: 0, y: 25 }}
@@ -461,69 +453,6 @@ export default function WeddingPhotos() {
           <span />
           <i>♡</i>
           <span />
-        </div>
-
-        <div className="journey-stages">
-          <div className="journey-progress-line">
-            <motion.div
-              className="journey-progress-fill"
-              initial={{ scaleX: 0 }}
-              whileInView={{ scaleX: 1 }}
-              viewport={{ once: true }}
-              transition={{ duration: 2, ease: "easeInOut" }}
-            />
-          </div>
-
-          {stages.map((stage, index) => (
-            <motion.div
-              key={stage.title}
-              className={`journey-stage journey-stage-${index + 1}`}
-              initial={{ opacity: 0, y: 18, scale: 0.85 }}
-              whileInView={{ opacity: 1, y: 0, scale: 1 }}
-              viewport={{ once: true, amount: 0.5 }}
-              transition={{ duration: 0.65, delay: index * 0.18 }}
-            >
-              <motion.div
-                className="journey-flower"
-                animate={{
-                  y: [0, -5, 0],
-                  rotate: index === 3 ? [-5, 5, -5] : [0, 3, 0],
-                }}
-                transition={{
-                  duration: 3 + index * 0.4,
-                  repeat: Infinity,
-                  ease: "easeInOut",
-                }}
-              >
-                <span>{stage.symbol}</span>
-                <i className="flower-sparkle sparkle-one">✦</i>
-                <i className="flower-sparkle sparkle-two">✧</i>
-              </motion.div>
-
-              <p className="journey-stage-number">0{index + 1}</p>
-              <h3>{stage.title}</h3>
-            </motion.div>
-          ))}
-        </div>
-
-        <div className="journey-butterflies" aria-hidden="true">
-          <motion.span
-            animate={{ x: [0, 12, 0], y: [0, -8, 0], rotate: [0, 12, 0] }}
-            transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
-          >
-            🦋
-          </motion.span>
-          <motion.span
-            animate={{ x: [0, -10, 0], y: [0, 7, 0], rotate: [0, -10, 0] }}
-            transition={{
-              duration: 5,
-              repeat: Infinity,
-              ease: "easeInOut",
-              delay: 0.5,
-            }}
-          >
-            🦋
-          </motion.span>
         </div>
       </motion.div>
 

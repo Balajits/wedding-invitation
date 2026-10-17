@@ -88,13 +88,13 @@
 
 .memory-rope {
   /* ROPE COLOURS — change these to match your theme */
-  --rope-base: #9d78ae; /* main rope body */
-  --rope-light: #e0cdea; /* light twisted strand */
-  --rope-dark: #66407a; /* dark twisted strand */
+  --rope-base: #9a7aa6; /* main rope body */
+  --rope-light: #dcc8e6; /* light twisted strand */
+  --rope-dark: #5a3f6a; /* dark twisted strand */
   --rope-highlight: rgba(255, 250, 255, 0.6); /* shine on top */
-  --rope-shadow: rgba(91, 52, 112, 0.16); /* shadow on the page */
-  --rope-shadow-soft: rgba(91, 52, 112, 0.07);
-  --rope-string: rgba(127, 74, 152, 0.7); /* strings holding hearts */
+  --rope-shadow: rgba(87, 59, 89, 0.16); /* shadow on the page */
+  --rope-shadow-soft: rgba(87, 59, 89, 0.07);
+  --rope-string: rgba(110, 80, 120, 0.7); /* strings holding hearts */
 
   position: relative;
   width: 100%;
@@ -471,114 +471,6 @@
   margin-top: 19px;
 }
 
-.journey-stages {
-  position: relative;
-  display: grid;
-  grid-template-columns: repeat(5, minmax(0, 1fr));
-  align-items: start;
-  gap: 10px;
-  margin-top: 42px;
-}
-
-.journey-progress-line {
-  position: absolute;
-  top: 40px;
-  right: 10%;
-  left: 10%;
-  height: 1px;
-  overflow: hidden;
-  background: rgba(166, 124, 167, 0.2);
-}
-
-.journey-progress-fill {
-  width: 100%;
-  height: 100%;
-  background: linear-gradient(90deg, #d6b3d9, #a67ca7, #d6b3d9);
-  transform-origin: left center;
-}
-
-.journey-stage {
-  position: relative;
-  z-index: 1;
-  min-width: 0;
-}
-
-.journey-flower {
-  position: relative;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: clamp(42px, 10vw, 80px);
-  height: clamp(42px, 10vw, 80px);
-  margin: 0 auto 13px;
-  border: 1px solid rgba(166, 124, 167, 0.2);
-  border-radius: 50%;
-  background: radial-gradient(circle, #fff 10%, #f8eff9 75%);
-  box-shadow: 0 8px 24px rgba(92, 55, 94, 0.07);
-}
-
-.journey-flower > span {
-  font-size: clamp(20px, 4vw, 30px);
-  line-height: 1;
-}
-
-.journey-stage-5 .journey-flower > span {
-  color: #a06fa1;
-  font-family: "Cormorant Garamond", serif;
-  font-size: clamp(27px, 5.4vw, 43px);
-}
-
-.flower-sparkle {
-  position: absolute;
-  color: #b18ab5;
-  font-size: clamp(8px, 1.4vw, 11px);
-  font-style: normal;
-}
-
-.sparkle-one {
-  top: 9px;
-  right: 8px;
-}
-
-.sparkle-two {
-  bottom: 10px;
-  left: 8px;
-}
-
-.journey-stage-number {
-  margin: 0 0 5px;
-  color: #a67ca7;
-  font-size: 9px;
-  font-weight: 600;
-  letter-spacing: 2px;
-}
-
-.journey-stage h3 {
-  margin: 0;
-  color: #765276;
-  font-family: "Cormorant Garamond", serif;
-  font-size: clamp(10px, 2.2vw, 17px);
-  font-style: italic;
-  font-weight: 500;
-  line-height: 1.2;
-  overflow-wrap: anywhere;
-}
-
-.journey-butterflies {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  max-width: 450px;
-  margin: 35px auto 0;
-  padding: 0 18px;
-  pointer-events: none;
-}
-
-.journey-butterflies span {
-  display: inline-block;
-  font-size: 21px;
-}
-
 /* =========================================
    CLOSING
 ========================================= */
@@ -625,9 +517,6 @@
     max-width: 580px;
   }
 
-  .journey-progress-line {
-    top: 34px;
-  }
 }
 
 /* =========================================
@@ -638,30 +527,6 @@
   .wedding-journey {
     margin-top: 0;
     padding-top: 10px;
-  }
-
-  .journey-stages {
-    gap: 3px;
-    margin-top: 32px;
-  }
-
-  .journey-progress-line {
-    top: 21px;
-    right: 9%;
-    left: 9%;
-  }
-
-  .journey-flower {
-    margin-bottom: 10px;
-  }
-
-  .journey-stage-number {
-    font-size: 8px;
-    letter-spacing: 1px;
-  }
-
-  .journey-butterflies {
-    margin-top: 28px;
   }
 
   .photos-closing {
@@ -676,13 +541,6 @@
     padding-left: 8px;
   }
 
-  .journey-stages {
-    gap: 1px;
-  }
-
-  .journey-butterflies {
-    padding: 0 8px;
-  }
 }
 
 /* short landscape phones: keep the rope column narrower */

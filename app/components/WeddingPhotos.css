@@ -1,4 +1,3 @@
-
 /* =========================================
    WEDDING MEMORIES — LAVENDER EDITION
 ========================================= */
@@ -9,7 +8,8 @@
   width: 100%;
   max-width: 1100px;
   margin: 0 auto;
-  padding: 90px 24px 100px;
+  padding: clamp(56px, 10vw, 90px) clamp(10px, 4vw, 24px)
+    clamp(64px, 10vw, 100px);
   overflow: clip;
   text-align: center;
   color: #573b59;
@@ -18,7 +18,7 @@
 .wedding-photos-heading {
   position: relative;
   z-index: 4;
-  margin-bottom: 65px;
+  margin-bottom: clamp(40px, 7vw, 65px);
 }
 
 .photos-ornament,
@@ -42,7 +42,7 @@
   margin: 0;
   color: #573b59;
   font-family: "Cormorant Garamond", serif;
-  font-size: clamp(38px, 5vw, 54px);
+  font-size: clamp(34px, 8vw, 54px);
   font-weight: 500;
   line-height: 1.05;
 }
@@ -77,21 +77,35 @@
 }
 
 /* =========================================
-   CONTINUOUS S-SHAPED ROPE
+   ROPE + PHOTOS CONTAINER
+
+   aspect-ratio is set inline from the SVG viewBox,
+   so rope, nails and photos always scale together.
+   Everything inside is sized in cqw (1% of this
+   container's width) so it stays proportional on
+   every phone and tablet.
 ========================================= */
 
 .memory-rope {
+  /* ROPE COLOURS — change these to match your theme */
+  --rope-base: #9d78ae; /* main rope body */
+  --rope-light: #e0cdea; /* light twisted strand */
+  --rope-dark: #66407a; /* dark twisted strand */
+  --rope-highlight: rgba(255, 250, 255, 0.6); /* shine on top */
+  --rope-shadow: rgba(91, 52, 112, 0.16); /* shadow on the page */
+  --rope-shadow-soft: rgba(91, 52, 112, 0.07);
+  --rope-string: rgba(127, 74, 152, 0.7); /* strings holding hearts */
+
   position: relative;
   width: 100%;
-  max-width: 900px;
-  height: 1480px;
+  max-width: 600px;
   margin: 0 auto;
-  overflow: visible;
+  container-type: inline-size;
 }
 
 .rope-line {
   position: absolute;
-  z-index: 0;
+  z-index: 1;
   inset: 0;
   width: 100%;
   height: 100%;
@@ -99,153 +113,261 @@
   pointer-events: none;
 }
 
-.rope-shadow {
+.rope-drop,
+.rope-contact,
+.rope-base,
+.rope-twist-light,
+.rope-twist-dark,
+.rope-highlight {
   fill: none;
-  stroke: rgba(104, 70, 63, 0.12);
-  stroke-width: 2;
   stroke-linecap: round;
   stroke-linejoin: round;
-  vector-effect: non-scaling-stroke;
-  transform: translateY(2px);
 }
 
-.rope-main {
-  fill: none;
-  stroke: url(#wedding-rope-gradient);
-  stroke-width: 1.5;
-  stroke-linecap: round;
-  stroke-linejoin: round;
-  stroke-dasharray: 2 1.3;
-  vector-effect: non-scaling-stroke;
-  filter: drop-shadow(0 1px 1px rgba(80, 50, 50, 0.12));
+/* soft cast shadow on the page */
+.rope-drop {
+  stroke: var(--rope-shadow-soft);
+  stroke-width: 12;
+  transform: translate(3px, 10px);
+}
+
+.rope-contact {
+  stroke: var(--rope-shadow);
+  stroke-width: 7;
+  transform: translate(1.5px, 4px);
+}
+
+/* the rope itself: core + two twisted strands + highlight */
+.rope-base {
+  stroke: var(--rope-base);
+  stroke-width: 6;
+}
+
+.rope-twist-light {
+  stroke: var(--rope-light);
+  stroke-width: 3.8;
+  stroke-linecap: butt;
+  stroke-dasharray: 5 4.5;
+}
+
+.rope-twist-dark {
+  stroke: var(--rope-dark);
+  stroke-width: 2;
+  stroke-linecap: butt;
+  stroke-dasharray: 2.5 7;
+  stroke-dashoffset: 3;
+  opacity: 0.55;
+}
+
+.rope-highlight {
+  stroke: var(--rope-highlight);
+  stroke-width: 1;
+  transform: translate(-1px, -1.4px);
+}
+
+.nail-shadow {
+  fill: rgba(60, 40, 60, 0.28);
 }
 
 /* =========================================
-   POLAROID POSITIONS
+   ANIMATED HEARTS ON THE ROPE
+========================================= */
+
+.charm-string {
+  stroke: var(--rope-string);
+  stroke-width: 1.2;
+  stroke-linecap: round;
+}
+
+.heart-charm {
+  transform-box: fill-box;
+  transform-origin: 50% 0;
+  animation: charm-sway 4.2s ease-in-out infinite alternate;
+}
+
+@keyframes charm-sway {
+  from {
+    transform: rotate(-6deg);
+  }
+
+  to {
+    transform: rotate(6deg);
+  }
+}
+
+.charm-heart {
+  transform-box: fill-box;
+  transform-origin: 50% 40%;
+  filter: drop-shadow(0 1px 1.5px rgba(120, 50, 80, 0.3));
+  animation: heart-beat 2.6s ease-in-out infinite;
+}
+
+@keyframes heart-beat {
+  0%,
+  100% {
+    transform: scale(1);
+  }
+
+  14% {
+    transform: scale(1.16);
+  }
+
+  28% {
+    transform: scale(1);
+  }
+
+  42% {
+    transform: scale(1.1);
+  }
+
+  70% {
+    transform: scale(1);
+  }
+}
+
+.float-heart {
+  opacity: 0;
+  animation: heart-float 7s ease-in infinite;
+}
+
+@keyframes heart-float {
+  0% {
+    opacity: 0;
+    transform: translate(0, 0) scale(0.6);
+  }
+
+  15% {
+    opacity: 0.9;
+  }
+
+  100% {
+    opacity: 0;
+    transform: translate(var(--dx, 0), -56px) scale(1.15);
+  }
+}
+
+/* =========================================
+   ONE HANGING PHOTO
 ========================================= */
 
 .memory {
   position: absolute;
   z-index: 2;
-  width: clamp(220px, 29vw, 300px);
+  width: 52%;
 }
 
-.memory-1 {
-  top: 10px;
-  left: 4%;
+/* pivots from the clip, so the photo swings like a pendulum */
+.memory-swing {
+  position: relative;
+  transform: rotate(var(--tilt, 0deg));
+  transform-origin: 50% 0;
+  animation: memory-sway var(--swing-duration, 6s) ease-in-out
+    var(--swing-delay, 0s) infinite;
 }
 
-.memory-2 {
-  top: 370px;
-  right: 3%;
-}
+@keyframes memory-sway {
+  0%,
+  100% {
+    transform: rotate(calc(var(--tilt, 0deg) - var(--swing, 1.4deg)));
+  }
 
-.memory-3 {
-  top: 740px;
-  left: 6%;
-}
-
-.memory-4 {
-  top: 1100px;
-  right: 5%;
+  50% {
+    transform: rotate(calc(var(--tilt, 0deg) + var(--swing, 1.4deg)));
+  }
 }
 
 /* =========================================
-   WOODEN CLIPS
+   WOODEN CLOTHESPIN
 ========================================= */
 
 .memory-clip {
   position: absolute;
   z-index: 5;
-  top: -13px;
+  top: -1.05em;
   left: 50%;
-  width: 30px;
-  height: 48px;
+  width: 1em;
+  height: 2.5em;
+  font-size: clamp(15px, 4.8cqw, 29px);
   transform: translateX(-50%);
-  filter: drop-shadow(0 3px 3px rgba(60, 40, 42, 0.2));
+  filter: drop-shadow(0 0.14em 0.12em rgba(60, 40, 42, 0.32));
 }
 
-.clip-loop {
+.pin-prong {
   position: absolute;
   top: 0;
-  left: 50%;
-  width: 12px;
-  height: 13px;
-  transform: translateX(-50%);
-  border: 2px solid #a88a73;
-  border-bottom: 0;
-  border-radius: 8px 8px 0 0;
+  width: 0.5em;
+  height: 100%;
+  border: 1px solid rgba(91, 67, 53, 0.45);
+  background:
+    repeating-linear-gradient(
+      0deg,
+      rgba(90, 60, 40, 0.14) 0 1px,
+      transparent 1px 0.2em
+    ),
+    linear-gradient(90deg, #8a6a50 0%, #dcc3a3 38%, #f3dfc4 58%, #b08f70 100%);
+  /* wide head tapering to a narrower gripping jaw */
+  clip-path: polygon(0 0, 100% 0, 100% 62%, 82% 100%, 18% 100%, 0 62%);
 }
 
-.clip-body {
+.pin-prong-left {
+  left: 0;
+  border-radius: 0.2em 0 0 0.12em;
+  transform: rotate(-2.5deg);
+  transform-origin: 50% 45%;
+}
+
+.pin-prong-right {
+  right: 0;
+  border-radius: 0 0.2em 0.12em 0;
+  transform: rotate(2.5deg);
+  transform-origin: 50% 45%;
+}
+
+.pin-spring {
   position: absolute;
-  top: 7px;
+  top: 0.95em;
   left: 50%;
-  width: 21px;
-  height: 33px;
+  width: 1.18em;
+  height: 0.34em;
   transform: translateX(-50%);
-  border: 1px solid rgba(91, 67, 53, 0.45);
-  border-radius: 3px 3px 5px 5px;
-  background: linear-gradient(
+  border-radius: 0.17em;
+  background: repeating-linear-gradient(
     90deg,
-    #92735c 0%,
-    #d8c0a5 24%,
-    #f3e2cb 48%,
-    #bba087 76%,
-    #80634f 100%
+    #e1e5ea 0 0.08em,
+    #7b818b 0.08em 0.17em
   );
   box-shadow:
-    inset 1px 0 rgba(255, 255, 255, 0.6),
-    inset -2px 0 rgba(75, 50, 38, 0.2);
-}
-
-.clip-body::after {
-  position: absolute;
-  top: 5px;
-  left: 5px;
-  width: 3px;
-  height: 20px;
-  border-radius: 999px;
-  background: rgba(255, 255, 255, 0.45);
-  content: "";
-}
-
-.clip-jaw {
-  position: absolute;
-  bottom: 0;
-  left: 50%;
-  width: 16px;
-  height: 11px;
-  transform: translateX(-50%);
-  border: 1px solid rgba(91, 67, 53, 0.4);
-  border-radius: 0 0 4px 4px;
-  background: linear-gradient(90deg, #806452, #d2b69a 45%, #866956);
+    0 0.05em 0.08em rgba(40, 40, 50, 0.4),
+    inset 0 0.06em 0.05em rgba(255, 255, 255, 0.6);
 }
 
 /* =========================================
-   WHITE POLAROID + CAPTION
+   POLAROID
 ========================================= */
 
 .memory-frame {
   position: relative;
-  width: 100%;
-  padding: 12px 12px 0;
+  padding: 2.4cqw 2.4cqw 0;
   border: 1px solid rgba(92, 72, 60, 0.1);
-  background: linear-gradient(145deg, #fffefa, #f8f3ec);
+  background:
+    url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='120' height='120'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 .45  0 0 0 0 .38  0 0 0 0 .3  0 0 0 .08 0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>"),
+    linear-gradient(145deg, #fffefa, #f7f1e8);
   box-shadow:
-    0 20px 48px rgba(82, 53, 84, 0.13),
-    0 4px 12px rgba(82, 53, 84, 0.08),
-    inset 0 0 8px rgba(120, 100, 80, 0.04);
-  transform: rotate(var(--photo-rotation));
-  transform-origin: top center;
+    0 0.5cqw 1.1cqw rgba(60, 40, 70, 0.14),
+    0 2.6cqw 5cqw rgba(82, 53, 84, 0.16),
+    inset 0 0 1.6cqw rgba(120, 100, 80, 0.05);
   transition: box-shadow 0.35s ease;
 }
 
 .memory-photo {
+  position: relative;
   width: 100%;
   aspect-ratio: 1 / 1;
   overflow: hidden;
   background: #eee6ef;
+  box-shadow:
+    inset 0 0 0 1px rgba(0, 0, 0, 0.07),
+    inset 0 0.4cqw 1.6cqw rgba(0, 0, 0, 0.2);
 }
 
 .memory-photo img {
@@ -253,30 +375,60 @@
   width: 100%;
   height: 100%;
   object-fit: cover;
+  filter: saturate(1.05) contrast(1.02);
   transition: transform 0.7s ease;
 }
 
+/* glossy sheen that slowly drifts across the print */
+.memory-photo::after {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    115deg,
+    rgba(255, 255, 255, 0) 38%,
+    rgba(255, 255, 255, 0.3) 50%,
+    rgba(255, 255, 255, 0) 62%
+  );
+  background-size: 260% 100%;
+  background-position: 100% 0;
+  content: "";
+  pointer-events: none;
+  animation: photo-sheen 7s ease-in-out infinite;
+}
+
+@keyframes photo-sheen {
+  0%,
+  100% {
+    background-position: 100% 0;
+  }
+
+  50% {
+    background-position: 0 0;
+  }
+}
+
 .memory-caption {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  min-height: 66px;
+  display: grid;
+  place-items: center;
+  min-height: 15cqw;
   margin: 0;
-  padding: 10px 7px 12px;
+  padding: 2cqw 1cqw 2.6cqw;
   color: #765276;
   font-family: "Cormorant Garamond", serif;
-  font-size: clamp(15px, 1.6vw, 18px);
+  font-size: clamp(11.5px, 3.1cqw, 18px);
   font-style: italic;
   line-height: 1.2;
   text-align: center;
+  text-wrap: balance;
   overflow-wrap: anywhere;
 }
 
 @media (hover: hover) and (pointer: fine) {
   .memory-frame:hover {
     box-shadow:
-      0 26px 58px rgba(82, 53, 84, 0.18),
-      0 5px 14px rgba(82, 53, 84, 0.1);
+      0 0.7cqw 1.4cqw rgba(60, 40, 70, 0.18),
+      0 3.4cqw 6.4cqw rgba(82, 53, 84, 0.22),
+      inset 0 0 1.6cqw rgba(120, 100, 80, 0.05);
   }
 
   .memory-frame:hover .memory-photo img {
@@ -293,8 +445,8 @@
   z-index: 3;
   width: 100%;
   max-width: 850px;
-  margin: 55px auto 0;
-  padding: 35px 0 20px;
+  margin: 0 auto;
+  padding: 14px 0 20px;
 }
 
 .journey-ornament {
@@ -309,7 +461,7 @@
   margin: 0;
   color: #573b59;
   font-family: "Cormorant Garamond", serif;
-  font-size: clamp(30px, 4.5vw, 43px);
+  font-size: clamp(30px, 6vw, 43px);
   font-style: italic;
   font-weight: 500;
   line-height: 1.15;
@@ -356,8 +508,8 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 80px;
-  height: 80px;
+  width: clamp(42px, 10vw, 80px);
+  height: clamp(42px, 10vw, 80px);
   margin: 0 auto 13px;
   border: 1px solid rgba(166, 124, 167, 0.2);
   border-radius: 50%;
@@ -366,20 +518,20 @@
 }
 
 .journey-flower > span {
-  font-size: 30px;
+  font-size: clamp(20px, 4vw, 30px);
   line-height: 1;
 }
 
 .journey-stage-5 .journey-flower > span {
   color: #a06fa1;
   font-family: "Cormorant Garamond", serif;
-  font-size: 43px;
+  font-size: clamp(27px, 5.4vw, 43px);
 }
 
 .flower-sparkle {
   position: absolute;
   color: #b18ab5;
-  font-size: 11px;
+  font-size: clamp(8px, 1.4vw, 11px);
   font-style: normal;
 }
 
@@ -405,10 +557,11 @@
   margin: 0;
   color: #765276;
   font-family: "Cormorant Garamond", serif;
-  font-size: clamp(13px, 1.6vw, 17px);
+  font-size: clamp(10px, 2.2vw, 17px);
   font-style: italic;
   font-weight: 500;
   line-height: 1.2;
+  overflow-wrap: anywhere;
 }
 
 .journey-butterflies {
@@ -446,7 +599,7 @@
   margin: 13px 0 5px;
   color: #573b59;
   font-family: "Cormorant Garamond", serif;
-  font-size: 32px;
+  font-size: clamp(28px, 6vw, 32px);
   font-weight: 500;
 }
 
@@ -464,49 +617,12 @@
 }
 
 /* =========================================
-   TABLETS — PORTRAIT AND LANDSCAPE
+   TABLETS (portrait + landscape)
 ========================================= */
 
-@media (min-width: 601px) and (max-width: 900px) {
-  .wedding-photos {
-    padding: 80px 25px 90px;
-  }
-
+@media (min-width: 601px) and (max-width: 1024px) {
   .memory-rope {
-    height: 1390px;
-  }
-
-  .memory {
-    width: clamp(210px, 31vw, 270px);
-  }
-
-  .memory-1 {
-    left: 2%;
-  }
-
-  .memory-2 {
-    top: 350px;
-    right: 2%;
-  }
-
-  .memory-3 {
-    top: 700px;
-    left: 4%;
-  }
-
-  .memory-4 {
-    top: 1040px;
-    right: 3%;
-  }
-
-  .memory-caption {
-    min-height: 62px;
-    font-size: 15px;
-  }
-
-  .journey-flower {
-    width: 68px;
-    height: 68px;
+    max-width: 580px;
   }
 
   .journey-progress-line {
@@ -515,74 +631,13 @@
 }
 
 /* =========================================
-   MOBILE PORTRAIT
+   PHONES
 ========================================= */
 
 @media (max-width: 600px) {
-  .wedding-photos {
-    padding: 65px 12px 75px;
-  }
-
-  .wedding-photos-heading {
-    margin-bottom: 45px;
-  }
-
-  .wedding-photos-heading h2 {
-    font-size: 38px;
-  }
-
-  .memory-rope {
-    height: 1150px;
-    max-width: 440px;
-  }
-
-  .memory {
-    width: min(53vw, 215px);
-  }
-
-  .memory-1 {
-    top: 0;
-    left: 1%;
-  }
-
-  .memory-2 {
-    top: 285px;
-    right: 1%;
-  }
-
-  .memory-3 {
-    top: 570px;
-    left: 2%;
-  }
-
-  .memory-4 {
-    top: 855px;
-    right: 1%;
-  }
-
-  .memory-frame {
-    padding: 8px 8px 0;
-  }
-
-  .memory-clip {
-    transform: translateX(-50%) scale(0.82);
-    transform-origin: top center;
-  }
-
-  .memory-caption {
-    min-height: 52px;
-    padding: 7px 4px 9px;
-    font-size: clamp(11px, 3vw, 14px);
-    line-height: 1.15;
-  }
-
   .wedding-journey {
-    margin-top: 40px;
-    padding-top: 25px;
-  }
-
-  .wedding-journey > h2 {
-    font-size: 32px;
+    margin-top: 0;
+    padding-top: 10px;
   }
 
   .journey-stages {
@@ -591,37 +646,18 @@
   }
 
   .journey-progress-line {
-    top: 27px;
+    top: 21px;
     right: 9%;
     left: 9%;
   }
 
   .journey-flower {
-    width: clamp(43px, 13vw, 66px);
-    height: clamp(43px, 13vw, 66px);
     margin-bottom: 10px;
-  }
-
-  .journey-flower > span {
-    font-size: clamp(20px, 6vw, 28px);
-  }
-
-  .journey-stage-5 .journey-flower > span {
-    font-size: 31px;
-  }
-
-  .flower-sparkle {
-    font-size: 8px;
   }
 
   .journey-stage-number {
     font-size: 8px;
     letter-spacing: 1px;
-  }
-
-  .journey-stage h3 {
-    font-size: clamp(10px, 2.8vw, 13px);
-    overflow-wrap: anywhere;
   }
 
   .journey-butterflies {
@@ -631,87 +667,17 @@
   .photos-closing {
     margin-top: 35px;
   }
-
-  .photos-closing p {
-    font-size: 29px;
-  }
 }
 
-/* =========================================
-   SMALL PHONES
-========================================= */
-
-@media (max-width: 390px) {
+/* small phones (iPhone SE, Galaxy A-series, etc.) */
+@media (max-width: 380px) {
   .wedding-photos {
     padding-right: 8px;
     padding-left: 8px;
   }
 
-  .wedding-photos-heading h2 {
-    font-size: 34px;
-  }
-
-  .memory-rope {
-    height: 1030px;
-  }
-
-  .memory {
-    width: 51vw;
-  }
-
-  .memory-1 {
-    top: 0;
-    left: 0;
-  }
-
-  .memory-2 {
-    top: 255px;
-    right: 0;
-  }
-
-  .memory-3 {
-    top: 510px;
-    left: 1%;
-  }
-
-  .memory-4 {
-    top: 765px;
-    right: 0;
-  }
-
-  .memory-frame {
-    padding: 6px 6px 0;
-  }
-
-  .memory-caption {
-    min-height: 46px;
-    padding: 6px 3px 8px;
-    font-size: 11px;
-  }
-
   .journey-stages {
     gap: 1px;
-  }
-
-  .journey-flower {
-    width: 42px;
-    height: 42px;
-  }
-
-  .journey-flower > span {
-    font-size: 20px;
-  }
-
-  .journey-stage-5 .journey-flower > span {
-    font-size: 27px;
-  }
-
-  .journey-progress-line {
-    top: 21px;
-  }
-
-  .journey-stage h3 {
-    font-size: 10px;
   }
 
   .journey-butterflies {
@@ -719,61 +685,20 @@
   }
 }
 
-/* =========================================
-   MOBILE LANDSCAPE
-========================================= */
-
-@media (max-width: 900px) and (orientation: landscape) {
+/* short landscape phones: keep the rope column narrower */
+@media (max-height: 520px) and (orientation: landscape) {
   .wedding-photos {
     padding-top: 45px;
     padding-bottom: 55px;
   }
 
-  .wedding-photos-heading {
-    margin-bottom: 35px;
-  }
-
   .memory-rope {
-    height: 1180px;
-    max-width: 760px;
-  }
-
-  .memory {
-    width: clamp(175px, 27vw, 230px);
-  }
-
-  .memory-1 {
-    top: 0;
-    left: 3%;
-  }
-
-  .memory-2 {
-    top: 290px;
-    right: 3%;
-  }
-
-  .memory-3 {
-    top: 580px;
-    left: 5%;
-  }
-
-  .memory-4 {
-    top: 870px;
-    right: 4%;
-  }
-
-  .memory-caption {
-    min-height: 50px;
-    font-size: 13px;
-  }
-
-  .wedding-journey {
-    margin-top: 25px;
+    max-width: 440px;
   }
 }
 
 /* =========================================
-   REDUCED MOTION & TOUCH DEVICES
+   TOUCH + REDUCED MOTION
 ========================================= */
 
 @media (hover: none) and (pointer: coarse) {
@@ -783,10 +708,18 @@
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .memory-photo img {
-    transition: none;
+  .memory-swing,
+  .memory-photo::after,
+  .heart-charm,
+  .charm-heart {
+    animation: none;
   }
 
+  .float-heart {
+    display: none;
+  }
+
+  .memory-photo img,
   .memory-frame {
     transition: none;
   }

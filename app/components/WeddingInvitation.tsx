@@ -253,7 +253,7 @@ export default function WeddingInvitation() {
 
                 {/* RECEPTION */}
                 <motion.article
-                    className="event-card"
+                    className="event-card reception-card"
                     initial={{ opacity: 0, y: 45 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}

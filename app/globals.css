@@ -4003,3 +4003,102 @@ a {
   background: rgba(162, 107, 187, 0.22);
   mix-blend-mode: soft-light;
 }
+
+
+@media (max-width: 600px) {
+  .event-card.reception-card,
+  .event-card.wedding-card {
+    background-position: center;
+  }
+}
+
+.event-card.reception-card {
+  background:
+    linear-gradient(
+      rgba(250, 243, 251, 0.35),
+      rgba(250, 243, 251, 0.35)
+    ),
+    url("/reception.jpeg") center / cover no-repeat !important;
+}
+
+.event-card.wedding-card {
+  background:
+    linear-gradient(
+      rgba(250, 243, 251, 0.35),
+      rgba(250, 243, 251, 0.35)
+    ),
+    url("/wedding.jpg") center / cover no-repeat !important;
+}
+
+
+
+/* Reception & Wedding: readable photo cards */
+.event-card.reception-card,
+.event-card.wedding-card {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  background-color: #fbf7fc;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+/* Keep the photo visible, but soften it */
+.event-card.reception-card {
+  background-image:
+    linear-gradient(
+      rgba(250, 243, 251, 0.28),
+      rgba(250, 243, 251, 0.42)
+    ),
+    url("/reception-bg.jpg");
+}
+
+.event-card.wedding-card {
+  background-image:
+    linear-gradient(
+      rgba(250, 243, 251, 0.28),
+      rgba(250, 243, 251, 0.42)
+    ),
+    url("/wedding-bg.jpg");
+}
+
+/* Give text and buttons their own readable surface */
+.event-card.reception-card > :not(.event-card-glow),
+.event-card.wedding-card > :not(.event-card-glow) {
+  position: relative;
+  z-index: 2;
+}
+
+/* Prevent the decorative glow from washing out the photo */
+.event-card.reception-card .event-card-glow,
+.event-card.wedding-card .event-card-glow {
+  z-index: 0;
+  opacity: 0.25;
+}
+
+/* Clear, high-contrast event details */
+.event-card.reception-card .event-label,
+.event-card.wedding-card .event-label,
+.event-card.reception-card .event-date,
+.event-card.wedding-card .event-date,
+.event-card.reception-card .event-time,
+.event-card.wedding-card .event-time,
+.event-card.reception-card .event-venue h4,
+.event-card.wedding-card .event-venue h4 {
+  color: #432847;
+  text-shadow: 0 1px 1px rgba(255, 255, 255, 0.6);
+}
+
+/* Buttons remain easy to read and tap */
+.event-card.reception-card .calendar-button,
+.event-card.wedding-card .calendar-button,
+.event-card.reception-card .directions-button,
+.event-card.wedding-card .directions-button {
+  position: relative;
+  z-index: 3;
+  background: rgba(255, 255, 255, 0.94);
+  color: #573b59;
+  border: 1px solid rgba(87, 59, 89, 0.3);
+  box-shadow: 0 3px 12px rgba(60, 35, 65, 0.08);
+}

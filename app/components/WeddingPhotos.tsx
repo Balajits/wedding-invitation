@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, type CSSProperties } from "react";
+import { useEffect, type CSSProperties, type ReactNode } from "react";
 import {
   animate,
   motion,
@@ -78,7 +78,7 @@ const memories: Memory[] = [
    clips stay exactly on the rope on every screen.
 ========================================= */
 
-const ROWS = memories.length;
+const ROWS = memories.length + 1; // photo rows + the final "coming soon" card
 const VB_W = 600;
 const X_LEFT = 40;
 const X_RIGHT = 560;
@@ -89,20 +89,20 @@ const SAG_SWAY = 7; // rope "breathing" in the breeze
 const CLIP_T = 0.36; // where along each swag the photo hangs (0–1)
 const TURN_BULGE = 44; // how far the rope loops out at each nail
 const CHARM_T = 0.82; // where the little heart charms hang on each swag
-const TAIL_GAP = 600; // rope drop after the last photo row
-const TAIL_Y = TOP + ROW_PITCH * (ROWS - 1) + TAIL_GAP;
-const KNOT = { x: VB_W / 2, y: TAIL_Y + 60 }; // where the rope finally ends
-const PENDANT_STRING = 26;
-const PENDANT_SCALE = 2.1;
+const COMING_T = 0.5; // the final card hangs from the middle of the last swag
+const COMING_CARD_H = 500; // approx height of the final card (viewBox units)
 const HEART_PATH =
   "M0 0 C -4 -5 -12 -2 -12 4 C -12 10 -4 14 0 19 C 4 14 12 10 12 4 C 12 -2 4 -5 0 0 Z";
-const VB_H = KNOT.y + PENDANT_STRING + 19 * PENDANT_SCALE + 14;
+const VB_H = TOP + ROW_PITCH * (ROWS - 1) + SAG + COMING_CARD_H + 30;
+
+const WEDDING_DATE_LABEL = "14 / 12 / 2026";
+const WEDDING_DATE_ISO = "2026-12-14";
 
 const rowY = (row: number) => TOP + row * ROW_PITCH;
 const isLeftToRight = (row: number) => row % 2 === 0;
 const n = (value: number) => value.toFixed(2);
 
-/** One continuous rope: swag → loop round a nail → swag … → knot at the end */
+/** One continuous rope: swag → loop round a nail → swag … → final nail */
 function ropePath(sag: number) {
   let d = `M ${X_LEFT} ${n(rowY(0))}`;
 
@@ -110,18 +110,16 @@ function ropePath(sag: number) {
     const y = rowY(row);
     const ltr = isLeftToRight(row);
     const xEnd = ltr ? X_RIGHT : X_LEFT;
-    const nextY = row < ROWS - 1 ? rowY(row + 1) : TAIL_Y;
 
     d += ` Q ${VB_W / 2} ${n(y + sag * 2)} ${xEnd} ${n(y)}`;
 
-    const out = xEnd + (ltr ? TURN_BULGE : -TURN_BULGE);
-    d += ` C ${out} ${n(y + 60)} ${out} ${n(nextY - 60)} ${xEnd} ${n(nextY)}`;
+    if (row < ROWS - 1) {
+      const out = xEnd + (ltr ? TURN_BULGE : -TURN_BULGE);
+      d += ` C ${out} ${n(y + 60)} ${out} ${n(rowY(row + 1) - 60)} ${xEnd} ${n(
+        rowY(row + 1)
+      )}`;
+    }
   }
-
-  // final stretch: rope runs to the centre and ends above "The Next Chapter"
-  d += ` Q ${(X_LEFT + KNOT.x) / 2} ${n(TAIL_Y + 110 + (sag - SAG))} ${KNOT.x} ${n(
-    KNOT.y
-  )}`;
 
   return d;
 }
@@ -140,12 +138,16 @@ function swagPoint(row: number, t: number, sag: number) {
 
 const clipPoint = (row: number, sag: number) => swagPoint(row, CLIP_T, sag);
 
-const nails = [
-  ...Array.from({ length: ROWS }).flatMap((_, row) => [
-    { x: X_LEFT, y: rowY(row), key: `l-${row}` },
-    { x: X_RIGHT, y: rowY(row), key: `r-${row}` },
-  ]),
-  { x: X_LEFT, y: TAIL_Y, key: "tail" },
+const nails = Array.from({ length: ROWS }).flatMap((_, row) => [
+  { x: X_LEFT, y: rowY(row), key: `l-${row}` },
+  { x: X_RIGHT, y: rowY(row), key: `r-${row}` },
+]);
+
+/** every little heart charm: which swag, and where along it */
+const charms = [
+  ...memories.map((_, row) => ({ row, t: CHARM_T })),
+  { row: ROWS - 1, t: 0.1 },
+  { row: ROWS - 1, t: 0.9 },
 ];
 
 /* =========================================
@@ -177,18 +179,17 @@ function FloatingHearts({ delay, count = 2 }: { delay: number; count?: number })
 /** a small heart hanging from the rope; it follows the rope's sway */
 function HeartCharm({
   row,
+  t,
   delay,
   wind,
 }: {
   row: number;
+  t: number;
   delay: number;
   wind: MotionValue<number>;
 }) {
-  const { x } = swagPoint(row, CHARM_T, SAG);
-  const y = useTransform(
-    wind,
-    (w) => swagPoint(row, CHARM_T, SAG + w * SAG_SWAY).y
-  );
+  const { x } = swagPoint(row, t, SAG);
+  const y = useTransform(wind, (w) => swagPoint(row, t, SAG + w * SAG_SWAY).y);
 
   return (
     <motion.g style={{ x, y }}>
@@ -210,63 +211,52 @@ function HeartCharm({
   );
 }
 
-/** where the rope ends: a brass hook holding a big beating heart */
-function EndPendant() {
-  return (
-    <g transform={`translate(${KNOT.x} ${KNOT.y})`}>
-      <circle className="nail-shadow" r="8" cx="1.5" cy="3" />
-      <circle r="6.4" fill="url(#wp-brass)" />
-      <circle r="1.8" cx="-1.8" cy="-2" fill="rgba(255,255,255,0.75)" />
-
-      <g className="heart-charm end-pendant">
-        <line className="charm-string" x1="0" y1="4" x2="0" y2={PENDANT_STRING} />
-        <g transform={`translate(0 ${PENDANT_STRING}) scale(${PENDANT_SCALE})`}>
-          <path
-            className="charm-heart"
-            d={HEART_PATH}
-            fill="url(#wp-heart-deep)"
-          />
-        </g>
-      </g>
-
-      <g transform={`translate(0 ${PENDANT_STRING + 22})`}>
-        <FloatingHearts delay={0.6} count={3} />
-      </g>
-    </g>
-  );
-}
-
 /* =========================================
-   ONE PHOTO ON THE ROPE
+   A CARD HANGING FROM THE ROPE
 ========================================= */
 
-function MemoryCard({
-  memory,
-  index,
+type SwingConfig = {
+  tilt: number;
+  swing: number;
+  duration: number;
+  delay: number;
+};
+
+function HangingCard({
+  row,
+  t,
+  order,
+  config,
+  className,
   wind,
+  children,
 }: {
-  memory: Memory;
-  index: number;
+  row: number;
+  t: number;
+  order: number;
+  config: SwingConfig;
+  className: string;
   wind: MotionValue<number>;
+  children: ReactNode;
 }) {
-  const { x } = clipPoint(index, SAG);
+  const { x } = swagPoint(row, t, SAG);
 
   // The clip rides the rope as it gently breathes
   const top = useTransform(
     wind,
-    (w) => `${(clipPoint(index, SAG + w * SAG_SWAY).y / VB_H) * 100}%`
+    (w) => `${(swagPoint(row, t, SAG + w * SAG_SWAY).y / VB_H) * 100}%`
   );
 
   const swingVars = {
-    "--tilt": `${memory.tilt}deg`,
-    "--swing": `${memory.swing}deg`,
-    "--swing-duration": `${memory.duration}s`,
-    "--swing-delay": `${memory.delay}s`,
+    "--tilt": `${config.tilt}deg`,
+    "--swing": `${config.swing}deg`,
+    "--swing-duration": `${config.duration}s`,
+    "--swing-delay": `${config.delay}s`,
   } as CSSProperties;
 
   return (
     <motion.article
-      className={`memory memory-${index + 1}`}
+      className={`memory ${className}`}
       style={{
         left: `${(x / VB_W) * 100}%`,
         top,
@@ -274,18 +264,18 @@ function MemoryCard({
         originX: 0.5,
         originY: 0,
       }}
-      initial={{ opacity: 0, y: -26, rotate: index % 2 ? -9 : 9 }}
+      initial={{ opacity: 0, y: -26, rotate: order % 2 ? -9 : 9 }}
       whileInView={{ opacity: 1, y: 0, rotate: 0 }}
       viewport={{ once: true, amount: 0.15 }}
       transition={{
-        opacity: { duration: 0.6, delay: index * 0.1 },
-        y: { duration: 0.8, delay: index * 0.1, ease: "easeOut" },
-        // spring = the photo drops, swings and settles like it's on a real pin
+        opacity: { duration: 0.6, delay: order * 0.1 },
+        y: { duration: 0.8, delay: order * 0.1, ease: "easeOut" },
+        // spring = the card drops, swings and settles like it's on a real pin
         rotate: {
           type: "spring",
           stiffness: 38,
           damping: 5,
-          delay: index * 0.1,
+          delay: order * 0.1,
         },
       }}
     >
@@ -297,23 +287,97 @@ function MemoryCard({
           <span className="pin-spring" />
         </div>
 
-        {/* POLAROID */}
-        <div className="memory-frame">
-          <div className="memory-photo">
-            <img
-              src={memory.image}
-              alt={memory.alt}
-              width={600}
-              height={600}
-              loading="lazy"
-              decoding="async"
-            />
-          </div>
-
-          <p className="memory-caption">{memory.caption}</p>
-        </div>
+        {children}
       </div>
     </motion.article>
+  );
+}
+
+/* =========================================
+   A NORMAL PHOTO
+========================================= */
+
+function MemoryCard({
+  memory,
+  index,
+  wind,
+}: {
+  memory: Memory;
+  index: number;
+  wind: MotionValue<number>;
+}) {
+  return (
+    <HangingCard
+      row={index}
+      t={CLIP_T}
+      order={index}
+      config={memory}
+      className={`memory-${index + 1}`}
+      wind={wind}
+    >
+      <div className="memory-frame">
+        <div className="memory-photo">
+          <img
+            src={memory.image}
+            alt={memory.alt}
+            width={600}
+            height={600}
+            loading="lazy"
+            decoding="async"
+          />
+        </div>
+
+        <p className="memory-caption">{memory.caption}</p>
+      </div>
+    </HangingCard>
+  );
+}
+
+/* =========================================
+   THE LAST CARD: "OUR WEDDING IS COMING"
+========================================= */
+
+function ComingCard({ wind }: { wind: MotionValue<number> }) {
+  return (
+    <HangingCard
+      row={ROWS - 1}
+      t={COMING_T}
+      order={ROWS - 1}
+      config={{ tilt: 0, swing: 1.2, duration: 6.2, delay: -2 }}
+      className="memory-coming"
+      wind={wind}
+    >
+      <div className="memory-frame">
+        {/* a "photo" that is still loading */}
+        <div
+          className="memory-photo loading-photo"
+          role="img"
+          aria-label="A photo is still loading: our wedding is coming"
+        >
+          <div className="loading-glow" />
+
+          <div className="loading-center">
+            <svg className="loading-ring" viewBox="0 0 100 100" aria-hidden="true">
+              <circle className="ring-track" cx="50" cy="50" r="44" />
+              <circle className="ring-progress" cx="50" cy="50" r="44" />
+            </svg>
+            <span className="loading-heart">♡</span>
+          </div>
+
+          <p className="loading-label" aria-hidden="true">
+            LOADING<span>.</span>
+            <span>.</span>
+            <span>.</span>
+          </p>
+        </div>
+
+        <div className="memory-caption coming-caption">
+          <h3>Our wedding is coming…</h3>
+          <time dateTime={WEDDING_DATE_ISO}>{WEDDING_DATE_LABEL}</time>
+          <p>Two hearts, one forever — loading with love ♡</p>
+        </div>
+      </div>
+    </HangingCard>
   );
 }
 
@@ -414,17 +478,15 @@ export default function WeddingPhotos() {
           ))}
 
           {/* animated hearts hanging along the rope */}
-          {memories.map((memory, row) => (
+          {charms.map((charm, i) => (
             <HeartCharm
-              key={`charm-${memory.image}`}
-              row={row}
-              delay={row * 0.7}
+              key={`charm-${i}`}
+              row={charm.row}
+              t={charm.t}
+              delay={i * 0.7}
               wind={wind}
             />
           ))}
-
-          {/* the rope ends here, leading into "The Next Chapter" */}
-          <EndPendant />
         </svg>
 
         {memories.map((memory, index) => (
@@ -435,26 +497,9 @@ export default function WeddingPhotos() {
             wind={wind}
           />
         ))}
+
+        <ComingCard wind={wind} />
       </div>
-
-      {/* THE NEXT CHAPTER */}
-      <motion.div
-        className="wedding-journey"
-        initial={{ opacity: 0, y: 25 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true }}
-        transition={{ duration: 0.9 }}
-      >
-        <span className="journey-ornament">✦</span>
-        <p className="journey-eyebrow">THE NEXT CHAPTER</p>
-        <h2>Our Wedding Is Coming...</h2>
-
-        <div className="journey-divider">
-          <span />
-          <i>♡</i>
-          <span />
-        </div>
-      </motion.div>
 
       {/* CLOSING */}
       <motion.footer

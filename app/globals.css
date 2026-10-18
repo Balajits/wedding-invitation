@@ -3748,3 +3748,258 @@ a {
     font-size: 31px !important;
   }
 }
+
+/* =========================================
+   HERO — COUPLE PHOTO BACKGROUND
+========================================= */
+
+.wedding-invitation {
+  padding-top: 0; /* the hero handles the top spacing now */
+}
+
+/* keep sparkles and petals visible above the photo */
+.stars,
+.petals {
+  z-index: 1;
+}
+
+.hero-section {
+  /* TUNE THESE */
+  --hero-photo-position: center 20%; /* which part of the photo stays visible */
+  --hero-pad-top: 38svh; /* clear photo space above the text */
+
+  position: relative;
+  width: 100vw;
+  max-width: none;
+  min-height: 100svh;
+  padding: var(--hero-pad-top) 20px 400px;
+  padding-bottom: 10px;
+  margin-bottom: 20px;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-end;
+}
+
+.hero-photo {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  overflow: hidden;
+  pointer-events: none;
+
+  /* fades the bottom of the photo into your page background */
+  -webkit-mask-image: linear-gradient(to bottom, #000 0%, #000 62%, transparent 100%);
+  mask-image: linear-gradient(to bottom, #000 0%, #000 62%, transparent 100%);
+}
+
+.hero-photo-img {
+  object-fit: cover;
+  object-position: var(--hero-photo-position);
+  animation: hero-drift 26s ease-in-out infinite alternate;
+}
+
+/* soft lavender veil, stronger near the text */
+.hero-photo::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    180deg,
+    rgba(248, 241, 251, 0.1) 0%,
+    rgba(248, 241, 251, 0.18) 35%,
+    rgba(246, 237, 250, 0.62) 70%,
+    rgba(246, 237, 250, 0.88) 100%
+  );
+}
+
+@keyframes hero-drift {
+  from { transform: scale(1.03); }
+  to   { transform: scale(1.1); }
+}
+
+.hero-content {
+  position: relative;
+  z-index: 2;
+  width: 100%;
+  max-width: 560px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.hero-content .floral-header { margin-bottom: 26px; }
+.hero-content .invitation-intro { margin-bottom: 28px; }
+.hero-content .couple-section { margin-bottom: 0; }
+
+/* keep text readable over the photo */
+.hero-content .intro-small { color: #7b5a8b; }
+
+.hero-content .intro-small,
+.hero-content .intro-text,
+.hero-content .couple-message {
+  text-shadow: 0 0 14px rgba(255, 255, 255, 0.85);
+}
+
+.hero-content .couple-section h1 {
+  text-shadow:
+    0 2px 18px rgba(255, 255, 255, 0.9),
+    0 0 3px rgba(255, 255, 255, 0.6);
+}
+
+@media (max-width: 600px) {
+  .hero-section {
+    --hero-pad-top: 34svh;
+    padding-left: 14px;
+    padding-right: 14px;
+  }
+}
+
+/* =========================================
+   HERO — COUPLE PHOTO BACKGROUND
+
+   PASTE THIS AT THE VERY END of the CSS file that
+   contains `.wedding-invitation` (your main invitation
+   stylesheet), NOT into WeddingPhotos.css.
+   It must come last so it overrides the earlier rules.
+========================================= */
+
+.wedding-invitation {
+  padding-top: 0; /* the hero handles the top spacing now */
+}
+
+/* keep sparkles and petals visible above the photo */
+.stars,
+.petals {
+  z-index: 1;
+}
+
+.hero-section {
+  /* TUNE THESE */
+  --hero-photo-position: center 20%; /* which part of the photo stays visible */
+  --hero-pad-top: 38svh; /* clear photo space above the text */
+
+  position: relative;
+  width: 100vw;
+  max-width: none;
+  min-height: 100svh;
+  padding: var(--hero-pad-top) 20px 400px;
+  padding-bottom: 10px;
+  margin-bottom: 20px;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-end;
+}
+
+.hero-photo {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  overflow: hidden;
+  pointer-events: none;
+
+  /* fades the bottom of the photo into your page background */
+  -webkit-mask-image: linear-gradient(to bottom, #000 0%, #000 62%, transparent 100%);
+  mask-image: linear-gradient(to bottom, #000 0%, #000 62%, transparent 100%);
+}
+
+.hero-photo-img {
+  object-fit: cover;
+  object-position: var(--hero-photo-position);
+  animation: hero-drift 26s ease-in-out infinite alternate;
+}
+
+/* soft lavender veil, stronger near the text */
+.hero-photo::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    180deg,
+    rgba(248, 241, 251, 0.1) 0%,
+    rgba(248, 241, 251, 0.18) 35%,
+    rgba(246, 237, 250, 0.62) 70%,
+    rgba(246, 237, 250, 0.88) 100%
+  );
+}
+
+@keyframes hero-drift {
+  from {
+    transform: scale(1.03);
+  }
+
+  to {
+    transform: scale(1.1);
+  }
+}
+
+.hero-content {
+  position: relative;
+  z-index: 2;
+  width: 100%;
+  max-width: 560px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.hero-content .floral-header {
+  margin-bottom: 26px;
+}
+
+.hero-content .invitation-intro {
+  margin-bottom: 28px;
+}
+
+.hero-content .couple-section {
+  margin-bottom: 0;
+}
+
+/* keep text readable over the photo */
+.hero-content .intro-small {
+  color: #7b5a8b;
+}
+
+.hero-content .intro-small,
+.hero-content .intro-text,
+.hero-content .couple-message {
+  text-shadow: 0 0 14px rgba(255, 255, 255, 0.85);
+}
+
+.hero-content .couple-section h1 {
+  text-shadow:
+    0 2px 18px rgba(255, 255, 255, 0.9),
+    0 0 3px rgba(255, 255, 255, 0.6);
+}
+
+@media (max-width: 600px) {
+  .hero-section {
+    --hero-pad-top: 34svh;
+    padding-left: 14px;
+    padding-right: 14px;
+  }
+}
+
+/* HERO TEXT COLOURS — suits a black & white photo */
+.hero-content .floral-header { color: #8a52a8; }
+
+.hero-content .intro-small { color: #6e4a82; }
+.hero-content .intro-text { color: #5b3470; }
+
+.hero-content .couple-section h1 { color: #573b59; }
+.hero-content .couple-section h1 span { color: #8a52a8; } /* "Weds" */
+
+.hero-content .couple-divider span { color: #8a52a8; }
+.hero-content .couple-message { color: #6e4a82; }
+
+.hero-photo::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  background: rgba(162, 107, 187, 0.22);
+  mix-blend-mode: soft-light;
+}

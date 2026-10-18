@@ -2,9 +2,11 @@
 
 import { motion } from "framer-motion";
 import { useState } from "react";
+import Image from "next/image";
 import CalendarButton from "./CalendarButton";
 import Countdown from "./Countdown";
 import WeddingPhotos from "./WeddingPhotos";
+
 const flowers = [
     { className: "flower flower-1", delay: 0.2, size: "large" },
     { className: "flower flower-2", delay: 0.5, size: "small" },
@@ -18,16 +20,15 @@ const flowers = [
 
 const petals = Array.from({ length: 16 });
 const stars = Array.from({ length: 24 });
+
 export default function WeddingInvitation() {
     const [opening, setOpening] = useState(false);
 
     return (
         <main className="wedding-invitation is-opening">
-            {/* <main className={`magical-opening ${opening ? "is-opening" : ""}`}> */}
-
             {/* ================================
                       BACKGROUND
-                  ================================= */}
+            ================================= */}
 
             <div className="purple-glow purple-glow-one" />
             <div className="purple-glow purple-glow-two" />
@@ -48,7 +49,7 @@ export default function WeddingInvitation() {
 
             {/* ================================
                       SPARKLES
-                  ================================= */}
+            ================================= */}
 
             <div className="stars">
                 {stars.map((_, index) => (
@@ -73,7 +74,7 @@ export default function WeddingInvitation() {
 
             {/* ================================
                       FALLING PETALS
-                  ================================= */}
+            ================================= */}
 
             <div className="petals">
                 {petals.map((_, index) => (
@@ -96,14 +97,11 @@ export default function WeddingInvitation() {
                 ))}
             </div>
 
-
-
             {/* =================================
                 AMBIENT BACKGROUND
             ================================= */}
 
             <div className="wedding-ambience">
-
                 {/* Floating flowers */}
                 <div className="floating-flower flower-1">✿</div>
                 <div className="floating-flower flower-2">✿</div>
@@ -120,9 +118,7 @@ export default function WeddingInvitation() {
                 <div className="glow-dot dot-2" />
                 <div className="glow-dot dot-3" />
                 <div className="glow-dot dot-4" />
-
             </div>
-
 
             {/* =================================
                 BACKGROUND GLOW
@@ -136,170 +132,105 @@ export default function WeddingInvitation() {
             <div className="invitation-petal petal-b" />
             <div className="invitation-petal petal-c" />
 
-
             {/* =================================
-                TOP FLORAL DECORATION
+                HERO — COUPLE PHOTO BACKGROUND
+                (only the floral header, intro and
+                couple names live inside this block)
             ================================= */}
 
-            <motion.div
-                className="floral-header"
-                initial={{ opacity: 0, y: -30 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 1.2 }}
-            >
-                <span>❀</span>
-                <span>✿</span>
-                <span>❀</span>
-            </motion.div>
-
-
-            {/* =================================
-                INTRO
-            ================================= */}
-
-            <motion.section
-                className="invitation-intro"
-                initial={{ opacity: 0, y: 30 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{
-                    duration: 1.2,
-                    delay: 0.2,
-                }}
-            >
-
-                <p className="intro-small">
-                    WITH LOVE & BLESSINGS
-                </p>
-
-                <p className="intro-text">
-                    We invite you to celebrate
-                    <br />
-                    the beautiful beginning
-                    <br />
-                    of our forever.
-                </p>
-
-            </motion.section>
-
-
-            {/* =================================
-                COUPLE NAMES
-            ================================= */}
-
-            <motion.section
-                className="couple-section"
-                initial={{
-                    opacity: 0,
-                    scale: 0.92,
-                }}
-                whileInView={{
-                    opacity: 1,
-                    scale: 1,
-                }}
-                viewport={{
-                    once: true,
-                    amount: 0.3,
-                }}
-                transition={{
-                    duration: 1.3,
-                }}
-            >
-
-                <h1>
-                    Harsa Vardine
-                    <span>Weds</span>
-                    Balaji
-                </h1>
-
-                <div className="couple-divider">
-                    <span>✦</span>
+            <header className="hero-section">
+                <div className="hero-photo">
+                    <Image
+                        src="/couple.jpg"
+                        alt="Harsa Vardine and Balaji"
+                        fill
+                        priority
+                        sizes="100vw"
+                        quality={90}
+                        className="hero-photo-img"
+                    />
                 </div>
 
-                <p className="couple-message">
-                    From this moment, for all our tomorrows.
-                </p>
+                <div className="hero-content">
+                    {/* TOP FLORAL DECORATION */}
+                    <motion.div
+                        className="floral-header"
+                        initial={{ opacity: 0, y: -30 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ duration: 1.2 }}
+                    >
+                        <span>❀</span>
+                        <span>✿</span>
+                        <span>❀</span>
+                    </motion.div>
 
-            </motion.section>
+                    {/* INTRO */}
+                    <motion.section
+                        className="invitation-intro"
+                        initial={{ opacity: 0, y: 30 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{
+                            duration: 1.2,
+                            delay: 0.2,
+                        }}
+                    >
+                        <p className="intro-small">WITH LOVE & BLESSINGS</p>
+
+                        <p className="intro-text">
+                            We invite you to celebrate
+                            <br />
+                            the beautiful beginning
+                            <br />
+                            of our forever.
+                        </p>
+                    </motion.section>
+
+                    {/* COUPLE NAMES */}
+                    <motion.section
+                        className="couple-section"
+                        initial={{
+                            opacity: 0,
+                            scale: 0.92,
+                        }}
+                        whileInView={{
+                            opacity: 1,
+                            scale: 1,
+                        }}
+                        viewport={{
+                            once: true,
+                            amount: 0.3,
+                        }}
+                        transition={{
+                            duration: 1.3,
+                        }}
+                    >
+                        <h1>
+                            Harsa Vardine
+                            <span>Weds</span>
+                            Balaji
+                        </h1>
+
+                        <div className="couple-divider">
+                            <span>✦</span>
+                        </div>
+
+                        <p className="couple-message">
+                            From this moment, for all our tomorrows.
+                        </p>
+                    </motion.section>
+                </div>
+            </header>
+
+            {/* =================================
+                OUR STORY (rope + photos)
+            ================================= */}
 
             <WeddingPhotos />
 
-
-            {/* =================================
-                COUPLE PHOTO
-            ================================= */}
-
-            {/* <motion.section
-                className="couple-photo-section"
-                initial={{
-                    opacity: 0,
-                    y: 60,
-                }}
-                whileInView={{
-                    opacity: 1,
-                    y: 0,
-                }}
-                viewport={{
-                    once: true,
-                    amount: 0.25,
-                }}
-                transition={{
-                    duration: 1.2,
-                    ease: "easeOut",
-                }}
-            >
-
-                <div className="photo-frame">
-
-                    <div className="photo-placeholder">
-
-                       
-
-
-                        <img
-                            src="/couple.jpg"
-                            alt="Harsa and Balaji"
-                        />
-
-
-                    </div>
-
-
-
-                    <div className="photo-flower flower-top-left">
-                        ✿
-                    </div>
-
-                    <div className="photo-flower flower-top-right">
-                        ✿
-                    </div>
-
-                    <div className="photo-flower flower-bottom-left">
-                        ✿
-                    </div>
-
-                    <div className="photo-flower flower-bottom-right">
-                        ✿
-                    </div>
-
-                </div>
-
-
-                <p className="photo-caption">
-                    The first page of our forever.
-                </p>
-                <div className="heading-line">
-                    <span></span>
-                    <i>♡</i>
-                    <span></span>
-                </div>
-
-            </motion.section> */}
-
             <Countdown />
-            {/* EVENTS */}
+
             {/* EVENTS */}
             <section className="events-section">
-
                 <motion.div
                     className="events-heading"
                     initial={{ opacity: 0, y: 25 }}
@@ -320,7 +251,6 @@ export default function WeddingInvitation() {
                     </div>
                 </motion.div>
 
-
                 {/* RECEPTION */}
                 <motion.article
                     className="event-card"
@@ -331,13 +261,9 @@ export default function WeddingInvitation() {
                 >
                     <div className="event-card-glow"></div>
 
-                    <div className="event-top-ornament">
-                        ✦
-                    </div>
+                    <div className="event-top-ornament">✦</div>
 
-                    <p className="event-label">
-                        THE RECEPTION
-                    </p>
+                    <p className="event-label">THE RECEPTION</p>
 
                     <h3 className="event-date">
                         13
@@ -345,9 +271,7 @@ export default function WeddingInvitation() {
                         <small>2026</small>
                     </h3>
 
-                    <div className="event-time">
-                        6:00 PM onwards
-                    </div>
+                    <div className="event-time">6:00 PM onwards</div>
 
                     <div className="event-divider">
                         <span></span>
@@ -356,19 +280,14 @@ export default function WeddingInvitation() {
                     </div>
 
                     <div className="event-venue">
-                        <div className="venue-icon">
-                            ♡
-                        </div>
+                        <div className="venue-icon">♡</div>
 
                         <p>THE VENUE</p>
 
-                        <h4>
-                            Arunachalam Kamalambal
-                        </h4>
+                        <h4>Arunachalam Kamalambal</h4>
                     </div>
 
                     <div className="event-actions">
-
                         <CalendarButton
                             title="Harsa & Balaji - Reception"
                             start="20261213T180000"
@@ -386,14 +305,10 @@ export default function WeddingInvitation() {
                             <span>⌖</span>
                             View Location
                         </a>
-
                     </div>
 
-                    <div className="event-bottom-ornament">
-                        ✦
-                    </div>
+                    <div className="event-bottom-ornament">✦</div>
                 </motion.article>
-
 
                 {/* WEDDING */}
                 <motion.article
@@ -405,13 +320,9 @@ export default function WeddingInvitation() {
                 >
                     <div className="event-card-glow"></div>
 
-                    <div className="event-top-ornament">
-                        ✦
-                    </div>
+                    <div className="event-top-ornament">✦</div>
 
-                    <p className="event-label">
-                        THE WEDDING
-                    </p>
+                    <p className="event-label">THE WEDDING</p>
 
                     <h3 className="event-date">
                         14
@@ -419,9 +330,7 @@ export default function WeddingInvitation() {
                         <small>2026</small>
                     </h3>
 
-                    <div className="event-time">
-                        9:00 AM – 10:30 AM
-                    </div>
+                    <div className="event-time">9:00 AM – 10:30 AM</div>
 
                     <div className="event-divider">
                         <span></span>
@@ -430,19 +339,14 @@ export default function WeddingInvitation() {
                     </div>
 
                     <div className="event-venue">
-                        <div className="venue-icon">
-                            ♡
-                        </div>
+                        <div className="venue-icon">♡</div>
 
                         <p>THE VENUE</p>
 
-                        <h4>
-                            Arunachalam Kamalambal
-                        </h4>
+                        <h4>Arunachalam Kamalambal</h4>
                     </div>
 
                     <div className="event-actions">
-
                         <CalendarButton
                             title="Harsa & Balaji - Wedding"
                             start="20261214T090000"
@@ -460,24 +364,14 @@ export default function WeddingInvitation() {
                             <span>⌖</span>
                             View Location
                         </a>
-
                     </div>
 
-                    <div className="event-bottom-ornament">
-                        ✦
-                    </div>
+                    <div className="event-bottom-ornament">✦</div>
                 </motion.article>
-
             </section>
-
-
-            {/* =================================
-    FAMILY BLESSINGS
-================================= */}
 
             {/* FAMILY BLESSINGS */}
             <section className="family-section">
-
                 <motion.div
                     className="family-heading"
                     initial={{ opacity: 0, y: 25 }}
@@ -489,9 +383,7 @@ export default function WeddingInvitation() {
 
                     <p>WITH THE BLESSINGS</p>
 
-                    <h2>
-                        OF OUR FAMILIES
-                    </h2>
+                    <h2>OF OUR FAMILIES</h2>
 
                     <div className="family-heading-line">
                         <span></span>
@@ -504,9 +396,7 @@ export default function WeddingInvitation() {
                     </div>
                 </motion.div>
 
-
                 <div className="family-container">
-
                     {/* BRIDE FAMILY */}
                     <motion.div
                         className="family-card"
@@ -515,13 +405,9 @@ export default function WeddingInvitation() {
                         viewport={{ once: true }}
                         transition={{ duration: 0.8 }}
                     >
-                        <div className="family-flower">
-                            ❀
-                        </div>
+                        <div className="family-flower">❀</div>
 
-                        <p className="family-label">
-                            BRIDE'S FAMILY
-                        </p>
+                        <p className="family-label">BRIDE'S FAMILY</p>
 
                         <h3>
                             Suresh
@@ -529,11 +415,8 @@ export default function WeddingInvitation() {
                             Aswinrani
                         </h3>
 
-                        <div className="family-card-line">
-                            ✦
-                        </div>
+                        <div className="family-card-line">✦</div>
                     </motion.div>
-
 
                     {/* CENTER ORNAMENT */}
                     <motion.div
@@ -546,7 +429,6 @@ export default function WeddingInvitation() {
                         ♡
                     </motion.div>
 
-
                     {/* GROOM FAMILY */}
                     <motion.div
                         className="family-card"
@@ -555,13 +437,9 @@ export default function WeddingInvitation() {
                         viewport={{ once: true }}
                         transition={{ duration: 0.8, delay: 0.2 }}
                     >
-                        <div className="family-flower">
-                            ❀
-                        </div>
+                        <div className="family-flower">❀</div>
 
-                        <p className="family-label">
-                            GROOM'S FAMILY
-                        </p>
+                        <p className="family-label">GROOM'S FAMILY</p>
 
                         <h3>
                             Sekar
@@ -569,19 +447,12 @@ export default function WeddingInvitation() {
                             Jothi
                         </h3>
 
-                        <div className="family-card-line">
-                            ✦
-                        </div>
+                        <div className="family-card-line">✦</div>
                     </motion.div>
-
                 </div>
-
             </section>
 
-            {/* =================================
-    FINAL CLOSING
-================================= */}
-
+            {/* FINAL CLOSING */}
             <motion.section
                 className="final-closing"
                 initial={{ opacity: 0, y: 50 }}
@@ -589,29 +460,15 @@ export default function WeddingInvitation() {
                 viewport={{ once: true, amount: 0.25 }}
                 transition={{ duration: 1.4 }}
             >
-
                 {/* Floating butterflies */}
+                <div className="final-butterfly final-butterfly-one">🦋</div>
 
-                <div className="final-butterfly final-butterfly-one">
-                    🦋
-                </div>
-
-                <div className="final-butterfly final-butterfly-two">
-                    🦋
-                </div>
-
+                <div className="final-butterfly final-butterfly-two">🦋</div>
 
                 {/* Floral ornament */}
+                <div className="final-ornament">❀</div>
 
-                <div className="final-ornament">
-                    ❀
-                </div>
-
-
-                <p className="final-small">
-                    WE CAN'T WAIT TO CELEBRATE
-                </p>
-
+                <p className="final-small">WE CAN'T WAIT TO CELEBRATE</p>
 
                 <h2 className="final-title">
                     See you
@@ -619,42 +476,26 @@ export default function WeddingInvitation() {
                     <em>there</em>
                 </h2>
 
-
                 <div className="final-divider">
                     <span>✦</span>
                 </div>
 
-
                 <p className="final-message">
                     Your presence and blessings
                     <br />
-
                     mean the world to us.
-                    {/* <br /> */}
-                    {/* world to us. */}
                 </p>
 
+                <p className="final-date">13 · 14 DECEMBER 2026</p>
 
-                <p className="final-date">
-                    13 · 14 DECEMBER 2026
-                </p>
+                <h3>With love,</h3>
 
-                <h3>
-                    With love,
-                </h3>
                 <div className="final-names">
-                    {/* Harsa <span>&</span> Balaji */}
-                    <img src='logo.png' />
+                    <img src="logo.png" alt="Harsa & Balaji" />
                 </div>
 
-
-                <div className="final-bottom-flower">
-                    ✿
-                </div>
-
+                <div className="final-bottom-flower">✿</div>
             </motion.section>
-
-
         </main>
     );
 }

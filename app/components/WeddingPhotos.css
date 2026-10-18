@@ -21,16 +21,14 @@
   margin-bottom: clamp(40px, 7vw, 65px);
 }
 
-.photos-ornament,
-.journey-ornament {
+.photos-ornament {
   display: block;
   margin-bottom: 16px;
   color: #a67ca7;
   font-size: 14px;
 }
 
-.wedding-photos-heading > p,
-.journey-eyebrow {
+.wedding-photos-heading > p {
   margin: 0 0 10px;
   color: #8b668c;
   font-size: 10px;
@@ -53,8 +51,7 @@
   font-style: italic;
 }
 
-.photos-heading-line,
-.journey-divider {
+.photos-heading-line {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -62,15 +59,13 @@
   margin-top: 22px;
 }
 
-.photos-heading-line span,
-.journey-divider span {
+.photos-heading-line span {
   width: 52px;
   height: 1px;
   background: rgba(139, 102, 140, 0.28);
 }
 
-.photos-heading-line i,
-.journey-divider i {
+.photos-heading-line i {
   color: #a67ca7;
   font-size: 14px;
   font-style: normal;
@@ -437,38 +432,161 @@
 }
 
 /* =========================================
-   FIVE MAGICAL STAGES
+   LAST CARD — "OUR WEDDING IS COMING"
 ========================================= */
 
-.wedding-journey {
+.loading-photo {
+  display: grid;
+  place-items: center;
+  background: #f1e4f8;
+}
+
+/* soft colours that drift, like a photo slowly developing */
+.loading-glow {
+  position: absolute;
+  inset: -20%;
+  background:
+    radial-gradient(circle at 25% 30%, rgba(255, 214, 232, 0.95), transparent 45%),
+    radial-gradient(circle at 75% 70%, rgba(214, 190, 242, 0.95), transparent 50%),
+    radial-gradient(circle at 70% 20%, rgba(255, 255, 255, 0.85), transparent 40%),
+    linear-gradient(135deg, #efe0f7, #f8e9f3);
+  filter: blur(6px);
+  animation: photo-develop 6s ease-in-out infinite alternate;
+}
+
+@keyframes photo-develop {
+  from {
+    opacity: 0.75;
+    transform: translate(-3%, -2%) scale(1);
+  }
+
+  to {
+    opacity: 1;
+    transform: translate(3%, 2%) scale(1.12);
+  }
+}
+
+.loading-center {
   position: relative;
-  z-index: 3;
+  z-index: 1;
+  display: grid;
+  place-items: center;
+  width: 19cqw;
+  aspect-ratio: 1;
+  margin-top: -4cqw;
+}
+
+.loading-ring {
+  position: absolute;
+  inset: 0;
   width: 100%;
-  max-width: 850px;
-  margin: 0 auto;
-  padding: 14px 0 20px;
+  height: 100%;
+  transform: rotate(-90deg);
 }
 
-.journey-ornament {
-  margin-bottom: 14px;
+.ring-track,
+.ring-progress {
+  fill: none;
+  stroke-width: 5;
 }
 
-.journey-eyebrow {
-  margin-bottom: 12px;
+.ring-track {
+  stroke: rgba(162, 107, 187, 0.2);
 }
 
-.wedding-journey > h2 {
+.ring-progress {
+  stroke: #a26bbb;
+  stroke-linecap: round;
+  stroke-dasharray: 276.5;
+  stroke-dashoffset: 276.5;
+  animation: ring-load 3.8s ease-in-out infinite;
+}
+
+@keyframes ring-load {
+  0% {
+    stroke-dashoffset: 276.5;
+  }
+
+  70%,
+  100% {
+    stroke-dashoffset: 0;
+  }
+}
+
+.loading-heart {
+  color: #d9709a;
+  font-size: 8.5cqw;
+  line-height: 1;
+  transform-origin: 50% 55%;
+  animation: heart-beat 2.6s ease-in-out infinite;
+}
+
+.loading-label {
+  position: absolute;
+  z-index: 1;
+  right: 0;
+  bottom: 5cqw;
+  left: 0;
   margin: 0;
-  color: #573b59;
-  font-family: "Cormorant Garamond", serif;
-  font-size: clamp(30px, 6vw, 43px);
+  color: #8b5aa3;
+  font-size: clamp(8px, 2.1cqw, 12px);
+  font-weight: 600;
+  letter-spacing: 0.32em;
+}
+
+.loading-label span {
+  animation: dot-blink 1.4s infinite both;
+}
+
+.loading-label span:nth-child(2) {
+  animation-delay: 0.2s;
+}
+
+.loading-label span:nth-child(3) {
+  animation-delay: 0.4s;
+}
+
+@keyframes dot-blink {
+  0%,
+  80%,
+  100% {
+    opacity: 0.2;
+  }
+
+  40% {
+    opacity: 1;
+  }
+}
+
+.coming-caption {
+  align-content: center;
+  gap: 0.9cqw;
+  min-height: 21cqw;
+  padding: 2.2cqw 2cqw 3cqw;
+}
+
+.coming-caption h3 {
+  margin: 0;
+  color: #7f4a98;
+  font-size: clamp(13px, 3.9cqw, 22px);
   font-style: italic;
-  font-weight: 500;
+  font-weight: 600;
   line-height: 1.15;
 }
 
-.journey-divider {
-  margin-top: 19px;
+.coming-caption time {
+  color: #a26bbb;
+  font-size: clamp(11px, 3cqw, 17px);
+  font-style: normal;
+  font-weight: 700;
+  letter-spacing: 0.22em;
+}
+
+.coming-caption p {
+  margin: 0;
+  color: #765276;
+  font-size: clamp(10.5px, 2.7cqw, 16px);
+  line-height: 1.2;
 }
 
 /* =========================================
@@ -478,7 +596,7 @@
 .photos-closing {
   position: relative;
   z-index: 3;
-  margin-top: 45px;
+  margin-top: 20px;
 }
 
 .photos-closing > span {
@@ -524,13 +642,8 @@
 ========================================= */
 
 @media (max-width: 600px) {
-  .wedding-journey {
-    margin-top: 0;
-    padding-top: 10px;
-  }
-
   .photos-closing {
-    margin-top: 35px;
+    margin-top: 16px;
   }
 }
 
@@ -569,8 +682,16 @@
   .memory-swing,
   .memory-photo::after,
   .heart-charm,
-  .charm-heart {
+  .charm-heart,
+  .loading-glow,
+  .loading-heart,
+  .loading-label span {
     animation: none;
+  }
+
+  .ring-progress {
+    animation: none;
+    stroke-dashoffset: 70;
   }
 
   .float-heart {

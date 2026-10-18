@@ -33,7 +33,7 @@ const memories: Memory[] = [
   {
     image: "/photo1.jpeg",
     alt: "Our first memory",
-    caption: "It all started with a little moment…",
+    caption: "Our first unofficial moment- The meet that made us travel into one single journey <3",
     tilt: -2.5,
     swing: 1.6,
     duration: 5.6,
@@ -42,7 +42,7 @@ const memories: Memory[] = [
   {
     image: "/photo2.jpeg",
     alt: "A favourite memory together",
-    caption: "Somewhere along the way, you became my favourite person.",
+    caption: "From normal temple visit to stepping into our official journey (family meet up)",
     tilt: 2,
     swing: 1.3,
     duration: 6.4,
@@ -51,7 +51,7 @@ const memories: Memory[] = [
   {
     image: "/photo3.jpeg",
     alt: "A beautiful moment together",
-    caption: "With you, every moment felt more beautiful.",
+    caption: "⁠All the way planning for the event and a kutty hangout for us",
     tilt: -2,
     swing: 1.5,
     duration: 5.9,
@@ -60,7 +60,7 @@ const memories: Memory[] = [
   {
     image: "/photo4.jpeg",
     alt: "Our official beginning",
-    caption: "And then… we made it official. ♡",
+    caption: "⁠Finally we got hitched 🥳🥰",
     tilt: 2.5,
     swing: 1.4,
     duration: 6.8,
@@ -373,8 +373,8 @@ function ComingCard({ wind }: { wind: MotionValue<number> }) {
 
         <div className="memory-caption coming-caption">
           <h3>Our wedding is coming…</h3>
-          <time dateTime={WEDDING_DATE_ISO}>{WEDDING_DATE_LABEL}</time>
-          <p>Two hearts, one forever — loading with love ♡</p>
+          {/* <time dateTime={WEDDING_DATE_ISO}>{WEDDING_DATE_LABEL}</time> */}
+          <p>The journey of I and YOU is all set to become US just waiting for the perfect moment to tie the knots and make it mine 🥰 ♡</p>
         </div>
       </div>
     </HangingCard>

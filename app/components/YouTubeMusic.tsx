@@ -43,7 +43,7 @@ declare global {
   }
 }
 
-const VIDEO_ID = "YIZlI6yWmGY";
+const VIDEO_ID = "7xAUq4ZZzRk"; 
 
 const YouTubeMusic = forwardRef<YouTubeMusicHandle>(
   function YouTubeMusic(_, ref) {

@@ -7,6 +7,7 @@ interface CalendarButtonProps {
   location: string;
   description: string;
 }
+import './CalendarButton.css';
 
 export default function CalendarButton({
   title,

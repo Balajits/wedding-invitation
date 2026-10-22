@@ -7,6 +7,7 @@ import {
   useRef,
   useState,
 } from "react";
+import './YoutubeMusic.css';
 
 interface YouTubePlayer {
   playVideo: () => void;

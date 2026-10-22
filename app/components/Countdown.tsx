@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
+import './Countdown.css';
 
 const weddingDate = new Date(
   "2026-12-14T09:00:00+05:30"

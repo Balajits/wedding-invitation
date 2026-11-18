@@ -1,0 +1,12 @@
+.wrap {
+  min-height: 100dvh;
+  display: grid;
+  place-content: center;
+  gap: 0.75rem;
+  text-align: center;
+  padding: 2rem;
+  animation: fade 0.9s ease both;
+}
+.heading { font-family: var(--font-display), serif; font-size: clamp(1.6rem, 6vw, 2.4rem); color: #5b3d8a; }
+.text { color: #6b4a9e; }
+@keyframes fade { from { opacity: 0; transform: translateY(16px); } to { opacity: 1; transform: none; } }

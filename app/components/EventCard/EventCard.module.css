@@ -1,0 +1,225 @@
+.card {
+  position: relative;
+  isolation: isolate;
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  height: 100%;
+  overflow: hidden;
+  color: var(--text-strong);
+  background:
+    radial-gradient(ellipse at 50% 50%, var(--card-top), transparent 75%),
+    linear-gradient(150deg, var(--card-from), var(--card-mid));
+  border: 1px solid rgba(var(--line-rgb), 0.8);
+  border-radius: 2rem;
+  box-shadow: 0 20px 52px rgba(var(--shadow-rgb), 0.24);
+}
+
+.card::after {
+  content: "";
+  position: absolute;
+  z-index: 2;
+  inset: 0.55rem;
+  border: 1px solid rgba(var(--line-rgb), 0.55);
+  border-radius: 1.48rem;
+  pointer-events: none;
+}
+
+.art {
+  position: relative;
+  aspect-ratio: 1 / 0.83;
+  flex: none;
+}
+
+.image {
+  object-fit: cover;
+  object-position: center top;
+  mask-image: linear-gradient(to bottom, #000 55%, transparent 100%);
+}
+
+.card[data-content-position="top"] .art {
+  order: 1;
+  aspect-ratio: 1 / 1.13;
+}
+
+.card[data-content-position="top"] .image {
+  object-position: center bottom;
+  mask-image: linear-gradient(to top, #000 80%, transparent 100%);
+}
+
+.body {
+  position: relative;
+  z-index: 1;
+  isolation: isolate;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: clamp(1.75rem, 4vw, 2.75rem) clamp(1.15rem, 4vw, 2.25rem);
+  text-align: center;
+}
+
+.card[data-content-position="bottom"]:has(.art) .body {
+  margin-top: -2.25rem;
+  padding-top: 0;
+}
+
+.card[data-content-position="top"]:has(.art) .body {
+  padding-bottom: 1rem;
+}
+
+.date {
+  display: grid;
+  justify-items: center;
+  gap: 0.35rem;
+  color: var(--text-strong);
+}
+
+.dateCaption,
+.venueLabel,
+.calendarLabel {
+  font-size: 0.875rem;
+  font-weight: 500;
+  line-height: 1.45;
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
+}
+
+.dateScript {
+  color: var(--text-title);
+  font-family: var(--font-script), cursive;
+  font-size: clamp(2.5rem, 7vw, 3.75rem);
+  line-height: 1.05;
+  padding-inline: 0.25em;
+}
+
+.dateFlourish {
+  display: flex;
+  align-items: center;
+  gap: 0.55rem;
+  margin-top: 0.4rem;
+  color: var(--accent-dark);
+  font: 1.15rem / 1 Georgia, serif;
+}
+
+.dateFlourish::before,
+.dateFlourish::after {
+  content: "";
+  width: clamp(1.35rem, 7vw, 3rem);
+  height: 1px;
+  background: linear-gradient(to right, transparent, currentColor);
+}
+
+.dateFlourish::after {
+  transform: scaleX(-1);
+}
+
+.title {
+  margin-top: 0.75rem;
+  color: var(--text-title);
+  font-family: var(--font-script), cursive;
+  font-size: clamp(2.5rem, 5.4vw, 3.65rem);
+  font-weight: 400;
+  line-height: 1.04;
+  text-wrap: balance;
+}
+
+.tagline {
+  margin-top: 0.55rem;
+  color: var(--text-body);
+  font: italic 500 1.28rem / 1.35 var(--font-display), Georgia, serif;
+  text-wrap: balance;
+}
+
+.details {
+  display: grid;
+  justify-items: center;
+  gap: 0.45rem;
+  margin-top: 1.15rem;
+  color: var(--text-strong);
+}
+
+.row {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  line-height: 1.45;
+}
+
+.row svg {
+  flex: 0 0 1.1rem;
+  width: 1.1rem;
+  height: 1.1rem;
+  fill: none;
+  stroke: var(--text-strong);
+  stroke-width: 1.6;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.venue {
+  display: grid;
+  justify-items: center;
+  gap: 0.25rem;
+  margin-top: 0.3rem;
+}
+
+.place {
+  color: inherit;
+  text-underline-offset: 0.2em;
+}
+
+.actions {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.65rem;
+  width: 100%;
+  margin-top: 1.2rem;
+}
+
+.calendar {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  column-gap: clamp(0.5rem, 2vw, 1.15rem);
+  width: 100%;
+}
+
+.calendarLink,
+.directions {
+  display: inline-flex;
+  min-height: 44px;
+  align-items: center;
+  justify-content: center;
+  padding: 0.45rem 0.7rem;
+  font: 500 0.95rem / 1.35 var(--font-body), sans-serif;
+  text-underline-offset: 0.2em;
+}
+
+.calendarLink {
+  color: var(--text-title);
+  border: 0;
+  background: transparent;
+  cursor: pointer;
+  text-decoration: underline;
+  text-decoration-color: rgba(var(--line-rgb), 0.8);
+}
+
+.calendarLink:hover {
+  text-decoration-color: currentColor;
+}
+
+.directions {
+  padding-inline: 1rem;
+  color: var(--text-strong);
+  background: var(--card-top);
+  border: 1px solid rgba(var(--line-rgb), 0.85);
+  border-radius: 999px;
+  text-decoration: none;
+}
+
+.directions:hover {
+  text-decoration: underline;
+}

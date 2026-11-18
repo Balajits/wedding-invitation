@@ -1,30 +1,37 @@
-import { Cormorant_Garamond, Jost } from "next/font/google";
+import type { Metadata } from "next";
+import type { CSSProperties, ReactNode } from "react";
+import { Cormorant_Garamond, Great_Vibes, Jost } from "next/font/google";
+import { themeCssVars } from "@/theme/cssVars";
 import "./globals.css";
 
 const display = Cormorant_Garamond({
   subsets: ["latin"],
-  weight: ["300", "400", "500"],
-  style: ["normal", "italic"],
+  weight: ["400", "500", "600"],
   variable: "--font-display",
-  display: "swap",
 });
-
+const script = Great_Vibes({
+  subsets: ["latin"],
+  weight: "400",
+  variable: "--font-script",
+});
 const body = Jost({
   subsets: ["latin"],
   weight: ["300", "400", "500"],
   variable: "--font-body",
-  display: "swap",
 });
 
-export const metadata = {
-  title: "Harsa & Balaji | Wedding Invitation",
-  description: "You are invited to the wedding of Harsa and Balaji.",
+export const metadata: Metadata = {
+  title: "Balaji & Harsa | Wedding Invitation",
+  description: "Our forever begins. Join us in celebrating our wedding.",
 };
 
-export default function RootLayout({ children }: { children: React.ReactNode }) {
+export default function RootLayout({ children }: { children: ReactNode }) {
   return (
-    <html lang="en" className={`${display.variable} ${body.variable}`}>
-      <body>{children}</body>
+    // all colours from theme/colors.ts become CSS variables here
+    <html lang="en" style={themeCssVars as CSSProperties}>
+      <body className={`${display.variable} ${script.variable} ${body.variable}`}>
+        {children}
+      </body>
     </html>
   );
 }

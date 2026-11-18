@@ -1,0 +1,34 @@
+.hearts {
+  position: absolute;
+  z-index: -1;
+  inset: 0;
+  overflow: hidden;
+  border-radius: inherit;
+  pointer-events: none;
+}
+
+.heart {
+  position: absolute;
+  color: var(--accent);
+  font-family: Georgia, serif;
+  font-size: var(--heart-size);
+  line-height: 1;
+  opacity: 0.3;
+  animation: float-heart var(--heart-duration) ease-in-out var(--heart-delay) infinite alternate;
+}
+
+.heart:nth-child(even) {
+  color: var(--flower-2);
+  opacity: 0.22;
+}
+
+@keyframes float-heart {
+  from { transform: translate3d(-0.5rem, 0.9rem, 0) rotate(-15deg); }
+  to { transform: translate3d(0.65rem, -1.9rem, 0) rotate(14deg); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .heart {
+    animation: none;
+  }
+}

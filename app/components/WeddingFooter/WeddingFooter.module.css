@@ -1,0 +1,103 @@
+.footer {
+  position: relative;
+  isolation: isolate;
+  padding: clamp(3.25rem, 10vw, 7rem) clamp(1.15rem, 6vw, 4rem);
+}
+
+.card {
+  position: relative;
+  display: grid;
+  align-items: center;
+  gap: clamp(1.25rem, 4vw, 2.75rem);
+  width: min(100%, 36rem);
+  margin-inline: auto;
+  padding: clamp(2rem, 6vw, 3.5rem) clamp(1.35rem, 5vw, 3rem);
+  border: 1px solid rgba(var(--line-rgb), 0.7);
+  border-radius: 2rem;
+  color: var(--text-strong);
+  background: linear-gradient(145deg, var(--card-top), var(--card-from));
+  box-shadow: 0 14px 36px rgba(var(--shadow-rgb), 0.15);
+  text-align: center;
+}
+
+.card::before {
+  content: "";
+  position: absolute;
+  inset: 0.55rem;
+  border: 1px solid rgba(var(--line-rgb), 0.6);
+  border-radius: 1.45rem;
+  pointer-events: none;
+}
+
+.message {
+  display: grid;
+  justify-items: center;
+  min-width: 0;
+  gap: 0.95rem;
+}
+
+.flourish {
+  display: flex;
+  align-items: center;
+  gap: 0.7rem;
+  color: var(--accent-dark);
+  font: 1.45rem / 1 Georgia, serif;
+}
+
+.flourish::before,
+.flourish::after {
+  content: "";
+  width: 2.25rem;
+  height: 1px;
+  background: currentColor;
+  opacity: 0.65;
+}
+
+.title {
+  color: var(--text-title);
+  font: 400 clamp(2.85rem, 8vw, 4.75rem) / 1 var(--font-script), cursive;
+  text-wrap: balance;
+}
+
+.welcome {
+  max-width: 28rem;
+  font-size: clamp(1rem, 2vw, 1.125rem);
+  line-height: 1.55;
+  text-wrap: pretty;
+}
+
+.quote {
+  max-width: 26rem;
+  margin-top: 0.35rem;
+  color: var(--text-body);
+  font: italic 500 clamp(1.25rem, 4vw, 1.5rem) / 1.28 var(--font-display), Georgia, serif;
+  text-wrap: balance;
+}
+
+.signature {
+  position: relative;
+  isolation: isolate;
+  display: grid;
+  justify-items: center;
+  gap: 0.7rem;
+  color: var(--text-title);
+  font: italic 500 1.45rem / 1.1 var(--font-display), Georgia, serif;
+}
+
+.logo {
+  display: block;
+  width: clamp(7rem, 24vw, 9.75rem);
+  height: auto;
+}
+
+@media (min-width: 760px) {
+  .card {
+    grid-template-columns: minmax(0, 2fr) minmax(0, 1fr);
+    width: min(100%, 58rem);
+  }
+
+  .signature {
+    padding-inline-start: 1.25rem;
+    border-inline-start: 1px solid rgba(var(--line-rgb), 0.45);
+  }
+}

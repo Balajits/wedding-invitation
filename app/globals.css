@@ -1,59 +1,27 @@
-/* ---------- Theme tokens (light purple) ---------- */
-:root {
-  --lilac-50: #f8f4fd;
-  --lilac-100: #eee6f9;
-  --lilac-200: #ddd0f2;
-  --lilac-300: #c7b2e8;
-  --lilac-500: #9575cd;
-  --plum-700: #50367a;
-  --ink: #2a1f40;
-
-  --font-display: "Cormorant Garamond", Georgia, serif;
-  --font-body: "Jost", system-ui, sans-serif;
-
-  /* Fluid spacing used by every section */
-  --space-section: clamp(4rem, 10vw, 8rem);
-  --space-gutter: clamp(1.25rem, 5vw, 3rem);
-  --content-max: 72rem;
-}
-
-/* ---------- Reset ---------- */
-*,
-*::before,
-*::after {
-  box-sizing: border-box;
-}
-
-html {
-  -webkit-text-size-adjust: 100%;
-  scroll-behavior: smooth;
-}
+/* Colours come from theme/colors.ts (as CSS variables). Don't hard-code colours here. */
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html, body { min-height: 100%; }
 
 body {
-  margin: 0;
-  background: var(--lilac-50);
-  color: var(--ink);
-  font-family: var(--font-body);
-  font-weight: 300;
-  line-height: 1.6;
+  font-family: var(--font-body), system-ui, sans-serif;
+  color: var(--page-text);
+  background:
+    radial-gradient(circle at 20% 15%, var(--bg-glow-a), transparent 55%),
+    radial-gradient(circle at 85% 85%, var(--bg-glow-b), transparent 50%),
+    var(--bg-base);
+  background-attachment: fixed;
   -webkit-font-smoothing: antialiased;
-  overflow-x: hidden;
 }
 
-h1,
-h2,
-h3,
-p {
-  margin: 0;
-}
+button { font: inherit; }
+:focus-visible { outline: 3px solid var(--focus-ring); outline-offset: 3px; }
 
-:focus-visible {
-  outline: 2px solid var(--lilac-500);
-  outline-offset: 3px;
-}
-
-@media (prefers-reduced-motion: reduce) {
-  html {
-    scroll-behavior: auto;
-  }
+/* text for screen readers only */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
 }

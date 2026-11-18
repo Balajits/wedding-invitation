@@ -1,0 +1,64 @@
+/* colours for the event illustrations - all from the theme (theme/theme.ts) */
+.stTop { stop-color: var(--card-top); }
+.stMid { stop-color: var(--card-mid); }
+.stBot { stop-color: var(--card-to); }
+
+.wire { fill: none; stroke: #9a8460; stroke-width: 1.4; }
+.sLine { fill: none; stroke: rgba(var(--line-rgb), 0.65); stroke-width: 1; }
+.mandala { opacity: 0.55; }
+
+.lanternA { fill: var(--button-from); }
+.lanternB { fill: var(--flower-2); }
+
+.hA { fill: var(--accent); }
+.hB { fill: var(--button-from); }
+
+.star { fill: #ffffff; stroke: var(--accent); stroke-width: 1.2; }
+.lotus { fill: #ffffff; stroke: var(--accent); stroke-width: 1.4; }
+
+.d1 .pet { fill: var(--flower-2); }
+.d2 .pet { fill: var(--accent); }
+.d3 .pet { fill: var(--flower-3); }
+.pet { stroke: rgba(var(--shadow-rgb), 0.28); stroke-width: 0.6; }
+.fc { fill: var(--flower-center); }
+
+/* ---------- gentle movement ---------- */
+.bob, .sway, .swayIn, .hover, .twinkle, .floatUp, .pulse {
+  transform-box: fill-box;
+}
+.bob     { transform-origin: 50% 0;   animation: bob 5s ease-in-out infinite; }
+.sway    { transform-origin: 50% 0;   animation: sway 6.5s ease-in-out infinite; }
+.swayIn  { transform-origin: 50% 0;   animation: sway 5.5s ease-in-out infinite reverse; }
+.hover   { transform-origin: 50% 50%; animation: hover 4.5s ease-in-out infinite; }
+.twinkle { transform-origin: 50% 50%; animation: twinkle 2.6s ease-in-out infinite; }
+.floatUp { transform-origin: 50% 50%; animation: floatUp 6s ease-in-out infinite; }
+.pulse   { transform-origin: 50% 50%; animation: pulse 2.4s ease-in-out infinite; }
+
+@keyframes bob {
+  0%, 100% { transform: rotate(-2.5deg) translateY(0); }
+  50%      { transform: rotate(2.5deg) translateY(5px); }
+}
+@keyframes sway {
+  0%, 100% { transform: rotate(-1.6deg); }
+  50%      { transform: rotate(1.6deg); }
+}
+@keyframes hover {
+  0%, 100% { transform: translateY(0); }
+  50%      { transform: translateY(-5px); }
+}
+@keyframes twinkle {
+  0%, 100% { opacity: 0.35; transform: scale(0.8); }
+  50%      { opacity: 1; transform: scale(1.15); }
+}
+@keyframes floatUp {
+  0%, 100% { opacity: 0.6; transform: translateY(0); }
+  50%      { opacity: 1; transform: translateY(-14px); }
+}
+@keyframes pulse {
+  0%, 100% { transform: scale(1); }
+  50%      { transform: scale(1.14); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .bob, .sway, .swayIn, .hover, .twinkle, .floatUp, .pulse { animation: none; }
+}

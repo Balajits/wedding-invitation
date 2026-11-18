@@ -1,0 +1,10 @@
+.celebration {
+  position: relative;
+  z-index: 4;
+  margin-top: -2.5rem;
+  border-radius: 2.5rem 2.5rem 0 0;
+  background:
+    radial-gradient(ellipse at 50% 0%, var(--bg-glow-a), transparent 55%),
+    radial-gradient(ellipse at 85% 95%, var(--bg-glow-b), transparent 55%),
+    var(--bg-base);
+}

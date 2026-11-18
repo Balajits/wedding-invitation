@@ -1,5 +1,5 @@
 import type { CSSProperties } from "react";
-import { petalGradients } from "@/theme/theme";
+import type { ThemePreset } from "@/theme/theme";
 import styles from "./RosePetals.module.css";
 
 interface PetalConfig {
@@ -39,15 +39,15 @@ const PETALS: PetalConfig[] = [
 const PETAL_PATH =
   "M20 3 C24 1 28 3 30 6 C38 12 40 24 32 34 C28 39 12 39 8 34 C0 24 2 12 10 6 C12 3 16 1 20 3 Z";
 
-export default function RosePetals() {
-  const count = petalGradients.length;
+export default function RosePetals({ gradients }: { gradients: ThemePreset["petals"] }) {
+  const count = gradients.length;
 
   return (
     <div className={styles.field} aria-hidden="true">
       {/* gradients defined once, reused by every petal */}
       <svg width="0" height="0" style={{ position: "absolute" }} focusable="false">
         <defs>
-          {petalGradients.map(([from, to], i) => (
+          {gradients.map(([from, to], i) => (
             <linearGradient key={i} id={`petalGrad${i}`} x1="0" y1="0" x2="1" y2="1">
               <stop offset="0" stopColor={from} />
               <stop offset="1" stopColor={to} />

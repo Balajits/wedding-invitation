@@ -1,9 +1,10 @@
 import RosePetals from "../RosePetals/RosePetals";
 import Countdown from "../Countdown/Countdown";
 import { weddingData } from "../../data/weddingData";
+import type { ThemePreset } from "@/theme/theme";
 import styles from "./HeroSection.module.css";
 
-export default function HeroSection() {
+export default function HeroSection({ petals }: { petals: ThemePreset["petals"] }) {
   const { eyebrow, invite, groomName, brideName, tagline } = weddingData.hero;
 
   return (
@@ -12,7 +13,7 @@ export default function HeroSection() {
       <div className={styles.backdrop} aria-hidden="true">
         <div className={styles.photo} />
         <div className={styles.overlay} />
-        <RosePetals />
+        <RosePetals gradients={petals} />
       </div>
 
       {/* screen 1: names */}

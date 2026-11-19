@@ -23,6 +23,9 @@ const body = Jost({
 export const metadata: Metadata = {
   title: "Balaji & Harsa | Wedding Invitation",
   description: "Our forever begins. Join us in celebrating our wedding.",
+  icons: {
+    icon: { url: "/favicon.png", type: "image/png" },
+  },
 };
 
 export default function RootLayout({ children }: { children: ReactNode }) {

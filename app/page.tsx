@@ -18,7 +18,6 @@ export default function Home() {
   const [opening, setOpening] = useState<boolean>(false);
   const [opened, setOpened] = useState<boolean>(false);
   const musicRef = useRef<YouTubeMusicHandle>(null);
-console.log(process.env.NEXT_PUBLIC_WISHES_ENDPOINT);
   return (
     <>
       <YouTubeMusic ref={musicRef} />

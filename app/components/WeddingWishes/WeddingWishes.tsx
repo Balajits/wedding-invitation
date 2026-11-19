@@ -69,25 +69,16 @@ export default function WeddingWishes() {
       const receipt = result.receipt;
       if (receipt?.id !== submission.current.id || receipt.sheet !== "Wedding Wishes"
         || !Number.isInteger(receipt.row) || receipt.row < 2) {
-        console.warn("Wedding wishes deployment check", {
-          endpoint: wishesEndpoint,
-          responseFields: Object.keys(result),
-          receiptFields: receipt && typeof receipt === "object" ? Object.keys(receipt) : [],
-          matchesSubmission: receipt?.id === submission.current.id,
-          matchesSheet: receipt?.sheet === "Wedding Wishes",
-          validRow: Number.isInteger(receipt?.row) && receipt.row >= 2,
-        });
+        
         setSendError("The service returned no matching Sheet receipt. Check the sheet before retrying and deploy the latest Apps Script version.");
         setSendStatus("error");
         return;
       }
 
-      console.info(`Wish saved in Wedding Wishes, row ${receipt.row}.`);
       submission.current = null;
       form.reset();
       setSendStatus("sent");
     } catch (error) {
-      console.error("Could not read the Apps Script submission response", error);
       setSendError("We couldn’t read the wishes service response. Check your connection and the Apps Script deployment URL.");
       setSendStatus("error");
     } finally {

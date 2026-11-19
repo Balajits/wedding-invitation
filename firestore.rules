@@ -1,0 +1,21 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    match /wishes/{wishId} {
+      allow list: if request.query.limit <= 50;
+      allow create: if validWish(request.resource.data);
+    }
+
+    function validWish(wish) {
+      return wish.keys().hasAll(['name', 'description', 'createdAt'])
+        && wish.keys().hasOnly(['name', 'description', 'createdAt'])
+        && wish.name is string
+        && wish.name.size() <= 80
+        && wish.name.matches('[\\s\\S]*[^\\s][\\s\\S]*')
+        && wish.description is string
+        && wish.description.size() <= 80
+        && wish.description.matches('[\\s\\S]*[^\\s][\\s\\S]*')
+        && wish.createdAt == request.time;
+    }
+  }
+}

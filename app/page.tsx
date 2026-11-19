@@ -10,6 +10,7 @@ import EventsVenue from "./components/EventsVenue/EventsVenue";
 import WeddingTimeline from "./components/WeddingTimeline/WeddingTimeline";
 import PhotoGallery from "./components/PhotoGallery/PhotoGallery";
 // import HangingPhotoGallery from "./components/HangingPhotoGallery/HangingPhotoGallery";
+import WeddingWishes from "./components/WeddingWishes/WeddingWishes";
 import WeddingFooter from "./components/WeddingFooter/WeddingFooter";
 import YouTubeMusic, { type YouTubeMusicHandle } from "./components/YouTubeMusic";
 import styles from "./page.module.css";
@@ -55,6 +56,7 @@ export default function Home() {
             <EventsVenue />
             <WeddingTimeline />
             <PhotoGallery />
+            <WeddingWishes />
             {/* <HangingPhotoGallery /> */}
             <WeddingFooter />
           </div>

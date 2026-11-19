@@ -6,7 +6,9 @@ interface CalendarButtonProps {
   end?: string;
   location: string;
   description: string;
+  classes?: { group: string; apple: string; google: string };
 }
+import './CalendarButton.css';
 
 export default function CalendarButton({
   title,
@@ -14,6 +16,7 @@ export default function CalendarButton({
   end,
   location,
   description,
+  classes,
 }: CalendarButtonProps) {
   const createICS = () => {
     const ics = [
@@ -22,16 +25,16 @@ export default function CalendarButton({
       "PRODID:-//Balaji & Harsa Wedding//EN",
       "CALSCALE:GREGORIAN",
       "BEGIN:VEVENT",
-      `UID:${Date.now()}@balaji-harsa-wedding`,
+      `UID:${encodeURIComponent(title)}-${start}@balaji-harsa-wedding`,
       `DTSTAMP:${formatDate(new Date())}`,
       `DTSTART:${start}`,
       ...(end ? [`DTEND:${end}`] : []),
-      `SUMMARY:${title}`,
-      `LOCATION:${location}`,
-      `DESCRIPTION:${description}`,
+      `SUMMARY:${escapeCalendarText(title)}`,
+      `LOCATION:${escapeCalendarText(location)}`,
+      `DESCRIPTION:${escapeCalendarText(description)}`,
       "END:VEVENT",
       "END:VCALENDAR",
-    ].join("\r\n");
+    ].map(foldCalendarLine).join("\r\n") + "\r\n";
 
     const blob = new Blob([ics], {
       type: "text/calendar;charset=utf-8",
@@ -46,7 +49,7 @@ export default function CalendarButton({
     link.click();
 
     document.body.removeChild(link);
-    URL.revokeObjectURL(url);
+    window.setTimeout(() => URL.revokeObjectURL(url), 1000);
   };
 
   const googleCalendarUrl = `https://calendar.google.com/calendar/render?action=TEMPLATE&text=${encodeURIComponent(
@@ -56,22 +59,21 @@ export default function CalendarButton({
   )}&details=${encodeURIComponent(description)}`;
 
   return (
-    <div className="calendar-actions">
+    <div className={classes?.group ?? "calendar-actions"}>
 
       <button
         type="button"
-        className="calendar-button"
+        className={classes?.apple ?? "calendar-button"}
         onClick={createICS}
       >
-        <span className="calendar-icon">＋</span>
-        Add to Calendar
+        Apple Calendar
       </button>
 
       <a
         href={googleCalendarUrl}
         target="_blank"
         rel="noopener noreferrer"
-        className="google-calendar-link"
+        className={classes?.google ?? "google-calendar-link"}
       >
         Google Calendar
       </a>
@@ -93,4 +95,28 @@ function formatDate(date: Date) {
     pad(date.getUTCSeconds()) +
     "Z"
   );
+}
+function escapeCalendarText(value: string) {
+  return value
+    .replace(/\\/g, "\\\\")
+    .replace(/\r\n|\r|\n/g, "\\n")
+    .replace(/[,;]/g, "\\$&");
+}
+
+function foldCalendarLine(line: string) {
+  const encoder = new TextEncoder();
+  let bytes = 0;
+  let folded = "";
+
+  for (const character of line) {
+    const width = encoder.encode(character).length;
+    if (bytes + width > 75) {
+      folded += "\r\n ";
+      bytes = 1;
+    }
+    folded += character;
+    bytes += width;
+  }
+
+  return folded;
 }

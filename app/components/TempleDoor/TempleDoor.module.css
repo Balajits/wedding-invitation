@@ -1,0 +1,268 @@
+/*
+  The door is a portrait picture sized to the screen height
+  (aspect ratio of your two photos together = 435 / 798 = 0.545).
+  Phones: it fills the screen, trimming a sliver off each side.
+  Wider screens: it sits centred on a blurred copy of itself.
+*/
+
+.overlay {
+  --door-w: calc(100svh * 0.545);
+  --card-y: 50%; /* vertical position of the invitation card */
+  --gold-grad: linear-gradient(
+    135deg,
+    #8a6118 0%,
+    #f6dc8e 28%,
+    #d4a63c 52%,
+    #fff0b0 68%,
+    #8a6118 100%
+  );
+
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  overflow: hidden;
+  background: #0a0503;
+}
+
+/* ---------- Deity (waiting behind the doors) ---------- */
+.deity {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  overflow: hidden;
+  background: #0a0503;
+}
+
+.deityBackdrop {
+  object-fit: cover;
+  filter: blur(28px) brightness(0.7) saturate(1.2);
+  transform: scale(1.2);
+}
+
+/* Sharp copy keeps both deities fully visible. Change to "cover" to fill the screen. */
+.deityImg {
+  object-fit: contain;
+  object-position: center;
+}
+
+.glow {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(
+    circle at 50% 45%,
+    rgba(255, 244, 190, 0.95) 0%,
+    rgba(255, 200, 90, 0.65) 38%,
+    rgba(255, 170, 60, 0) 78%
+  );
+  pointer-events: none;
+}
+
+.blessing {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  padding: 3rem 1rem 1.75rem;
+  text-align: center;
+  font-family: var(--font-display);
+  font-style: italic;
+  font-size: clamp(1.35rem, 4vw, 2rem);
+  color: #fbe9b7;
+  text-shadow: 0 0.1rem 0.5rem rgba(0, 0, 0, 0.7);
+  background: linear-gradient(0deg, rgba(20, 8, 2, 0.7), transparent);
+  pointer-events: none;
+}
+
+/* ---------- Blurred door photo around the door ---------- */
+.surround {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  background: #0a0503 center / cover no-repeat;
+  filter: blur(26px) brightness(0.45) saturate(1.1);
+  transform: scale(1.15);
+  pointer-events: none;
+}
+
+/* ---------- Door leaves ---------- */
+.doorsWrap {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  display: flex;
+  justify-content: center;
+}
+
+.doors {
+  position: relative;
+  flex: none;
+  height: 100%;
+  width: var(--door-w);
+  perspective: 1800px;
+}
+
+.leaf {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 50%;
+  background: #1a0e06 center / 100% 100% no-repeat;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+}
+
+.left {
+  left: 0;
+  transform-origin: 0% 50%;
+  box-shadow: inset -3px 0 6px rgba(0, 0, 0, 0.55);
+}
+
+.right {
+  right: 0;
+  transform-origin: 100% 50%;
+  box-shadow: inset 3px 0 6px rgba(0, 0, 0, 0.55);
+}
+
+/* Each leaf darkens as it swings away from the light */
+.shade {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  pointer-events: none;
+  background: linear-gradient(90deg, rgba(15, 5, 0, 0.9), rgba(15, 5, 0, 0.2));
+}
+
+.right .shade {
+  background: linear-gradient(270deg, rgba(15, 5, 0, 0.9), rgba(15, 5, 0, 0.2));
+}
+
+/* ---------- Invitation card, centred on the door ---------- */
+/* Zero-height row at --card-y; the card is centred on it. */
+.inviteWrap {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: var(--card-y);
+  height: 0;
+  z-index: 6;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  pointer-events: none;
+}
+
+.invite {
+  width: min(86vw, 21rem);
+  padding: 1.6rem 1.5rem 1.7rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  border-radius: 1.1rem;
+  background: rgba(22, 9, 2, 0.42);
+  -webkit-backdrop-filter: blur(14px) saturate(1.15);
+  backdrop-filter: blur(14px) saturate(1.15);
+  border: 1px solid rgba(246, 220, 142, 0.55);
+  box-shadow:
+    0 1.2rem 2.5rem rgba(0, 0, 0, 0.5),
+    inset 0 0 0 1px rgba(255, 240, 176, 0.12);
+  pointer-events: auto;
+}
+
+.lead {
+  font-size: 0.9rem;
+  color: #e8c36a;
+}
+
+.title {
+  margin: 0.2rem 0 0.9rem;
+  font-family: var(--font-display);
+  font-size: clamp(1.55rem, 6vw, 2.4rem);
+  font-weight: 400;
+  line-height: 1.05;
+  color: #fbe9b7;
+  text-shadow: 0 0.1rem 0.4rem rgba(0, 0, 0, 0.7);
+}
+
+.cta {
+  position: relative;
+  padding: 0.8rem 2.1rem;
+  border: 0;
+  border-radius: 999px;
+  background: var(--gold-grad);
+  color: #2a1209;
+  font-family: var(--font-body);
+  font-size: 1rem;
+  font-weight: 500;
+  letter-spacing: 0.02em;
+  cursor: pointer;
+  box-shadow:
+    0 0.5rem 1.2rem rgba(0, 0, 0, 0.5),
+    inset 0 0 0 1px rgba(255, 240, 176, 0.6);
+  transition: transform 0.2s ease, filter 0.2s ease;
+}
+
+.cta:hover:not(:disabled) {
+  transform: translateY(-2px);
+  filter: brightness(1.08);
+}
+
+.cta::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  border: 1px solid #f6dc8e;
+  animation: ring 2.4s ease-out infinite;
+  pointer-events: none;
+}
+
+@keyframes ring {
+  from {
+    transform: scale(1);
+    opacity: 0.9;
+  }
+  to {
+    transform: scale(1.3, 1.7);
+    opacity: 0;
+  }
+}
+
+/* ---------- Tablet / desktop ---------- */
+@media (min-width: 768px) {
+  .lead {
+    font-size: 1.05rem;
+  }
+
+  .title {
+    font-size: 2.1rem;
+  }
+}
+
+/* ---------- Short landscape phones: compact card ---------- */
+@media (max-height: 560px) and (orientation: landscape) {
+  .invite {
+    width: min(60vw, 22rem);
+    padding: 1rem 1.25rem 1.1rem;
+  }
+
+  .lead {
+    display: none;
+  }
+
+  .title {
+    margin-bottom: 0.6rem;
+    font-size: 1.4rem;
+  }
+
+  .cta {
+    padding: 0.55rem 1.75rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .cta::after {
+    display: none;
+    animation: none;
+  }
+}

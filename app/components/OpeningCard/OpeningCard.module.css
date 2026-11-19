@@ -1,0 +1,261 @@
+.stage {
+  position: relative;
+  z-index: 1;
+  min-height: 100vh;
+  min-height: 100dvh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: clamp(1.8rem, 5vh, 2.8rem);
+  padding: 1.5rem 1rem;
+}
+
+/* ---------- floating (up and down) ---------- */
+.floater {
+  position: relative;
+  container-type: size;
+  perspective: 1400px;
+  width: min(92vw, 440px);
+  aspect-ratio: 3 / 4.3;
+  max-height: 72vh;
+  animation: cardIn 1s cubic-bezier(0.2, 0.8, 0.2, 1) both,
+             float 5s ease-in-out 1s infinite;
+}
+
+@keyframes cardIn {
+  from { opacity: 0; transform: translateY(30px) scale(0.96); }
+  to   { opacity: 1; transform: translateY(0) scale(1); }
+}
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50%      { transform: translateY(-14px); }
+}
+
+/* ---------- flip ---------- */
+.flipper {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  transform-style: preserve-3d;
+}
+
+.opening .flipper {
+  animation: flip 1.7s cubic-bezier(0.55, 0.05, 0.25, 1) forwards;
+}
+
+@keyframes flip {
+  0%   { transform: rotateY(0deg) scale(1); }
+  20%  { transform: rotateY(-12deg) scale(0.96); }          /* small wind-up */
+  60%  { transform: rotateY(-200deg) scale(1.12); }         /* swing past */
+  80%  { transform: rotateY(-170deg) scale(1.06); }         /* settle back */
+  100% { transform: rotateY(-180deg) scale(1.04); }
+}
+
+.opening .floater {
+  animation: float 5s ease-in-out infinite;                 /* keep floating while flipping */
+}
+
+.face {
+  position: absolute;
+  inset: 0;
+  border-radius: 28px;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+  box-shadow:
+    0 30px 60px rgba(var(--shadow-rgb), 0.28),
+    inset 0 0 0 1px rgba(255, 255, 255, 0.6);
+}
+
+.front {
+  background:
+    radial-gradient(circle at 50% 0%, var(--card-top) 0%, transparent 60%),
+    linear-gradient(170deg, var(--card-from) 0%, var(--card-mid) 55%, var(--card-to) 100%);
+}
+
+.back {
+  transform: rotateY(180deg);
+  background:
+    radial-gradient(circle at 50% 30%, var(--card-back-glow) 0%, transparent 65%),
+    linear-gradient(170deg, var(--card-back-from) 0%, var(--card-back-mid) 60%, var(--card-back-to) 100%);
+  display: grid;
+  place-items: center;
+  overflow: hidden;
+}
+
+/* light sweep across the back as it reveals */
+.back::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(110deg, transparent 35%, rgba(255, 255, 255, 0.45) 50%, transparent 65%);
+  transform: translateX(-120%);
+}
+.opening .back::after {
+  animation: sweep 1.2s ease-out 0.9s forwards;
+}
+@keyframes sweep { to { transform: translateX(120%); } }
+
+.frame,
+.frameBack {
+  position: absolute;
+  inset: 14px;
+  border-radius: 20px;
+  border: 1px solid rgba(var(--line-rgb), 0.55);
+  pointer-events: none;
+}
+.frameBack { border-color: rgba(255, 255, 255, 0.55); }
+
+.cornerFloral {
+  position: absolute;
+  top: 15px;
+  left: 15px;
+  width: clamp(2.5rem, 15cqw, 4rem);
+  height: auto;
+  color: var(--accent-dark);
+  opacity: 0.75;
+  pointer-events: none;
+}
+
+.cornerFloralBottom {
+  inset: auto 15px 15px auto;
+  transform: rotate(180deg);
+}
+
+.back .cornerFloral {
+  color: var(--card-back-text);
+}
+
+/* ---------- front content ---------- */
+.content {
+  position: relative;
+  height: 100%;
+  padding: 11% 9% 9%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  text-align: center;
+}
+
+.title {
+  font-family: var(--font-display), serif;
+  font-weight: 500;
+  font-size: clamp(1.1rem, 5.4cqw, 1.5rem);
+  letter-spacing: 0.28em;
+  line-height: 1.5;
+  color: var(--text-title);
+}
+
+.names {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.1em;
+}
+
+.name {
+  font-family: var(--font-script), cursive;
+  font-size: clamp(2.8rem, 17cqw, 4.6rem);
+  line-height: 1.05;
+  color: var(--text-strong);
+}
+
+.and {
+  font-family: var(--font-display), serif;
+  font-style: italic;
+  font-size: clamp(1.2rem, 6cqw, 1.7rem);
+  color: var(--text-soft);
+  margin: 1rem 0;
+}
+
+.quote {
+  font-family: var(--font-display), serif;
+  font-style: italic;
+  font-size: clamp(1rem, 5cqw, 1.3rem);
+  line-height: 1.6;
+  color: var(--text-body);
+}
+
+.date {
+  font-family: var(--font-body), sans-serif;
+  font-weight: 400;
+  font-size: clamp(0.85rem, 4cqw, 1rem);
+  letter-spacing: 0.18em;
+  color: var(--text-date);
+  padding-top: 0.9rem;
+  border-top: 1px solid rgba(var(--line-rgb), 0.55);
+  min-width: 55%;
+}
+
+/* ---------- back content ---------- */
+.backContent {
+  position: relative;
+  text-align: center;
+  color: var(--card-back-text);
+}
+.monogram {
+  display: block;
+  font-family: var(--font-script), cursive;
+  font-size: clamp(3.6rem, 24cqw, 6rem);
+  line-height: 1;
+}
+.monogram i { font-family: var(--font-display), serif; font-size: 0.5em; opacity: 0.9; }
+.welcome {
+  margin-top: 1rem;
+  font-family: var(--font-display), serif;
+  font-style: italic;
+  font-size: clamp(1.1rem, 5.5cqw, 1.4rem);
+  letter-spacing: 0.06em;
+}
+
+/* ---------- petal burst ---------- */
+.burst {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+.petal {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 16px;
+  height: 22px;
+  margin: -11px 0 0 -8px;
+  border-radius: 50% 50% 50% 0;
+  background: linear-gradient(135deg, var(--flower-3), var(--flower-2));
+  opacity: 0;
+  animation: petalFly 1.6s ease-out forwards;
+}
+@keyframes petalFly {
+  0%   { opacity: 0; transform: rotate(var(--angle)) translateY(0) scale(0.4); }
+  20%  { opacity: 1; }
+  100% { opacity: 0; transform: rotate(calc(var(--angle) + 120deg)) translateY(calc(var(--dist) * -1)) scale(1); }
+}
+
+/* ---------- button + exit ---------- */
+.action { transition: opacity 0.5s ease, transform 0.6s ease; }
+.opening .action { opacity: 0; transform: translateY(24px); }
+
+.opening { animation: stageOut 0.6s ease 2.2s forwards; }
+@keyframes stageOut { to { opacity: 0; } }
+
+/* ---------- responsive ---------- */
+@media (min-width: 640px) {            /* tablet */
+  .floater { width: min(70vw, 480px); }
+}
+@media (min-width: 1024px) {           /* desktop */
+  .floater { width: 500px; max-height: 76vh; }
+}
+@media (max-height: 640px) and (orientation: landscape) {
+  .stage { flex-direction: row; gap: 2rem; }
+  .floater { height: 86vh; max-height: none; width: auto; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .floater { animation: none; }
+  .opening .floater { animation: none; }
+  .opening .flipper { animation: flipSoft 0.8s ease forwards; }
+  .burst { display: none; }
+  @keyframes flipSoft { to { transform: rotateY(-180deg); } }
+}

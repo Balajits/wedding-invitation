@@ -1,64 +1,51 @@
 "use client";
 
 import { useRef, useState } from "react";
-import { AnimatePresence, motion } from "framer-motion";
-
-import MagicalOpening from "./components/MagicalOpening";
-import WeddingInvitation from "./components/WeddingInvitation";
-import YouTubeMusic, {
-  YouTubeMusicHandle,
-} from "./components/YouTubeMusic";
+import { petalGradients } from "@/theme/theme";
+import FloatingFlowers from "./components/FloatingFlowers/FloatingFlowers";
+import OpeningCard from "./components/OpeningCard/OpeningCard";
+import HeroSection from "./components/HeroSection/HeroSection";
+import EventsVenue from "./components/EventsVenue/EventsVenue";
+import WeddingTimeline from "./components/WeddingTimeline/WeddingTimeline";
+import PhotoGallery from "./components/PhotoGallery/PhotoGallery";
+// import HangingPhotoGallery from "./components/HangingPhotoGallery/HangingPhotoGallery";
+import WeddingWishes from "./components/WeddingWishes/WeddingWishes";
+import WeddingFooter from "./components/WeddingFooter/WeddingFooter";
+import YouTubeMusic, { type YouTubeMusicHandle } from "./components/YouTubeMusic";
+import styles from "./page.module.css";
 
 export default function Home() {
-  const [showInvitation, setShowInvitation] = useState(false);
-
+  const [opening, setOpening] = useState<boolean>(false);
+  const [opened, setOpened] = useState<boolean>(false);
   const musicRef = useRef<YouTubeMusicHandle>(null);
-
-  const handleOpenInvitation = () => {
-    // Start wedding song
-    musicRef.current?.play();
-
-    // Open invitation
-    setShowInvitation(true);
-  };
-
+console.log(process.env.NEXT_PUBLIC_WISHES_ENDPOINT);
   return (
     <>
       <YouTubeMusic ref={musicRef} />
-
-      <AnimatePresence mode="wait">
-        {!showInvitation ? (
-          <motion.div
-            key="opening"
-            initial={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            transition={{ duration: 0.8 }}
-          >
-            <MagicalOpening
-              onOpenComplete={handleOpenInvitation}
-            />
-          </motion.div>
-        ) : (
-          <motion.div
-            key="invitation"
-            initial={{
-              opacity: 0,
-              scale: 1.02,
+      {opened ? (
+        <>
+          <HeroSection petals={petalGradients} />
+          <div className={styles.celebration}>
+            <EventsVenue />
+            <WeddingTimeline />
+            <PhotoGallery />
+            <WeddingWishes />
+            {/* <HangingPhotoGallery /> */}
+            <WeddingFooter />
+          </div>
+        </>
+      ) : (
+        <>
+          <FloatingFlowers burst={opening} />
+          <OpeningCard
+            onOpening={() => {
+              setOpening(true);
+              musicRef.current?.play();
             }}
-            animate={{
-              opacity: 1,
-              scale: 1,
-            }}
-            transition={{
-              duration: 1.2,
-              ease: "easeOut",
-            }}
-          >
-            
-            <WeddingInvitation />
-          </motion.div>
-        )}
-      </AnimatePresence>
+            onOpen={() => setOpened(true)}
+          />
+        </>
+      )}
     </>
   );
 }

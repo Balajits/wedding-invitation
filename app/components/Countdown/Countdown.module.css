@@ -1,0 +1,103 @@
+/* Sits on the hero photo, so it uses the hero text colours from theme/theme.ts */
+.wrap {
+  width: min(92vw, 680px);
+  margin: 0 auto;
+  padding: clamp(1rem, 4vh, 3rem) 0.5rem clamp(5rem, 12vh, 8rem);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: clamp(1.4rem, 3.6vh, 2.2rem);
+  text-align: center;
+  text-shadow: 0 2px 18px rgba(var(--hero-shadow-rgb), 0.65);
+}
+
+.lead,
+.between,
+.announce { text-wrap: balance; }
+
+.lead {
+  font-family: var(--font-display), serif;
+  font-style: italic;
+  font-weight: 500;
+  font-size: clamp(1.4rem, 5vw, 2.2rem);
+  line-height: 1.45;
+  color: var(--hero-text);
+}
+
+.between {
+  font-family: var(--font-display), serif;
+  font-size: clamp(1.05rem, 3.8vw, 1.35rem);
+  line-height: 1.6;
+  color: var(--hero-tagline);
+}
+
+.closer {
+  font-family: var(--font-script), cursive;
+  font-size: clamp(2.6rem, 10.5vw, 4.2rem);
+  line-height: 1.2;
+  color: var(--hero-weds);
+  text-wrap: balance;
+}
+
+.announceWrap {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.9rem;
+}
+.heart { width: 20px; fill: var(--hero-weds); }
+.announce {
+  font-family: var(--font-display), serif;
+  font-weight: 600;
+  font-size: clamp(1.1rem, 4vw, 1.5rem);
+  line-height: 1.5;
+  color: var(--hero-text);
+}
+
+.announceNames {
+  color: var(--hero-eyebrow);
+}
+
+/* ---------- timer ---------- */
+.timer {
+  display: flex;
+  justify-content: center;
+  gap: clamp(0.5rem, 2.5vw, 1.1rem);
+  margin-top: 0.3rem;
+}
+
+.unit {
+  width: clamp(66px, 19vw, 118px);
+  padding: clamp(0.7rem, 2.4vw, 1.2rem) 0 clamp(0.6rem, 2vw, 1rem);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.2rem;
+  border-radius: 20px;
+  background: rgba(255, 255, 255, 0.13);
+  border: 1px solid rgba(255, 255, 255, 0.32);
+  box-shadow: 0 10px 30px rgba(var(--hero-shadow-rgb), 0.3);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  text-shadow: none;
+}
+
+.number {
+  font-family: var(--font-display), serif;
+  font-weight: 600;
+  font-size: clamp(1.6rem, 7vw, 3rem);
+  line-height: 1.1;
+  font-variant-numeric: tabular-nums;
+  color: var(--hero-text);
+}
+
+.label {
+  font-family: var(--font-body), sans-serif;
+  font-size: clamp(0.68rem, 2.5vw, 0.85rem);
+  letter-spacing: 0.08em;
+  color: var(--hero-eyebrow);
+}
+
+@media (min-width: 1024px) {
+  .timer { gap: 1.4rem; }
+}

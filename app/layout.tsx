@@ -1,32 +1,37 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import type { CSSProperties, ReactNode } from "react";
+import { Cormorant_Garamond, Great_Vibes, Jost } from "next/font/google";
+import { themeCssVars } from "@/theme/cssVars";
 import "./globals.css";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
+const display = Cormorant_Garamond({
   subsets: ["latin"],
+  weight: ["400", "500", "600"],
+  variable: "--font-display",
 });
-
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
+const script = Great_Vibes({
   subsets: ["latin"],
+  weight: "400",
+  variable: "--font-script",
+});
+const body = Jost({
+  subsets: ["latin"],
+  weight: ["300", "400", "500"],
+  variable: "--font-body",
 });
 
 export const metadata: Metadata = {
-  title: "Harsa & Balaji | Wedding Invitation",
-  description: "Join us as we celebrate our beautiful beginning.",
-  icons: {
-    icon: "/favicon.png",
-  },
+  title: "Balaji & Harsa | Wedding Invitation",
+  description: "Our forever begins. Join us in celebrating our wedding.",
 };
 
-export default function RootLayout({ children }: LayoutProps<"/">) {
+export default function RootLayout({ children }: { children: ReactNode }) {
   return (
-    <html
-      lang="en"
-      className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
-    >
-      <body className="min-h-full flex flex-col">{children}</body>
+    // all colours from theme/colors.ts become CSS variables here
+    <html lang="en" style={themeCssVars as CSSProperties}>
+      <body className={`${display.variable} ${script.variable} ${body.variable}`}>
+        {children}
+      </body>
     </html>
   );
 }

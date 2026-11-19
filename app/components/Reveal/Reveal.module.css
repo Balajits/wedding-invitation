@@ -1,0 +1,19 @@
+.reveal {
+  opacity: 0;
+  transform: translate3d(var(--x, 0px), var(--y, 28px), 0);
+  filter: blur(4px);
+  transition:
+    opacity 1s ease var(--delay, 0s),
+    transform 1.1s cubic-bezier(0.2, 0.8, 0.2, 1) var(--delay, 0s),
+    filter 1s ease var(--delay, 0s);
+}
+
+.visible {
+  opacity: 1;
+  transform: none;
+  filter: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .reveal { opacity: 1; transform: none; filter: none; transition: none; }
+}

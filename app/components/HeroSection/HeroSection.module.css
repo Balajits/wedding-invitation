@@ -1,0 +1,184 @@
+.hero {
+  position: relative;
+  background: var(--hero-bg);
+  color: var(--hero-text);
+  animation: heroIn 1s ease both;
+}
+
+/* ---------- fixed backdrop: photo + overlay + petals ---------- */
+/* sticky + negative margin = stays on screen while the content scrolls over it */
+.backdrop {
+  position: sticky;
+  top: 0;
+  z-index: 0;
+  height: 100vh;
+  height: 100dvh;
+  margin-bottom: -100vh;
+  margin-bottom: -100dvh;
+  overflow: hidden;
+}
+
+/* images live directly in the /public folder */
+.photo {
+  position: absolute;
+  inset: 0;
+  background-image: url("/hero-portrait.jpg");   /* phones: portrait photo */
+  background-size: cover;
+  background-position: 50% 30%;
+  animation: drift 24s ease-in-out infinite alternate;
+  will-change: transform;
+}
+
+/* neutral dark overlay so white text always reads clearly */
+.overlay {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  background:
+    radial-gradient(ellipse at 50% 45%, rgba(var(--overlay-rgb), 0.55) 0%, rgba(var(--overlay-rgb), 0.28) 100%),
+    linear-gradient(180deg, rgba(var(--overlay-rgb), 0.25) 0%, rgba(var(--overlay-rgb), 0) 40%, rgba(var(--overlay-rgb), 0.45) 100%);
+}
+
+/* ---------- screen 1 ---------- */
+.first {
+  position: relative;
+  z-index: 3;
+  min-height: 100vh;
+  min-height: 100dvh;
+  display: grid;
+  place-items: center;
+}
+
+.content {
+  width: min(92vw, 720px);
+  padding: 4rem 0.5rem;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-shadow: 0 2px 18px rgba(var(--hero-shadow-rgb), 0.65);
+}
+
+.eyebrow {
+  font-family: var(--font-body), sans-serif;
+  font-weight: 500;
+  font-size: clamp(0.8rem, 3vw, 1rem);
+  letter-spacing: 0.32em;
+  color: var(--hero-eyebrow);
+  animation: rise 1s cubic-bezier(0.2, 0.8, 0.2, 1) 0.3s both;
+}
+
+.invite {
+  margin-top: 1.1rem;
+  max-width: 30ch;
+  font-family: var(--font-display), serif;
+  font-style: italic;
+  font-size: clamp(1.2rem, 4.6vw, 1.7rem);
+  line-height: 1.5;
+  animation: rise 1s cubic-bezier(0.2, 0.8, 0.2, 1) 0.65s both;
+}
+
+.names {
+  margin: clamp(1.4rem, 4vh, 2.4rem) 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-weight: 400;
+  line-height: 1;
+}
+
+.groom,
+.bride {
+  font-family: var(--font-script), cursive;
+  font-size: clamp(3.6rem, 15vw, 7.2rem);
+  color: var(--hero-text);
+}
+
+.groom { animation: rise 1.1s cubic-bezier(0.2, 0.8, 0.2, 1) 1s both; }
+.weds {
+  margin: 1rem 0;
+  font-family: var(--font-display), serif;
+  font-style: italic;
+  font-size: clamp(1.3rem, 5vw, 2rem);
+  letter-spacing: 0.2em;
+  color: var(--hero-weds);
+  animation: rise 1s cubic-bezier(0.2, 0.8, 0.2, 1) 1.3s both;
+}
+.bride { animation: rise 1.1s cubic-bezier(0.2, 0.8, 0.2, 1) 1.55s both; }
+
+.tagline {
+  font-family: var(--font-display), serif;
+  font-size: clamp(1.05rem, 4vw, 1.4rem);
+  letter-spacing: 0.05em;
+  color: var(--hero-tagline);
+  animation: rise 1s cubic-bezier(0.2, 0.8, 0.2, 1) 2s both;
+}
+
+.scrollHint {
+  position: absolute;
+  bottom: clamp(1rem, 4vh, 2rem);
+  left: 50%;
+  width: 28px;
+  height: 28px;
+  margin-left: -14px;
+  fill: none;
+  stroke: var(--hero-eyebrow);
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  opacity: 0;
+  animation: hint 2s ease-in-out 3s infinite;
+}
+
+/* ---------- screen 2 ---------- */
+.second {
+  position: relative;
+  z-index: 3;
+  min-height: 100vh;
+  min-height: 100dvh;
+  display: grid;
+  place-items: center;
+}
+
+/* ---------- animations ---------- */
+@keyframes heroIn { from { opacity: 0; } to { opacity: 1; } }
+
+@keyframes drift {
+  from { transform: scale(1)    translate3d(0, 0, 0); }
+  to   { transform: scale(1.12) translate3d(-1.5%, -1%, 0); }
+}
+
+@keyframes rise {
+  from { opacity: 0; transform: translateY(26px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes hint {
+  0%, 100% { opacity: 0; transform: translateY(-6px); }
+  50%      { opacity: 0.9; transform: translateY(6px); }
+}
+
+/* ---------- responsive ---------- */
+@media (min-width: 768px) {            /* tablet and desktop: landscape photo */
+  .photo {
+    background-image: url("/hero-landscape.jpg");
+    background-position: 62% 50%;
+  }
+  .content { width: min(86vw, 760px); }
+}
+
+@media (min-width: 1280px) {
+  .names { margin: 2.8rem 0; }
+}
+
+@media (max-height: 600px) and (orientation: landscape) {
+  .content { padding: 2rem 0.5rem; }
+  .names { flex-direction: row; gap: 1rem; flex-wrap: wrap; justify-content: center; }
+  .groom, .bride { font-size: clamp(2.6rem, 9vw, 4rem); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .photo { animation: none; }
+  .eyebrow, .invite, .groom, .weds, .bride, .tagline { animation: none; }
+  .scrollHint { animation: none; opacity: 0.7; }
+}

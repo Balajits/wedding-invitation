@@ -1,0 +1,134 @@
+
+/* =========================================
+   YOUTUBE BACKGROUND MUSIC
+========================================= */
+
+.youtube-background-player {
+  position: fixed;
+  right: 20px;
+  bottom: 85px;
+  width: 200px;
+  height: 200px;
+  z-index: 999;
+  border-radius: 18px;
+  overflow: hidden;
+  box-shadow: 0 15px 40px rgba(var(--shadow-rgb), 0.2);
+  display: none;
+}
+
+.youtube-player {
+  width: 200px;
+  height: 200px;
+}
+
+.youtube-player iframe {
+  width: 200px !important;
+  height: 200px !important;
+  border: none;
+}
+
+/* Floating music control */
+
+.music-floating-button {
+  position: fixed;
+  right: 20px;
+  bottom: 20px;
+
+  height: 48px;
+  min-width: 45px;
+
+  padding: 0 18px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+
+  border: 1px solid rgba(var(--line-rgb), 0.35);
+  border-radius: 999px;
+
+  background: var(--card-top);
+
+  color: var(--text-title);
+
+  box-shadow:
+    0 8px 25px rgba(var(--shadow-rgb), 0.15);
+
+  backdrop-filter: blur(12px);
+
+  cursor: pointer;
+
+  z-index: 1001;
+
+  transition:
+    transform 0.3s ease,
+    box-shadow 0.3s ease,
+    background 0.3s ease;
+}
+
+.music-floating-button:hover {
+  transform: translateY(-3px);
+  background: var(--card-from);
+
+  box-shadow:
+    0 12px 30px rgba(var(--shadow-rgb), 0.2);
+}
+
+.music-icon {
+  font-size: 19px;
+  line-height: 1;
+}
+
+.music-text {
+  font-size: 10px;
+  letter-spacing: 1.8px;
+  text-transform: uppercase;
+  font-weight: 600;
+}
+
+.music-playing .music-icon {
+  animation: musicPulse 1.2s ease-in-out infinite;
+}
+
+@keyframes musicPulse {
+  0%,
+  100% {
+    transform: scale(1);
+  }
+
+  50% {
+    transform: scale(1.25);
+  }
+}
+
+
+/* Mobile */
+
+@media (max-width: 600px) {
+  .youtube-background-player {
+    right: 10px;
+    bottom: 75px;
+
+    width: 200px;
+    height: 200px;
+  }
+
+  .youtube-player {
+    width: 200px;
+    height: 200px;
+  }
+
+  .music-floating-button {
+    right: 12px;
+    bottom: 15px;
+
+    height: 44px;
+    min-width: 45px;
+
+    padding: 0 15px;
+  }
+
+  .music-text {
+    font-size: 9px;
+  }
+}

@@ -9,21 +9,18 @@
   margin-inline: auto;
 }
 
-.header,
-.messages {
+.header {
   text-align: center;
 }
 
-.header h2,
-.messages h3 {
+.header h2 {
   font-family: var(--font-display), Georgia, serif;
   font-weight: 600;
   line-height: 1.1;
 }
 
 .header h2 { font-size: clamp(2.6rem, 7vw, 4.5rem); }
-.header p,
-.messages > [role="status"] { margin-top: 0.65rem; }
+.header p { margin-top: 0.65rem; }
 
 .form {
   max-width: 34rem;
@@ -78,51 +75,3 @@
 
 .status { text-align: center; }
 .status:not(:empty) { margin-top: 0.75rem; }
-
-.messages { margin-top: 3rem; }
-.messages h3 { font-size: clamp(1.85rem, 5vw, 2.75rem); }
-
-.wishScroll {
-  max-width: 34rem;
-  margin: 1.25rem auto 0;
-  overflow-y: auto;
-  scrollbar-gutter: stable;
-}
-
-.list {
-  display: grid;
-  gap: 0.75rem;
-  list-style: none;
-  text-align: left;
-}
-
-.list li {
-  padding: 0.75rem 1rem;
-  border: 1px solid rgba(var(--line-rgb), 0.35);
-  border-radius: 1rem;
-  background: var(--card-from);
-  color: var(--text-strong);
-  overflow-wrap: anywhere;
-}
-
-.list blockquote {
-  margin-top: 0.25rem;
-  color: var(--text-body);
-}
-
-.list .expanded {
-  white-space: pre-wrap;
-}
-
-.list p {
-  font-weight: 600;
-}
-
-.list button {
-  padding: 0.25rem 0;
-  border: 0;
-  background: transparent;
-  color: inherit;
-  text-decoration: underline;
-  cursor: pointer;
-}

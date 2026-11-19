@@ -1,108 +1,27 @@
 "use client";
 
-import { useEffect, useLayoutEffect, useRef, useState, type FormEvent } from "react";
-import { FirebaseError, getApps, initializeApp } from "firebase/app";
-import { addDoc, collection, getFirestore, limit, onSnapshot, orderBy, query, serverTimestamp } from "firebase/firestore";
+import { useRef, useState, type FormEvent } from "react";
 import FloatingHearts from "../FloatingHearts/FloatingHearts";
 import styles from "./WeddingWishes.module.css";
 
-const firebaseConfig = {
-  apiKey: "AIzaSyD3h-yAxbVXlqteiLKESSckUxOWjpk8Mdw",
-  authDomain: "bh-wedding-8b35a.firebaseapp.com",
-  projectId: "bh-wedding-8b35a",
-  storageBucket: "bh-wedding-8b35a.firebasestorage.app",
-  messagingSenderId: "987964615403",
-  appId: "1:987964615403:web:7d0a00dc80e0c57925acae",
-};
-
-function getWishes() {
-  const appName = "wedding-guestbook";
-  const app = getApps().find(({ name }) => name === appName)
-    ?? initializeApp(firebaseConfig, appName);
-  return collection(getFirestore(app), "wishes");
-}
+const wishesEndpoint = process.env.NEXT_PUBLIC_WISHES_ENDPOINT;
 
 const HEARTS = [[6, 9], [91, 12], [12, 37], [86, 43], [5, 70], [93, 68], [18, 91], [80, 92]] as const;
-const DESCRIPTION_LIMIT = 80;
-const PREVIEW_LIMIT = 60;
-
-interface Wish {
-  id: string;
-  name: string;
-  description: string;
-}
-
-function WishCard({ wish }: { wish: Wish }) {
-  const [expanded, setExpanded] = useState(false);
-  const characters = Array.from(wish.description);
-  const canExpand = characters.length > PREVIEW_LIMIT;
-  const description = canExpand && !expanded
-    ? `${characters.slice(0, PREVIEW_LIMIT).join("").trimEnd()}…`
-    : wish.description;
-  const descriptionId = `wish-description-${wish.id}`;
-
-  return (
-    <li>
-      <p>{wish.name}</p>
-      <blockquote id={descriptionId} className={expanded ? styles.expanded : undefined}>
-        {description}
-      </blockquote>
-      {canExpand && (
-        <button
-          type="button"
-          aria-expanded={expanded}
-          aria-controls={descriptionId}
-          onClick={() => setExpanded(!expanded)}
-        >
-          {expanded ? "Show less" : "Read more"}
-        </button>
-      )}
-    </li>
-  );
-}
-
+const DESCRIPTION_LIMIT = 1000;
+const serviceErrors = new Map([
+  ["invalid-input", "Enter a name and a wish, each up to 80 characters."],
+  ["busy", "The wishes service is busy. Please try again."],
+  ["spreadsheet-access", "Apps Script couldn’t open the spreadsheet. Check that the deployment runs as the sheet owner or an editor."],
+  ["missing-tab", 'The spreadsheet needs a tab named "Wedding Wishes".'],
+  ["wrong-headers", "Set columns A1–D1 in Wedding Wishes to Name, Wish, Date, and Time."],
+  ["occupied-id-column", "Column E is in use. Move any existing data to another column so the script can store submission IDs."],
+  ["sheet-write", "Apps Script opened the sheet but couldn’t write or verify the row. Check for sheet or range protections."],
+]);
 export default function WeddingWishes() {
-  const [wishes, setWishes] = useState<Wish[]>([]);
-  const [loadStatus, setLoadStatus] = useState<"loading" | "ready" | "error">("loading");
   const [sendStatus, setSendStatus] = useState<"idle" | "pending" | "sent" | "invalid" | "error">("idle");
   const [sendError, setSendError] = useState("");
   const sending = useRef(false);
-  const wishList = useRef<HTMLUListElement>(null);
-
-  useLayoutEffect(() => {
-    const list = wishList.current;
-    const scrollArea = list?.parentElement;
-    const thirdCard = list?.children[2];
-    if (!list || !scrollArea || !thirdCard || wishes.length <= 3) return;
-
-    function fitThreeCards() {
-      if (!list || !scrollArea || !thirdCard) return;
-      const height = thirdCard.getBoundingClientRect().bottom - list.getBoundingClientRect().top;
-      scrollArea.style.maxHeight = `${height}px`;
-    }
-
-    fitThreeCards();
-    const observer = new ResizeObserver(fitThreeCards);
-    Array.from(list.children).slice(0, 3).forEach((card) => observer.observe(card));
-
-    return () => {
-      observer.disconnect();
-      scrollArea.style.removeProperty("max-height");
-    };
-  }, [wishes]);
-
-  useEffect(() => {
-    const latest = query(getWishes(), orderBy("createdAt", "desc"), limit(50));
-    return onSnapshot(latest, { includeMetadataChanges: true }, (snapshot) => {
-      setWishes(snapshot.docs.flatMap((doc) => {
-        const { name, description } = doc.data();
-        return !doc.metadata.hasPendingWrites && typeof name === "string" && typeof description === "string"
-          ? [{ id: doc.id, name, description }]
-          : [];
-      }));
-      if (!snapshot.metadata.fromCache) setLoadStatus("ready");
-    }, () => setLoadStatus("error"));
-  }, []);
+  const submission = useRef<{ id: string; name: string; description: string } | null>(null);
 
   async function sendWish(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
@@ -117,20 +36,59 @@ export default function WeddingWishes() {
       return;
     }
 
+    if (!wishesEndpoint) {
+      setSendError("Wishes are temporarily unavailable.");
+      setSendStatus("error");
+      return;
+    }
+
+    if (submission.current?.name !== name || submission.current?.description !== description) {
+      submission.current = { id: crypto.randomUUID(), name, description };
+    }
     sending.current = true;
     setSendStatus("pending");
     try {
-      await addDoc(getWishes(), { name, description, createdAt: serverTimestamp() });
+      const response = await fetch(wishesEndpoint, {
+        method: "POST",
+        // URLSearchParams sends a form-encoded request without a CORS preflight.
+        body: new URLSearchParams(submission.current),
+        signal: AbortSignal.timeout(25000),
+      });
+      if (!response.ok || !response.headers.get("content-type")?.includes("application/json")) {
+        setSendError("The wishes service didn’t return a valid response. Check the Apps Script web app URL and access settings.");
+        setSendStatus("error");
+        return;
+      }
+
+      const result = await response.json();
+      if (result?.ok !== true) {
+        setSendError(serviceErrors.get(result?.code) ?? "The wishes service returned no error code. Deploy the latest Apps Script version to see why the save failed.");
+        setSendStatus("error");
+        return;
+      }
+      const receipt = result.receipt;
+      if (receipt?.id !== submission.current.id || receipt.sheet !== "Wedding Wishes"
+        || !Number.isInteger(receipt.row) || receipt.row < 2) {
+        console.warn("Wedding wishes deployment check", {
+          endpoint: wishesEndpoint,
+          responseFields: Object.keys(result),
+          receiptFields: receipt && typeof receipt === "object" ? Object.keys(receipt) : [],
+          matchesSubmission: receipt?.id === submission.current.id,
+          matchesSheet: receipt?.sheet === "Wedding Wishes",
+          validRow: Number.isInteger(receipt?.row) && receipt.row >= 2,
+        });
+        setSendError("The service returned no matching Sheet receipt. Check the sheet before retrying and deploy the latest Apps Script version.");
+        setSendStatus("error");
+        return;
+      }
+
+      console.info(`Wish saved in Wedding Wishes, row ${receipt.row}.`);
+      submission.current = null;
       form.reset();
       setSendStatus("sent");
     } catch (error) {
-      const code = error instanceof FirebaseError ? error.code : "unknown";
-      console.error("Firestore guestbook submission failed", error);
-      setSendError(
-        code === "permission-denied"
-          ? "Firestore denied this submission. Please ask the couple to check the guestbook permissions."
-          : `Your wish couldn’t be sent (${code}). Please try again.`
-      );
+      console.error("Could not read the Apps Script submission response", error);
+      setSendError("We couldn’t read the wishes service response. Check your connection and the Apps Script deployment URL.");
       setSendStatus("error");
     } finally {
       sending.current = false;
@@ -143,7 +101,7 @@ export default function WeddingWishes() {
       <div className={styles.content}>
         <header className={styles.header}>
           <h2 id="wishes-title">Send Your Wishes</h2>
-          <p>Leave a little love for the newlyweds.</p>
+          <p>Send a private message to the newlyweds.</p>
         </header>
 
         <form className={styles.form} onSubmit={sendWish}>
@@ -153,7 +111,7 @@ export default function WeddingWishes() {
               <input name="name" autoComplete="name" required maxLength={80} />
             </label>
             <label>
-              Your wish (up to {DESCRIPTION_LIMIT} characters)
+              Your wish
               <textarea name="description" required maxLength={DESCRIPTION_LIMIT} rows={3} />
             </label>
             <button type="submit">{sendStatus === "pending" ? "Sending…" : "Send wish"}</button>
@@ -166,26 +124,6 @@ export default function WeddingWishes() {
           </p>
         </form>
 
-        <div className={styles.messages}>
-          <h3 id="guest-wishes-title">Wishes from Our Guests</h3>
-          <div role="status">
-            {loadStatus === "loading" && wishes.length === 0 && <p>Loading wishes…</p>}
-            {loadStatus === "error" && <p>Wishes couldn’t be loaded. Please refresh to try again.</p>}
-            {loadStatus === "ready" && wishes.length === 0 && <p>Be the first to leave a wish.</p>}
-          </div>
-          {wishes.length > 0 && (
-            <div
-              className={styles.wishScroll}
-              role="region"
-              aria-labelledby="guest-wishes-title"
-              tabIndex={0}
-            >
-              <ul className={styles.list} ref={wishList}>
-                {wishes.map((wish) => <WishCard key={wish.id} wish={wish} />)}
-              </ul>
-            </div>
-          )}
-        </div>
       </div>
     </section>
   );

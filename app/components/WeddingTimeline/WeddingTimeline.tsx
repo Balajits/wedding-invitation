@@ -1,5 +1,5 @@
 import {
-  Camera, Flame, Flower2, Gem, HeartHandshake, Sparkles, Utensils,
+  Camera, Flame, Flower2, Gem, HeartHandshake, Sparkles, Utensils, PartyPopper,Hamburger,Heart,
   type LucideIcon,
 } from "lucide-react";
 import { weddingData, type TimelineMilestone } from "../../data/weddingData";
@@ -15,6 +15,9 @@ const icons: Record<TimelineMilestone["icon"], LucideIcon> = {
   flowers: Flower2,
   ceremony: Flame,
   blessings: Sparkles,
+  Hamburger: Hamburger,
+  PartyPopper: PartyPopper,
+  Heart: Heart,
 };
 
 const heartPositions = [

@@ -11,13 +11,13 @@ export interface CountdownContent {
   lead: [string, string];
   between: [string, string];
   closer: string;
-  announce: [string, string];
+  announce: [string, string, string];
 }
 
 export interface TimelineMilestone {
   title: string;
   start: string;
-  icon: "welcome" | "rings" | "photos" | "meal" | "flowers" | "ceremony" | "blessings";
+  icon: "welcome" | "rings" | "photos" | "meal" | "flowers" | "ceremony" | "blessings" |"Hamburger" | "PartyPopper" | "Heart";
 }
 
 export interface EventItem {
@@ -87,7 +87,7 @@ export const weddingData: WeddingData = {
     lead: ["Diwali will fill the skies with light,", "and the New Year will bring a new beginning."],
     between: ["And somewhere between all these beautiful", "celebrations..."],
     closer: "Our Own Celebration Is Getting Closer. 💍",
-    announce: ["The Countdown To Harsa Weds Balaji", "Has Officially Begun."],
+    announce: ["The Countdown To","Harsa Weds Balaji", "Has Officially Begun."]
   },
 
   // events + venue section
@@ -130,10 +130,12 @@ export const weddingData: WeddingData = {
       art: "wedding",
       contentPosition: "bottom",
       timeline: [
-        { title: "Welcome & arrivals", icon: "welcome", start: "2026-12-14T09:00:00+05:30" },
-        { title: "Garland exchange", icon: "flowers", start: "2026-12-14T09:15:00+05:30" },
-        { title: "Wedding rituals", icon: "ceremony", start: "2026-12-14T09:30:00+05:30" },
-        { title: "Family blessings", icon: "blessings", start: "2026-12-14T10:15:00+05:30" },
+        { title: "Nandhi Hoom(rituals)", icon: "welcome", start: "2026-12-14T07:00:00+05:30" },
+        { title: "Breakfast", icon: "Hamburger", start: "2026-12-14T07:30:00+05:30" },
+        { title: "Groom Welcome", icon: "PartyPopper", start: "2026-12-14T09:00:00+05:30" },
+        { title: "Wedding", icon: "Heart", start: "2026-12-14T09:30:00+05:30" },
+        { title: "Wedding Rituals", icon: "blessings", start: "2026-12-14T11:00:00+05:30" },
+        { title: "Lunch", icon: "meal", start: "2026-12-14T12:00:00+05:30" },
       ],
     },
   ],

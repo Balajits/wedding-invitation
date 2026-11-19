@@ -54,6 +54,10 @@
   color: var(--hero-text);
 }
 
+.announceNames {
+  color: var(--hero-eyebrow);
+}
+
 /* ---------- timer ---------- */
 .timer {
   display: flex;

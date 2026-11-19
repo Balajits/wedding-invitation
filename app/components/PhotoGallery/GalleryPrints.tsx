@@ -112,7 +112,7 @@ export function ClosingPrint({ clipClassName, delay }: { clipClassName?: string;
         <span className={styles.loadingLabel}>Loading…</span>
       </div>
       <figcaption className={styles.ending}>
-        <h3>Our wedding is coming...</h3>
+        {/* <h3>Our wedding is coming...</h3> */}
         <p>
           The journey of I and YOU is all set to become US just waiting for
           the perfect moment to tie the knots and make it mine 🥰 ♡

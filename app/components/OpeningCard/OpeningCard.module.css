@@ -106,6 +106,26 @@
 }
 .frameBack { border-color: rgba(255, 255, 255, 0.55); }
 
+.cornerFloral {
+  position: absolute;
+  top: 15px;
+  left: 15px;
+  width: clamp(2.5rem, 15cqw, 4rem);
+  height: auto;
+  color: var(--accent-dark);
+  opacity: 0.75;
+  pointer-events: none;
+}
+
+.cornerFloralBottom {
+  inset: auto 15px 15px auto;
+  transform: rotate(180deg);
+}
+
+.back .cornerFloral {
+  color: var(--card-back-text);
+}
+
 /* ---------- front content ---------- */
 .content {
   position: relative;
@@ -146,6 +166,7 @@
   font-style: italic;
   font-size: clamp(1.2rem, 6cqw, 1.7rem);
   color: var(--text-soft);
+  margin: 1rem 0;
 }
 
 .quote {

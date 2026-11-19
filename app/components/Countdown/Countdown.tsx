@@ -71,7 +71,11 @@ export default function Countdown() {
         <div className={styles.announceWrap}>
           <Heart />
           <p className={styles.announce}>
-            <span>{announce[0]}</span> <span>{announce[1]}</span>
+            <span>{announce[0]}</span>
+            <br />
+            <span className={styles.announceNames}>&quot;{announce[1]}&quot;</span>
+            <br />
+            <span>{announce[2]}</span>
           </p>
         </div>
       </Reveal>

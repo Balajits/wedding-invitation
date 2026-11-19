@@ -2,7 +2,6 @@ rules_version = '2';
 service cloud.firestore {
   match /databases/{database}/documents {
     match /wishes/{wishId} {
-      allow list: if request.query.limit <= 50;
       allow create: if validWish(request.resource.data);
     }
 

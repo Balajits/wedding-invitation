@@ -22,6 +22,16 @@ This project uses [`next/font`](https://nextjs.org/docs/app/building-your-applic
 
 ## Learn More
 
+### Private wedding wishes
+
+1. Open the destination Google Sheet and go to **Extensions → Apps Script**.
+2. Paste the contents of [scripts/wedding-wishes.gs](scripts/wedding-wishes.gs) into the editor.
+3. Select **Deploy → New deployment → Web app**. Set **Execute as** to **Me** and **Who has access** to **Anyone**. Authorize the script and copy its `/exec` URL. Keep the spreadsheet sharing set to **Restricted**.
+4. Set `NEXT_PUBLIC_WISHES_ENDPOINT` to the `/exec` URL in `.env.local` and in the environment that builds the deployed invitation. Restart the dev server or rebuild the deployed site.
+5. Name your response tab **Wedding Wishes** and put **Name**, **Wish**, **Date**, and **Time** in A1–D1. Send a test wish from the invitation and check that tab. The script uses hidden column E to prevent duplicate submissions. Dates and times use the spreadsheet's time zone. If a wish is missing, open **Executions** in Apps Script and check the latest `doPost` run for the saved row or setup error.
+
+New wishes go directly to Google Sheets. Use the legacy [Firestore CSV exporter](scripts/export-wishes.py) if you want to import previously saved wishes.
+
 To learn more about Next.js, take a look at the following resources:
 
 - [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.

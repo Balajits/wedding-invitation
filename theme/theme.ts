@@ -76,7 +76,7 @@ export type ThemeName =
   | "skyCobalt";
 
 // 👇 CHANGE THIS ONE LINE TO SWITCH THE WHOLE WEBSITE 👇
-export const activeTheme: ThemeName = "skySilver";
+export const activeTheme: ThemeName = "navyGold";
 
 export interface ThemeColors {
   // page

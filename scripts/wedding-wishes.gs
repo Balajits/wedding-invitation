@@ -4,17 +4,18 @@ const HEADERS = ["Name", "Wish", "Date", "Time"];
 const SUBMISSION_ID_COLUMN = 5;
 
 function doGet() {
-  return jsonResponse({ version: "wedding-wishes-receipt-v2" });
+  return jsonResponse({ version: "wedding-wishes-receipt-v3" });
 }
 
 function doPost(event) {
   const { id = "", name: rawName = "", description: rawDescription = "" } = event?.parameter ?? {};
   const name = rawName.trim();
   const description = rawDescription.trim();
-  if (!/^[0-9a-f]{8}-(?:[0-9a-f]{4}-){3}[0-9a-f]{12}$/i.test(id)
-      || !name || name.length > 80 || !description || description.length > 80) {
-    return jsonResponse({ ok: false, code: "invalid-input" });
+  if (!/^[0-9a-f]{8}-(?:[0-9a-f]{4}-){3}[0-9a-f]{12}$/i.test(id)) {
+    return jsonResponse({ ok: false, code: "invalid-submission-id" });
   }
+  if (!name || name.length > 80) return jsonResponse({ ok: false, code: "invalid-name" });
+  if (!description) return jsonResponse({ ok: false, code: "empty-wish" });
 
   const lock = LockService.getScriptLock();
   let failureCode = "busy";

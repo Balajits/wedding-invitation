@@ -7,9 +7,11 @@ import styles from "./WeddingWishes.module.css";
 const wishesEndpoint = process.env.NEXT_PUBLIC_WISHES_ENDPOINT;
 
 const HEARTS = [[6, 9], [91, 12], [12, 37], [86, 43], [5, 70], [93, 68], [18, 91], [80, 92]] as const;
-const DESCRIPTION_LIMIT = 1000;
 const serviceErrors = new Map([
-  ["invalid-input", "Enter a name and a wish, each up to 80 characters."],
+  ["invalid-input", "This Apps Script deployment uses the old validation. Publish the latest script and check the /exec URL."],
+  ["invalid-submission-id", "The submission ID couldn’t be validated. Refresh the page and try again."],
+  ["invalid-name", "Enter a name up to 80 characters."],
+  ["empty-wish", "Please enter a wish."],
   ["busy", "The wishes service is busy. Please try again."],
   ["spreadsheet-access", "Apps Script couldn’t open the spreadsheet. Check that the deployment runs as the sheet owner or an editor."],
   ["missing-tab", 'The spreadsheet needs a tab named "Wedding Wishes".'],
@@ -31,7 +33,7 @@ export default function WeddingWishes() {
     const fields = new FormData(form);
     const name = String(fields.get("name") ?? "").trim();
     const description = String(fields.get("description") ?? "").trim();
-    if (!name || !description || name.length > 80 || description.length > DESCRIPTION_LIMIT) {
+    if (!name || !description || name.length > 80) {
       setSendStatus("invalid");
       return;
     }
@@ -78,7 +80,7 @@ export default function WeddingWishes() {
       submission.current = null;
       form.reset();
       setSendStatus("sent");
-    } catch (error) {
+    } catch {
       setSendError("We couldn’t read the wishes service response. Check your connection and the Apps Script deployment URL.");
       setSendStatus("error");
     } finally {
@@ -103,7 +105,7 @@ export default function WeddingWishes() {
             </label>
             <label>
               Your wish
-              <textarea name="description" required maxLength={DESCRIPTION_LIMIT} rows={3} />
+              <textarea name="description" required rows={3} />
             </label>
             <button type="submit">{sendStatus === "pending" ? "Sending…" : "Send wish"}</button>
           </fieldset>

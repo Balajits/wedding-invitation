@@ -7,7 +7,7 @@ import OpeningCard from "./components/OpeningCard/OpeningCard";
 import HeroSection from "./components/HeroSection/HeroSection";
 import EventsVenue from "./components/EventsVenue/EventsVenue";
 import WeddingTimeline from "./components/WeddingTimeline/WeddingTimeline";
-// import PhotoGallery from "./components/PhotoGallery/PhotoGallery";
+import PhotoGallery from "./components/PhotoGallery/PhotoGallery";
 import HangingPhotoGallery from "./components/HangingPhotoGallery/HangingPhotoGallery";
 import WeddingWishes from "./components/WeddingWishes/WeddingWishes";
 import WeddingFooter from "./components/WeddingFooter/WeddingFooter";
@@ -27,7 +27,7 @@ export default function Home() {
           <div className={styles.celebration}>
             <EventsVenue />
             <WeddingTimeline />
-            {/* <PhotoGallery /> */}
+            <PhotoGallery />
             <WeddingWishes />
             {/* <HangingPhotoGallery /> */}
             <WeddingFooter />
